@@ -12,7 +12,7 @@ import netlify from '@astrojs/netlify';
 export default defineConfig({
   site:'https://Laboucledelaboucle.netlify.app',
   output: 'server',
-  integrations: [react(), markdoc()],  // dans la doc de astro: https://docs.astro.build/fr/guides/cms/keystatic/
+  integrations: [react(), markdoc(), keystatic() ],  // dans la doc de astro: https://docs.astro.build/fr/guides/cms/keystatic/
   //  integrations: [react(), markdoc()],
   adapter: netlify(),
 
@@ -24,11 +24,11 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()],
-    ssr: {
-      external: ['@keystatic/astro'],
-      noExternal: [
-        '@astrojs/react']
-    },
+    // ssr: {
+    //   external: ['@keystatic/astro'],
+    //   noExternal: [
+    //     '@astrojs/react']
+    // },
   },
 
 //  adapter: netlify(),

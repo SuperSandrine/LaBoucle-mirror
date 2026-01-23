@@ -2,8 +2,9 @@
 import Keystatic from '@keystatic/astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
+// Option : on peut empêcher l’accès en prod si besoin
 if (import.meta.env.PROD) {
-  throw new Error('Keystatic admin UI disabled en production');
+  throw new Error('Keystatic admin UI désactivée en production');
 }
 ---
 <BaseLayout title="Admin - La Boucle de la boucle">
