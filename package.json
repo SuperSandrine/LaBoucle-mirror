@@ -7,7 +7,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "keystatic": "keystatic"
+    "keystatic": "keystatic",
+    "push":"git push origin main && git push github main"
   },
   "dependencies": {
     "@astrojs/markdoc": "^0.15.10",

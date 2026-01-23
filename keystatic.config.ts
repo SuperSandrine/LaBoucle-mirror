@@ -3,7 +3,12 @@ import { config, collection, fields } from '@keystatic/core';
 
 export default config({
   storage: {
-    kind: 'local',  // On commence en local, on passera à Git plus tard
+    kind: 'github',
+    repo: {
+      owner: 'SuperSandrine',
+      name: 'LaBoucle-mirror',
+    },
+    //kind: 'local',  // On commence en local, on passera à Git plus tard
     //repo: {
     //  owner: 'ton-utilisateur', // Ton pseudo Codeberg/GitHub
      // name: 'site-clownesque',  // Nom du dépôt
