@@ -9,12 +9,19 @@ import keystatic from '@keystatic/astro'
 import tailwindcss from '@tailwindcss/vite';
 
 
+import netlify from '@astrojs/netlify';
+
+
 // https://astro.build/config
 export default defineConfig({
   integrations: [react(), markdoc(), keystatic()],
-  output: 'static', //hybrid?
+
+  //static?
+  output: 'hybrid',
 
   vite: {
     plugins: [tailwindcss()],
   },
+
+  adapter: netlify(),
 });
