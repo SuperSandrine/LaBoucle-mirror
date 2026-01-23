@@ -1,5 +1,13 @@
 ---
 import Keystatic from '@keystatic/astro';
----
+import BaseLayout from '../layouts/BaseLayout.astro';
 
-<Keystatic client:only="react"/>
+if (import.meta.env.PROD) {
+  throw new Error('Keystatic admin UI disabled en production');
+}
+---
+<BaseLayout title="Admin - La Boucle de la boucle">
+  <h1 class="text-4xl font-bold mb-8">Admin Interface</h1>
+<Keystatic />
+</BaseLayout>
+
