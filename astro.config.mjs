@@ -23,6 +23,9 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()],
+    ssr: {
+      external: ['@keystatic/astro'],
+    },
   },
 
   adapter: netlify(),
