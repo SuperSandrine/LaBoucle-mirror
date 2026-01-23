@@ -1,0 +1,99 @@
+---
+// Props (optionnel)
+const currentPath = Astro.url.pathname;
+---
+
+<header class="fixed top-0 left-0 right-0 z-50  backdrop-blur-md px-8 py-1 h-[100px]">
+  <div class="max-w-[1440px] w-full mx-auto flex justify-between items-center">
+    
+    <!-- Logo -->
+    <a href="/" class="block">
+      <img 
+        src="/images/logo.svg" 
+        alt="La Boucle - Logo" 
+        class="w-24 h-24 hover:scale-110 transition-transform"
+      />
+    </a>
+    
+    <!-- Navigation Desktop -->
+    <nav class="hidden md:flex gap-12">
+      <a 
+        href="/" 
+        class="heading-h3Type transition text-glow nav-link "
+        aria-current={currentPath === '/' ? 'page' : undefined}
+      >
+                <span class={currentPath === '/' ? 'nav-link-active' : ''}>Accueil</span>
+
+      </a>
+      <a 
+        href="/spectacles" 
+         class="heading-h3Type text-lightGrey text-glow transition nav-link"
+        aria-current={currentPath.startsWith('/spectacles') ? 'page' : undefined}
+      >
+        <span class={currentPath.startsWith('/spectacles') ? 'nav-link-active' : ''}>Spectacles</span>
+      </a>
+      <a 
+        href="/stages" 
+        class="heading-h3Type text-lightGrey text-glow transition nav-link"
+        aria-current={currentPath === '/stages' ? 'page' : undefined}
+      >
+        <span class={currentPath === '/stages' ? 'nav-link-active' : ''}>Stages</span>
+      </a>
+      <a 
+        href="/compagnie" 
+        class="heading-h3Type text-lightGrey text-glow transition nav-link"
+        aria-current={currentPath === '/compagnie' ? 'page' : undefined}
+      >
+        <span class={currentPath === '/compagnie' ? 'nav-link-active' : ''}>Compagnie</span>
+      </a>
+      <a 
+        href="/contact" 
+        class="heading-h3Type text-lightGrey text-glow transition nav-link"
+        aria-current={currentPath === '/contact' ? 'page' : undefined}
+      >
+        <span class={currentPath === '/contact' ? 'nav-link-active' : ''}>Contact</span>
+      </a>
+    </nav>
+
+    <!-- Burger Menu Mobile (optionnel) -->
+    <button 
+      class="md:hidden text-lightGrey text-3xl"
+      aria-label="Menu"
+      id="burger-button"
+    >
+      ☰
+    </button>
+  </div>
+</header>
+
+<!-- Mobile Menu (caché par défaut) -->
+<div 
+  id="mobile-menu" 
+  class="fixed inset-0 bg-dark z-40 hidden md:hidden"
+>
+  <nav class="flex flex-col items-center justify-center h-full gap-8">
+    <a href="/" class="font-display text-3xl text-white uppercase">Accueil</a>
+    <a href="/spectacles" class="font-display text-3xl text-white uppercase">Spectacles</a>
+    <a href="/stages" class="font-display text-3xl text-white uppercase">Stages</a>
+    <a href="/compagnie" class="font-display text-3xl text-white uppercase">Compagnie</a>
+    <a href="/contact" class="font-display text-3xl text-white uppercase">Contact</a>
+  </nav>
+</div>
+
+
+<script>
+  // Burger menu toggle
+  const burger = document.getElementById('burger-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  burger?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+  
+  // Close menu on link click
+  mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+    });
+  });
+</script>

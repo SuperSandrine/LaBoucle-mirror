@@ -1,0 +1,28 @@
+titre: Comment devenir riche
+visuel: /images/spectacles/billets.webp
+duree: 1h
+public: Tout public dès 10 ans
+synopsis: Vous cherchez désespérément les moyens de boucler vos fins de mois ou encore vous désirez changer de yatch ?
+Cette conférence est faite pour vous, chômeureuses, mais aussi pour vos ami.e.s riches.
+
+
+ordre: 1
+publie: true
+---
+
+genre: clown, théâtre
+pitch: Grâce à René et Marcelle, travailleureuses sociales de terrain, expert.e.s de la finance facile, vous en
+apprendrez autant sur vous mêmes que sur votre compte en banque.
+description: Comment devenir riche est une vrai fausse conférence sur les thèmes de l'argent, du developpement
+personnel, des classes sociales, de la vulgarisation économiques et des questions de société.
+Esprit-riche.com nous a enseigné que « si vous croyez que vous êtes capable de vous enrichir, vous allez pouvoir y
+arriver » mais pour cela il faut être prêt à changer. Alors oubliez tout. Un nouveau départ pour une nouvelle richesse
+commence par remettre vos compteurs à zéro. Libérez-vous.
+citation: « L'argent n'est qu'une fiction. »
+auteur de citation: Aristote
+interprètes:2
+lieu: tout terrain
+précisions sur lieu: Spectacle tout terrain sauf endroits très petits/bas de plafond.
+Il a été joué dans de nombreux lieux spectaculaires ou pas : théâtre, salle des fetes, jardin, parc public, terrain de
+sport, festivals grand public (Aurillac 2025) ou évènements privés, tiers lieux...
+dossier: Dossier artistique/technique sur demande

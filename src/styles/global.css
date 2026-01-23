@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+/* Variables CSS custom */
+
+@theme {
+  --color-primary: #E496EA;
+  --color-secondary: #636AB5;
+  --color-dark: #262C46;
+  --color-black: #1D1D1D;
+  --color-white: #FFFFFF;
+  --color-lightGrey: #EDEFFD;
+  --color-accentWarning: #E51260;
+  --color-accent: #5326A4;
+
+  --font-display--sans:['Inter','sans-serif'];
+  --font-display--bigHeading:'Children of the revolution', 'sans-serif';
+  --font-display--headings:'TrashHand', 'sans-serif';
+
+  --text-h1: 4.5rem ;
+  --text-h2: 3rem;
+  --text-h3: 2.25rem;
+  --text-body:1rem;
+  --text-bodyBig:1.5rem;
+
+}
+
+@font-face {
+  font-family: 'Children of the revolution';
+  src: url("/fonts/Children-of-the-revolution.ttf");
+}
+
+@font-face {
+  font-family: 'TrashHand';
+  src: url("/fonts/TrashHand.TTF");
+}
+
+@layer components {
+  .heading-h3Type {
+    @apply font-display--headings text-h3 text-lightGrey;
+  }
+
+  .transition {
+    transition: all 300ms ease;
+  }
+
+   .text-glow {
+    transition: filter 300ms ease;
+  }
+
+  .text-glow:hover {
+    filter:
+      drop-shadow(0 0 2px rgba(247, 154, 255, 0.873))
+      drop-shadow(0 0 8px rgba(255, 255, 255, 0.931))
+      drop-shadow(0 0 14px rgba(250, 250, 250, 0.694))
+    }
+  
+  .nav-link[aria-current="page"] .nav-link-active {
+    color: white;
+    position: relative;
+    filter:
+      drop-shadow(0 0 6px rgba(247, 154, 255, 0.87))
+      drop-shadow(0 0 10px rgba(255, 255, 255, 0.93))
+      drop-shadow(0 0 14px rgba(250, 250, 250, 0.69)); }
+
+  .nav-link-active::after {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    bottom: -2px;
+    height: 2px;
+    background-color: white;
+    filter:
+      drop-shadow(0 0 6px rgba(247, 154, 255, 0.87))
+      drop-shadow(0 0 10px rgba(255, 255, 255, 0.93))
+      drop-shadow(0 0 14px rgba(250, 250, 250, 0.69));
+  }
+}
+
