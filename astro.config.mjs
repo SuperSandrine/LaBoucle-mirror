@@ -14,8 +14,8 @@ import netlify from '@astrojs/netlify';
 
 // https://astro.build/config
 export default defineConfig({
-  //integrations: [react(), markdoc(), keystatic()],
-    integrations: [react(), markdoc()],
+  integrations: [react(), markdoc(), keystatic()],  // dans la doc de astro: https://docs.astro.build/fr/guides/cms/keystatic/
+  //  integrations: [react(), markdoc()],
 
   //static?
   // 12:05:01 PM: ! The output: "hybrid" option has been removed. Use output: "static" (the default) instead, which now behaves the same way.
