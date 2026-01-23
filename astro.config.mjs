@@ -17,7 +17,9 @@ export default defineConfig({
   integrations: [react(), markdoc(), keystatic()],
 
   //static?
-  output: 'hybrid',
+  // 12:05:01 PM: ! The output: "hybrid" option has been removed. Use output: "static" (the default) instead, which now behaves the same way.
+
+  output: 'static',
 
   vite: {
     plugins: [tailwindcss()],
