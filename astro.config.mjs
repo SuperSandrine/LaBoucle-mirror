@@ -14,17 +14,21 @@ import netlify from '@astrojs/netlify';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react(), markdoc(), keystatic()],
+  //integrations: [react(), markdoc(), keystatic()],
+    integrations: [react(), markdoc()],
 
   //static?
   // 12:05:01 PM: ! The output: "hybrid" option has been removed. Use output: "static" (the default) instead, which now behaves the same way.
 
   //output: 'server',
+  output: 'static',
 
   vite: {
     plugins: [tailwindcss()],
     ssr: {
       external: ['@keystatic/astro'],
+      noExternal: [
+        '@astrojs/react']
     },
   },
 
