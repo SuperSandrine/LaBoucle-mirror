@@ -29,6 +29,15 @@ export default defineConfig({
     //   noExternal: [
     //     '@astrojs/react']
     // },
+    build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          keystatic: ['@keystatic/astro']  // met Keystatic dans un fichier séparé
+        }
+      }
+    }
+  }
   },
 
 //  adapter: netlify(),
