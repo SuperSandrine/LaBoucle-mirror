@@ -19,7 +19,7 @@ export default defineConfig({
   //static?
   // 12:05:01 PM: ! The output: "hybrid" option has been removed. Use output: "static" (the default) instead, which now behaves the same way.
 
-  output: 'static',
+  output: 'server',
 
   vite: {
     plugins: [tailwindcss()],
