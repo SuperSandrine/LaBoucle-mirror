@@ -1,6 +1,10 @@
 @import "tailwindcss";
 
 /* Variables CSS custom */
+html{
+  font-size: 16px;
+  font-family: 'Inter',sans-serif;
+}
 
 @theme {
   --color-primary: #E496EA;
@@ -16,10 +20,11 @@
   --font-display--bigHeading:'Children of the revolution', 'sans-serif';
   --font-display--headings:'TrashHand', 'sans-serif';
 
-  --text-h1: 4.5rem ;
+  --text-heading1: 4.5rem ;
   --text-h2: 3rem;
   --text-h3: 2.25rem;
-  --text-body:1rem;
+  --text-h4: 1.5rem;
+  --text-body: 1rem;
   --text-bodyBig:1.5rem;
 
 }
