@@ -1,0 +1,97 @@
+---
+// src/components/sections/Hero.astro
+import heroImage from "../../images/hero-accueil.webp";
+---
+
+<section class="hero-section relative h-screen w-full overflow-hidden">
+  
+  <!-- Image de fond avec filtres -->
+  <div class="absolute inset-0 z-0">
+    <img 
+      src={heroImage.src}
+      alt="La Boucle de La Boucle - Spectacle : Comment devenir riche" 
+      class="hero-image w-screen h-screen object-cover object-center "
+    />
+    <!-- Overlay dégradé -->
+    <div class="absolute inset-0 z-1 hero-overlay"></div>
+    <!-- Blur bas -->
+    <!-- <div class="absolute bottom-0 left-0 right-0 h-32 blur-overlay"></div>  <div class="absolute bottom-0 left-0 right-0 h-32 backdrop-blur-md"></div> -->
+  </div>
+
+  <!-- Contenu -->
+  <div class="absolute z-10 h-full w-full flex flex-col justify-end items-center px-4 pb-4">
+    
+    <!-- Titre principal -->
+    <h1 class="hero-title font-display--bigHeading text-white align-text-bottom mb-0">
+      LA BOUCLE DE LA BOUCLE
+    </h1>
+
+    <!-- Texte description -->
+    <p class="text-white/90 text-body pl-120 pr-24 pb-4">
+      Compagnie de clown et théâtre de rue, créée en Creuse en 2021, nous portons des spectacles, des activités 
+      pédagogiques et des événements culturels. Nos projets sont queers, ludiques, tous terrains et piquants.
+    </p>
+
+  </div>
+
+  <!-- Bouton scroll (optionnel) -->
+  <!-- <a 
+    href="#next-section" 
+    class="absolute bottom-8 right-8 -translate-x-1/2 text-white animate-bounce z-20"
+    aria-label="Défiler vers le bas"
+  >
+    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+    </svg>
+  </a> -->
+
+</section>
+
+<style>
+  /* Filtre noir & blanc + contraste sur image */
+  .hero-image {
+    filter: grayscale(100%) contrast(1.1) brightness(1.5) saturate(100%);
+  }
+
+  .hero-overlay{
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to bottom, 
+      rgba(29, 29, 29, 1.0) 0%,    /* 100% opacité */
+      rgba(29, 29, 29, 0.7) 23%,   /* 70% opacité */
+      rgba(29, 29, 29, 0.0) 54%,   /* 0% opacité */
+      rgba(29, 29, 29, 0.6) 88%    /* 60% opacité */
+  );
+}
+
+.blur-overlay {
+  /* L'intensité du flou maximal */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  /* Le masque qui crée le dégradé de flou */
+  /* Du transparent (pas de flou) vers le noir opaque (flou total) */
+  mask-image: linear-gradient(to bottom, transparent 0%, black 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 100%);
+}
+
+  /* Titre avec effet texturé */
+  .hero-title {
+    /* font-size: clamp(3rem, 10vw, 8rem); */
+    font-size: 8.75rem;
+    line-height: 1.1;
+    text-shadow: 
+      0 0 16px rgb(255, 255, 255, 0.9),
+      0 0 24px rgba(255, 255, 255, 0.5);
+  }
+
+  /* Responsive mobile */
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2.5rem;
+    }
+  }
+</style>
+
+

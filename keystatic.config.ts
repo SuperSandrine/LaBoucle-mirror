@@ -36,6 +36,25 @@ export default config({
         contenu: fields.markdoc({ label: 'Contenu' }),
       },
     }),
+    dates: collection({
+      label: 'Dates',
+      slugField: 'date',
+      path: 'src/content/dates/*',
+      schema: {
+        date: fields.text({ label: 'Date' }),
+        year: fields.text({ label: 'Année' }),
+        lieu: fields.text({ label: 'Lieu' }),
+        titre: fields.text({ label: 'Titre' }),
+        type: fields.select({
+          label: 'Type',
+          options: [
+            { label: 'Spectacle', value: 'spectacle' },
+            { label: 'Stage', value: 'stage' }
+          ],
+          defaultValue: 'spectacle'
+        })
+      }
+    })
     // ateliers: collection({
     //   label: 'Ateliers',
     //   slugField: 'title',

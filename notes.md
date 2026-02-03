@@ -29,3 +29,13 @@ git pull github main
 
 Cela rapatrie les modifications de l'artiste sur ton PC. Ensuite, ton npm run push renverra tout ça vers Codeberg pour que ta sauvegarde soit bien à jour.
 
+
+
+## convention de nommage
+z-0   : Fond (backgrounds)
+z-10  : Contenu normal
+z-20  : Éléments au-dessus (cards, sections)
+z-30  : Overlays (modals, dropdowns)
+z-40  : Navigation fixe
+z-50  : Header/Menu burger
+z-[100] : Tooltips/notifications

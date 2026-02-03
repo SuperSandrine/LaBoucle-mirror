@@ -1,0 +1,129 @@
+---
+//TODO: nettoyer code
+//TODO: rendre dynamique les dates
+// src/components/sections/Dates.astro
+
+import {getCollection} from 'astro:content';
+
+const datesCollection = await getCollection('dates');
+
+const dates = [
+  {
+    date: "20 novembre",
+    year: "2025",
+    lieu: "Lyon (69)",
+    titre: "Comment devenir riche",
+    type: "Spectacle"
+  },
+  {
+    date: "30 janvier au 2 février",
+    year: "2026",
+    lieu: "Espace Confluence, Bourganeuf (26)",
+    titre: "Stage d'exploration du clown contemporain",
+    type: "Spectacle"
+  },
+  {
+    date: "30 janvier au 2 février",
+    year: "2026",
+    lieu: "Espace Confluence, Bourganeuf (26)",
+    titre: "Stage d'exploration du clown contemporain",
+    type: "Spectacle"
+  }
+];
+---
+<section class="p-10 bg-primary">    
+  <h2 class="font-display--headings text-h2 pb-8 pl-8">
+    Nos prochaines dates    
+  </h2>
+
+  <div class="space-y-6">
+    {datesCollection.map((event) => (
+      <div class="flex flex-col md:flex-row md:items-center gap-6 pb-6 border-b border-very-dark/20">
+        
+        <div class="md:w-48">
+          <p class="font-display--headings text-3xl text-very-dark">
+            {event.date}
+          </p>
+          <p class="text-lg text-very-dark/70">{event.year}</p>
+        </div>
+
+        <div class="md:w-64">
+          <p class="text-very-dark/80">{event.lieu}</p>
+        </div>
+
+        <div class="flex-grow">
+          <h3 class="font-display--headings text-2xl text-very-dark">
+            {event.titre}
+          </h3>
+          <p class="text-sm text-very-dark/70">{event.type}</p>
+        </div>
+
+        <a 
+          href="/calendrier" 
+          class="inline-block border-2 border-very-dark text-very-dark font-display--headings px-6 py-3 text-lg hover:bg-very-dark hover:text-primary transition"
+        >
+          JE VEUX EN SAVOIR PLUS
+        </a>
+
+      </div>
+    ))}
+  </div>
+
+  <div class="text-center mt-12">
+    <a 
+      href="/calendrier" 
+      class="inline-block bg-dark text-primary font-display--headings px-8 py-4 text-xl hover:opacity-90 transition"
+    >
+      ET LES AUTRES DATES, C'EST PAR ICI
+    </a>
+  </div>
+</section>
+
+<!-- 
+<section class="p-10 bg-primary z-10">    
+    <h2 class=" font-display--headings text-h2 pb-8 pl-8">
+      Nos prochaines dates    
+    </h2>
+
+    <div class="space-y-6">
+      {dates.map((event) => (
+        <div class="flex flex-col md:flex-row md:items-center gap-6 pb-6" style="border-bottom: 1px solid rgba(29,29,29,0.2);">
+          
+          <div class="md:w-48">
+            <p class="text-3xl" style="font-family: 'Trashhands', cursive; color: #1D1D1D;">
+              {event.date}
+            </p>
+            <p class="text-lg" style="color: rgba(29,29,29,0.7);">{event.year}</p>
+          </div>
+
+          <div class="md:w-64">
+            <p style="color: rgba(29,29,29,0.8);">
+              {event.lieu}
+            </p>
+          </div>
+
+          <div class="flex-grow">
+            <h3 class="text-2xl" style="font-family: 'Trashhands', cursive; color: #1D1D1D;">
+              {event.titre}
+            </h3>
+            <p class="text-sm" style="color: rgba(29,29,29,0.7);">{event.type}</p>
+          </div>
+
+          <div>
+            <a href="/calendrier" class="inline-block border-2 px-6 py-3 text-lg" style="border-color: #1D1D1D; color: #1D1D1D; font-family: 'Trashhands', cursive;">
+              JE VEUX EN SAVOIR PLUS
+            </a>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+    <div class="text-center mt-12">
+      <a href="/calendrier" class="inline-block px-8 py-4 text-xl" style="background-color: #1D1D1D; color: #E496E1; font-family: 'Trashhands', cursive;">
+        ET LES AUTRES DATES, C'EST PAR ICI
+      </a>
+    </div>
+
+
+</section> -->

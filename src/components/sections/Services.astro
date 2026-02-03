@@ -1,0 +1,168 @@
+---
+// src/components/sections/About.astro
+import heroImage from "../../images/hero-accueil.webp";
+import Card from '../ui/CardService.astro'
+
+const cards = [
+  {
+    title: "SPECTACLES",
+    description: "Clown, théâtre de rue, cirque, cabaret et autres déclinaisons d'un théâtre sans quatrième mur."
+  },
+  {
+    title: "STAGES",
+    description: "Différents formats pédagogiques pour découvrir ou approfondir l'art du clown."
+  },
+  {
+    title: "FESTIVAL",
+    description: "Tous les deux ans, le festival Les Désinvoltes met en lumière des artistes queers du Limousin et d'ailleurs."
+  },
+  {
+    title: "PRESTATIONS À LA DEMANDE",
+    description: "Nous concevons des interventions artistiques et des ateliers en fonction de contextes spécifiques, contactez-nous."
+  }
+];
+
+---
+
+<section id="services" class="relative w-full h-fit">
+  <!-- fond -->
+      <div class="absolute inset-0 ">
+        
+        <img 
+          src={heroImage.src}
+          alt="La Boucle de La Boucle - Spectacle : Comment devenir riche" 
+          class="hero-image2 w-full h-full object-cover object-center"
+        />
+        <!-- Overlay dégradé -->
+        <div class="absolute top-[-35vh] left-0 right-0 bottom-0 hero-overlay2 "></div>
+        <!-- Blur bas section 2 -->
+        <div class="absolute top-[-30vh] left-0 right-0 bottom-0 blur-overlay2 "></div>
+      </div>
+
+  
+  <!-- Contenu -->
+  <div class="relative container mx-auto px-4 py-16">
+    <div class=" flex flex-wrap justify-center gap-8 md:gap-12  ">
+    <!-- <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto"> -->
+      {cards.map((card) => (
+        <Card title={card.title} description={card.description} />
+      ))}
+    </div>
+  </div>
+
+
+
+
+  <!-- <div class="max-w-7xl mx-auto">-->
+    
+    <!-- Grid 3 colonnes -->
+   <!-- <div class="grid md:grid-cols-3 gap-12 md:gap-8">-->
+      
+      <!-- Colonne 1 : Spectacles -->
+      <!--<div class="space-y-4">
+        <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
+          <span class="text-3xl">🎭</span>
+        </div>
+        <h3 class="font-display text-2xl text-very-dark uppercase">
+          Spectacles
+        </h3>
+        <p class="text-dark/80 leading-relaxed">
+          Clown, théâtre de rue, cirque, cabaret et autres décinaisons d'un théâtre sans quatrième mur.
+        </p>
+      </div>-->
+
+      <!-- Colonne 2 : Stages -->
+      <!--<div class="space-y-4">
+        <div class="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mb-6">
+          <span class="text-3xl">🎪</span>
+        </div>
+        <h3 class="font-display text-2xl text-very-dark uppercase">
+          Stages
+        </h3>
+        <p class="text-dark/80 leading-relaxed">
+          Différents formats pédagogiques pour découvrir ou approfondir l'art du clown.
+        </p>
+      </div>-->
+
+      <!-- Colonne 3 : Festival -->
+     <!-- <div class="space-y-4">
+        <div class="w-16 h-16 rounded-full bg-secondary/10 flex items-center justify-center mb-6">
+          <span class="text-3xl">🎉</span>
+        </div>
+        <h3 class="font-display text-2xl text-very-dark uppercase">
+          Festival
+        </h3>
+        <p class="text-dark/80 leading-relaxed">
+          Tous les deux ans, le festival Les Désinvoltes met en lumière des artistes queers du Limousin et d'ailleurs.
+        </p>
+      </div>
+
+    </div>-->
+
+    <!-- Section Interventions (en dessous) -->
+    <!--<div class="mt-20 text-center max-w-2xl mx-auto">
+      <p class="text-dark/80 leading-relaxed text-lg">
+        Nous concevons des interventions artistiques et des ateliers en fonction de contextes spécifiques, 
+        <a href="/contact" class="text-primary hover:text-accent underline font-semibold">
+          contactez-nous
+        </a>.
+      </p>
+    </div>
+
+   -->
+</section>
+
+<style>
+
+  .hero-image2 {
+    filter: saturate(100%) grayscale(100%);
+    transform: rotate(180deg) scaleX(-1);
+  }
+
+  .hero-overlay2{
+    background: linear-gradient(
+    to bottom, 
+    rgba(0, 0, 0, 0) 0%,    
+    rgba(0, 0, 0, 0.5) 15%,   
+    rgba(0, 0, 0, 0.6) 50%, 
+    rgba(0, 0, 0, 9) 85%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
+
+.blur-overlay2 {
+  /* L'intensité du flou maximal */
+  backdrop-filter: blur(80px);
+
+  /* Le masque qui crée le dégradé de flou */
+  /* Du transparent (pas de flou) vers le noir opaque (flou total) */
+  mask-image: linear-gradient(to bottom, 
+  transparent 0%,
+  rgba(0,0,0,0.6) 10%,
+  rgba(0,0,0,0.9) 15%,
+  rgba(0,0,0,1) 100%
+  )
+}
+
+
+
+  /* Animation au scroll (optionnel) */
+  .space-y-4 {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .space-y-4:nth-child(1) { animation-delay: 0.1s; }
+  .space-y-4:nth-child(2) { animation-delay: 0.2s; }
+  .space-y-4:nth-child(3) { animation-delay: 0.3s; }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    from {
+      transform: translateY(20px);
+    }
+  }
+</style>

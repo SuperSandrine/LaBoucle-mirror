@@ -2,10 +2,16 @@
 // Welcome to Astro! Everything between these triple-dash code fences
 // is your "component frontmatter". It never runs in the browser.
 console.log('This runs in your terminal, not the browser!');
+import Services from '../components/sections/Services.astro';
+import Hero from '../components/ui/Hero.astro';
 import PageLayout from '../layouts/PageLayout.astro';
+import Dates from '../components/sections/Dates.astro';
+// Page d'accueil
 ---
 <PageLayout title="La Boucle de la boucle">
-	<h1 class="bg-amber-400 text-8xl font-bold underline 4 min-h-64">Titre de la page</h1>
+	<Hero/>
+	<Services/>
+	<Dates/>
 </PageLayout>
 
 

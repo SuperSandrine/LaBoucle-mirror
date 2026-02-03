@@ -3,44 +3,47 @@
 const navigationLinks = [
   { label: "Spectacles", href: "/spectacles" },
   { label: "Stages", href: "/stages" },
-  { label: "Calendrier", href: "/calendrier" },
-  { label: "La Compagnie", href: "/compagnie" },
-  { label: "Festival", href: "/festival" },
+  //{ label: "Calendrier", href: "/calendrier" },
+  //{ label: "La Compagnie", href: "/compagnie" },
+  //{ label: "Festival", href: "/festival" },
   { label: "Contact", href: "/contact" },
 ];
 
 const professionalLinks = [
-  { label: "Dossiers presse", href: "/pro/presse" },
-  { label: "Dossiers subventions", href: "/pro/subventions" },
+  //{ label: "Dossiers presse", href: "/pro/presse" },
+  //{ label: "Dossiers subventions", href: "/pro/subventions" },
   { label: "Contact pro", href: "/pro/contact" },
 ];
 
 const socialLinks = [
-  { label: "Facebook", icon: "facebook", href: "https://facebook.com" },
   { label: "Instagram", icon: "instagram", href: "https://instagram.com" },
   { label: "YouTube", icon: "youtube", href: "https://youtube.com" },
 ];
 ---
 
 <footer class="bg-dark text-white">
-  <div class="max-w-6xl mx-auto px-6 md:px-10 lg:px-20 py-12 md:py-16">
+  <div class="max-w-6xl mx-auto px-6 md:px-10 lg:px-20 py-6 md:py-8">
     <!-- Logo -->
-    <div class="mb-10 md:mb-12">
-      <span class="font-[var(--font-bebas)] text-2xl md:text-3xl text-white">
-        RIRE <span class="text-primary">JAUNE</span>
-      </span>
+    <div class="pb-1 md:pb-2 ml-[-1.4rem]">
+        <a href="/" class="block">
+      <img 
+        src="/images/logo.svg" 
+        alt="La Boucle - Logo" 
+        class="w-30 h-30 "
+      />
+    </a>
     </div>
 
     <!-- Columns -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 mb-10 md:mb-12">
+    <div class=" flex flex-col sm:flex-row sm:justify-between pb-10 md:pb-12">
       <!-- Navigation -->
       <div>
-        <h3 class="text-primary font-bold uppercase text-sm tracking-wider mb-4">Navigation</h3>
-        <nav class="flex flex-col gap-3">
+        <h3 class="text-primary font-display--headings text-h4  text-sm pb-3">Navigation</h3>
+        <nav class="flex flex-col gap-2">
           {navigationLinks.map((link) => (
             <a
               href={link.href}
-              class="text-light hover:text-primary transition-colors duration-300 text-sm"
+              class=" hover:text-primary transition-colors duration-300 "
             >
               {link.label}
             </a>
@@ -50,12 +53,12 @@ const socialLinks = [
 
       <!-- Professionnels -->
       <div>
-        <h3 class="text-primary font-bold uppercase text-sm tracking-wider mb-4">Professionnels</h3>
+        <h3 class="text-primary font-display--headings text-h4  text-sm pb-3">Professionnels</h3>
         <nav class="flex flex-col gap-3">
           {professionalLinks.map((link) => (
             <a
               href={link.href}
-              class="text-light hover:text-primary transition-colors duration-300 text-sm"
+              class=" hover:text-primary transition-colors duration-300 "
             >
               {link.label}
             </a>
@@ -65,18 +68,18 @@ const socialLinks = [
 
       <!-- Social -->
       <div>
-        <h3 class="text-primary font-bold uppercase text-sm tracking-wider mb-4">Nous suivre</h3>
+        <h3 class="text-primary font-display--headings text-h4  text-sm pb-3">Nous suivre</h3>
         <div class="flex gap-4">
           {socialLinks.map((link) => (
             <a
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              class="text-white hover:text-primary transition-colors duration-300"
+              class="text-white hover:text-primary transition-colors duration-300 "
               aria-label={link.label}
             >
               <!-- Icône SVG pour {link.icon} à remplacer -->
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
                 {link.icon === 'facebook' && (
                   <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                 )}
@@ -109,7 +112,8 @@ const socialLinks = [
             Accessibilité
           </a>
         </div>
-        <p>© 2025 On Vous Fait Rire Jaune. Tous droits réservés.</p>
+        <p>© 2026 - La Boucle de la Boucle - Tous droits réservés -<a href="/" class="hover:text-primary transition-colors duration-300"> Made by Asteria Code </a></p>
+         <!-- TODO: mettre le bon lien du site du développeur -->
       </div>
     </div>
   </div>

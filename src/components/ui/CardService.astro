@@ -1,0 +1,23 @@
+---
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<div class="relative p-6 md:p-8 md:max-w-90">
+  <!-- Bordure verticale à gauche -->
+  <div class="absolute left-0 top-0 h-full w-[1px] bg-white/30"></div>
+  
+  <!-- Contenu de la carte -->
+  <div class="space-y-4">
+    <h3 class="font-display--headings text-h3 text-white uppercase tracking-wide">
+      {title}
+    </h3>
+    <p class="text-white/80 text-sm md:text-base leading-relaxed">
+      {description}
+    </p>
+  </div>
+</div>
