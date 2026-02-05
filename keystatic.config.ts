@@ -40,8 +40,12 @@ export default config({
       label: 'Dates',
       slugField: 'date',
       path: 'src/content/dates/*',
+      format: { contentField: 'contenu' },
       schema: {
-        date: fields.text({ label: 'Date' }),
+        date: fields.text({ 
+          label: 'Date', 
+          validation: { isRequired: true } // ← Obligatoire
+    }),
         year: fields.text({ label: 'Année' }),
         lieu: fields.text({ label: 'Lieu' }),
         titre: fields.text({ label: 'Titre' }),
@@ -52,7 +56,10 @@ export default config({
             { label: 'Stage', value: 'stage' }
           ],
           defaultValue: 'spectacle'
-        })
+        }),
+        contenu: fields.markdoc({ 
+      label: 'Contenu'
+    }),
       }
     })
     // ateliers: collection({

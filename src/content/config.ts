@@ -12,7 +12,19 @@ const spectaclesCollection = defineCollection({
   }),
 });
 
+const datesCollection = defineCollection({
+    type: 'content',
+    schema: z.object({
+      date: z.string(),
+      year: z.string(),
+      lieu: z.string(),
+      titre: z.string(),
+      type: z.string(),
+    }),
+});
+
 export const collections = {
-  spectacles: spectaclesCollection,
+  spectacles: spectaclesCollection, 
+  dates: datesCollection
   // ... autres collections
 };
