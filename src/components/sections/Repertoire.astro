@@ -1,0 +1,36 @@
+---
+import ShowCard from '../ui/ShowCard.astro';
+
+// Simulation des données provenant de sortedShow
+import {getCollection} from 'astro:content';
+const spectaclesCollection = await getCollection('spectacles');
+
+// Console log pour debug
+console.log('=== spectacle DEBUG ===');
+console.log('Nombre de dates:', spectaclesCollection.length);
+console.log('Dates:', spectaclesCollection);
+---
+
+<section class="bg-[#1A1B2E] py-12 px-4 min-h-screen">
+  <div class="container mx-auto">
+    
+    <h1 class="text-center text-4xl font-bold text-white mb-16 tracking-widest uppercase font-['Permanent_Marker',_cursive]">
+      Répertoire
+    </h1>
+
+    <div class="space-y-12">
+      {spectaclesCollection.map((event, index) => (
+        <ShowCard 
+          event={event} 
+          index={index} 
+        />
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* Importation d'une police manuscrite pour le style "Répertoire" */
+  @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+</style>

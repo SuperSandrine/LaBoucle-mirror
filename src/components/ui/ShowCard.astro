@@ -1,0 +1,47 @@
+---
+// ShowCard.astro
+const { event, index } = Astro.props;
+const { title, synopsis, duree, public: publicValue, visuel } = event.data;
+
+// On alterne le sens des colonnes pour un effet en "Z"
+const isEven = index % 2 === 0;
+---
+
+<article class={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} bg-[#EBEEFF] overflow-hidden rounded-sm shadow-lg mb-8 max-w-4xl mx-auto`}>
+  
+  <div class="md:w-1/2 h-64 md:h-auto overflow-hidden">
+    <img 
+      src={visuel} 
+      alt={title} 
+      class="w-full h-full object-cover grayscale"
+    />
+  </div>
+
+  <div class="md:w-1/2 p-8 flex flex-col justify-center space-y-4">
+    <h2 class="text-3xl text-black font-display--headings">{title}</h2>
+    
+    <div class="flex items-center space-x-4 text-sm text-pink-600 font-semibold">
+      <span class="flex items-center gap-1">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        {duree}
+      </span>
+      <span class="flex items-center gap-1">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+        {publicValue}
+      </span>
+    </div>
+
+    <p class="text-sm text-gray-700 leading-relaxed font-light">
+      {synopsis}
+    </p>
+
+    <button class="mt-4 self-start px-6 py-2 border border-blue-300 text-blue-800 text-xs uppercase tracking-widest font-bold hover:bg-blue-100 transition-colors">
+      "Découvrir le spectacle"
+    </button>
+  </div>
+
+</article>

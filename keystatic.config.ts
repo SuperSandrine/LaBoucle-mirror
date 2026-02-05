@@ -8,6 +8,7 @@ export default config({
       owner: 'SuperSandrine',
       name: 'LaBoucle-mirror',
     },
+  
     //kind: 'local',  // On commence en local, on passera à Git plus tard
     //repo: {
     //  owner: 'ton-utilisateur', // Ton pseudo Codeberg/GitHub

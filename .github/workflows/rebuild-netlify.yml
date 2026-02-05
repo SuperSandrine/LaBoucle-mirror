@@ -1,0 +1,15 @@
+name: Rebuild Netlify on Keystatic changes
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/content/**'
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Netlify Build
+        run: curl -X POST -d {} https://api.netlify.com/build_hooks/69849e3e1384d15f6428c97d
