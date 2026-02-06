@@ -39,17 +39,17 @@ export default config({
     }),
     dates: collection({
       label: 'Dates',
-      slugField: 'date',
+      slugField: 'titre',
       path: 'src/content/dates/*',
       format: { contentField: 'contenu' },
       schema: {
-        date: fields.text({ 
-          label: 'Date'
+        date: fields.date({ 
+          label: "Date de l'événement"
           // validation: { isRequired: true } // ← Obligatoire
     }),
         year: fields.text({ label: 'Année' }),
         lieu: fields.text({ label: 'Lieu' }),
-        titre: fields.text({ label: 'Titre' }),
+        titre: fields.slug({ label: 'Titre' }),
         type: fields.select({
           label: 'Type',
           options: [
