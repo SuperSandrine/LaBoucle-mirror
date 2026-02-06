@@ -39,7 +39,7 @@ export default config({
     }),
     dates: collection({
       label: 'Dates',
-      slugField: 'titrefichier',
+      slugField: 'titreFichier',
       path: 'src/content/dates/*',
       format: { contentField: 'contenu' },
       schema: {
