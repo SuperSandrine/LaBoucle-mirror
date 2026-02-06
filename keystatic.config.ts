@@ -51,7 +51,7 @@ export default config({
     }),
         year: fields.text({ label: 'Année' }),
         lieu: fields.text({ label: 'Lieu' }),
-        titre: fields.slug({ label: 'Titre' }),
+        titre: fields.text({ label: 'Titre' }),
         type: fields.select({
           label: 'Type',
           options: [
