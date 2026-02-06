@@ -44,8 +44,8 @@ export default config({
       format: { contentField: 'contenu' },
       schema: {
         date: fields.text({ 
-          label: 'Date', 
-          validation: { isRequired: true } // ← Obligatoire
+          label: 'Date'
+          // validation: { isRequired: true } // ← Obligatoire
     }),
         year: fields.text({ label: 'Année' }),
         lieu: fields.text({ label: 'Lieu' }),
