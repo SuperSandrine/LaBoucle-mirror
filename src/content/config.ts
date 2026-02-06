@@ -15,7 +15,8 @@ const spectaclesCollection = defineCollection({
 const datesCollection = defineCollection({
     type: 'content',
     schema: z.object({
-      date: z.string(),
+      titreFichier: z.string(),
+      date: z.date(),
       year: z.string(),
       lieu: z.string(),
       titre: z.string(),

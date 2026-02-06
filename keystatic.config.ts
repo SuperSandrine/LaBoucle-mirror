@@ -43,12 +43,11 @@ export default config({
       path: 'src/content/dates/*',
       format: { contentField: 'contenu' },
       schema: {
-                titrefichier: fields.slug({name:{ label: 'Titre + date'} }),
-
+        titreFichier: fields.slug({name:{ label: 'Titre + date'} }),
         date: fields.date({ 
           label: "Date de l'événement"
           // validation: { isRequired: true } // ← Obligatoire
-    }),
+        }),
         year: fields.text({ label: 'Année' }),
         lieu: fields.text({ label: 'Lieu' }),
         titre: fields.text({ label: 'Titre' }),
