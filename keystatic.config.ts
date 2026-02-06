@@ -39,10 +39,12 @@ export default config({
     }),
     dates: collection({
       label: 'Dates',
-      slugField: 'titre',
+      slugField: 'titrefichier',
       path: 'src/content/dates/*',
       format: { contentField: 'contenu' },
       schema: {
+                titrefichier: fields.slug({name:{ label: 'Titre + date'} }),
+
         date: fields.date({ 
           label: "Date de l'événement"
           // validation: { isRequired: true } // ← Obligatoire
