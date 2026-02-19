@@ -1,0 +1,44 @@
+---
+import CardTeam from "../ui/CardTeam.astro";
+import type { ImageMetadata } from 'astro';
+import imageCharlotte from "../../images/charlotte.jpg";
+
+interface TeamMember {
+  name: string;
+  role: string;
+  image: string | ImageMetadata; 
+}
+const team: TeamMember[] = [
+  { 
+    name: "Léo", 
+    role: "Co-directeur artistique", 
+    image: "/images/leo.jpg" 
+  },
+  { 
+    name: "Anabelle", 
+    role: "Co-directrice artistique", 
+    image: "/images/anabelle.jpg" 
+  },
+  { 
+    name: "Zicky", 
+    role: "Clown", 
+    image: "/images/zicky.jpg" 
+  },
+  { 
+    name: "Charlotte", 
+    role: "Directrice de production Festival", 
+    image: imageCharlotte // On passe directement l'import, pas de accolades !
+  },
+];
+---
+
+<section class="px-10 py-20 bg-dark">
+  <h2 class="font-display--headings text-white text-shine text-h2 pb-8 pl-8">
+    Nous sommes :
+  </h2>
+<div class="flex flex-wrap justify-center ">
+    {team.map((member) => (
+      <CardTeam {...member} />
+    ))}
+</div>
+</section>

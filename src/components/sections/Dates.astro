@@ -1,6 +1,9 @@
 ---
 //TODO: nettoyer code
-//TODO: rendre dynamique les dates
+//DONE: rendre dynamique les dates
+//TODO: afficher 3 dates maximums, à partir de la date d'aujourd'hui; les 3 dates à venir les plus proches.
+// TODO: rendre dynamique le choix des spectacles dans la collection keystatic pour que le choix soit définit entre les spectacle disponibles.
+// TODO: doit aussi afficher les dates de stages (est-ce que c'est une collection avec le choix du stage ou du spectacle ou  est-ce 2 collections différentes ?)
 // src/components/sections/Dates.astro
 
 import { getCollection } from "astro:content";
@@ -9,10 +12,10 @@ import { getCollection } from "astro:content";
 const datesCollection = await getCollection("dates");
 
 // Console log pour debug
-console.log("=== DATES DEBUG ===");
-console.log("Nombre de dates:", datesCollection.length);
-console.log("Dates:", datesCollection);
-console.log("Première date:", datesCollection[0]?.data);
+//console.log("=== DATES DEBUG ===");
+//console.log("Nombre de dates:", datesCollection.length);
+//console.log("Dates:", datesCollection);
+//console.log("Première date:", datesCollection[0]?.data);
 
 // Trie par date (optionnel)
 const sortedDates = datesCollection.sort(
@@ -20,13 +23,6 @@ const sortedDates = datesCollection.sort(
 );
 
 const dates = [
-  {
-    date: "20 novembre",
-    year: "2025",
-    lieu: "Lyon (69)",
-    titre: "Comment devenir riche",
-    type: "Spectacle",
-  },
   {
     date: "30 janvier au 2 février",
     year: "2026",
@@ -92,7 +88,7 @@ const dates = [
   </div>
 </section> -->
 <section class="p-10 bg-primary">
-  <h2 class="font-display--headings text-h2 pb-8 pl-8">
+  <h2 class="font-display--headings text-dark text-h2 pb-8 pl-8">
     Nos prochaines dates ({sortedDates.length})
   </h2>
 
@@ -110,16 +106,16 @@ const dates = [
             }),
           ),
           (
-            <div class="flex flex-col md:flex-row md:items-center gap-6 pb-6 border-b border-very-dark/20">
+            <div class="flex flex-col md:flex-row md:items-center gap-6 pb-6 border-dark">
               <div class="md:w-48">
-                <p class="font-display--sans font-bold  text-bodyBig leading-6 text-very-dark">
+                <p class="font-display--sans font-bold  text-bodyBig leading-6 text-dark">
                   {event.data.date.toLocaleDateString("fr-FR", {
                     //weekday: "long", // "lundi"
                     day: "numeric", // "20"
                     month: "long", // "novembre"
                   })}
                 </p>
-                <p class="text-lg text-very-dark/70">
+                <p class="text-lg text-dark">
                   {event.data.date.toLocaleDateString("fr-FR", {
                     year: "numeric",
                   })}
@@ -127,19 +123,19 @@ const dates = [
               </div>
 
               <div class="md:w-64">
-                <p class="text-very-dark/80">{event.data.lieu}</p>
+                <p class="text-dark">{event.data.lieu}</p>
               </div>
 
               <div class="flex-grow">
-                <h3 class="font-display--headings text-2xl text-very-dark">
+                <h3 class="font-display--headings text-h3 text-dark">
                   {event.data.titre}
                 </h3>
-                <p class="text-sm text-very-dark/70">{event.data.type}</p>
+                <p class="text-sm text-dark">{event.data.type}</p>
               </div>
 
               <a
                 href="/calendrier"
-                class="inline-block border-2 border-very-dark text-very-dark font-display--headings px-6 py-3 text-lg hover:bg-very-dark hover:text-primary transition"
+                class="inline-block border-2 border-dark text-dark font-display--headings px-10 py-4 text-h4 hover:bg-dark hover:text-primary transition"
               >
                 JE VEUX EN SAVOIR PLUS
               </a>
@@ -149,9 +145,14 @@ const dates = [
       )
     }
   </div>
-  <script>
-    console.log("Ça s'affiche dans le navigateur");
-  </script>
+  <div class="flex justify-center pt-10">
+    <a
+      href="/calendrier"
+      class="inline-block bg-dark text-white font-display--headings px-10 py-4 text-h4 hover:bg-dark hover:text-primary transition"
+    >
+      Et les autres dates, c'est par ici !
+    </a>
+  </div>
 </section>
 
 <!-- 

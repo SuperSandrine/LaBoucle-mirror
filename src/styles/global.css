@@ -79,5 +79,12 @@ html{
       drop-shadow(0 0 10px rgba(255, 255, 255, 0.93))
       drop-shadow(0 0 14px rgba(250, 250, 250, 0.69));
   }
+
+  .text-shine {
+    filter:
+      drop-shadow(0 0 2px rgba(253, 253, 253, 0.1))
+      drop-shadow(0 0 8px rgba(255, 255, 255, 0.431))
+      drop-shadow(0 0 14px rgba(250, 250, 250, 0.894))
+    }
 }
 
