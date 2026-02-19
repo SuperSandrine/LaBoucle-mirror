@@ -48,8 +48,7 @@ export default config({
           label: "Date de l'événement"
           // validation: { isRequired: true } // ← Obligatoire
         }),
-        year: fields.text({ label: 'Année' }),
-        lieu: fields.text({ label: 'Lieu' }),
+        lieu: fields.text({ label: 'Lieu', description: 'la ville avec une majuscule et le numéro de département entre parenthèse, exemple : Bayonne (64)' }),
         titre: fields.text({ label: 'Titre' }),
         type: fields.select({
           label: 'Type',
