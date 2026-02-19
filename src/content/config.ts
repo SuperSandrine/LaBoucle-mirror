@@ -16,7 +16,8 @@ const datesCollection = defineCollection({
     type: 'content',
     schema: z.object({
       titreFichier: z.string(),
-      date: z.string(),
+      //date: z.coerce.date(),// ajouter la possibilité de recevoir un format date ou string
+      date: z.union([z.coerce.date(), z.string()]).transform((val) => new Date(val)),
       year: z.string(),
       lieu: z.string(),
       titre: z.string(),
