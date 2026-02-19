@@ -13,23 +13,23 @@ interface Props {
 const { name, role, image } = Astro.props;
 ---
 
-<div class="team-card flex flex-col items-start group w-full sm:w-[calc(50%-20px)] lg:w-[calc(25%)] px-10">
+<div class=" flex flex-col items-start group w-full sm:w-[calc(50%-20px)] lg:w-[calc(25%)] px-10">
   
   <div 
-    class="image-container relative w-full overflow-hidden transition-all duration-500 shadow-[0_0_30px_rgba(244,114,182,0.5)]"
-    style="height: 425px;" 
+    class="image-container relative w-full overflow-hidden transition-all duration-500 shadow-[0_0_30px_rgba(244,114,182,0.5)] "
+     
   >
-    <div class="absolute inset-0 border-pink-400/30 blur-[1px] z-10 pointer-events-none"></div>
+    <div class="absolute inset-0 blur-[1px] z-10 pointer-events-none"></div>
     
     {
       typeof image === 'string' ? (
-        <img src={image} alt={name} class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
+        <img  src={image} alt={`Photo de ${name}`} class="w-full h-full object-cover  group-hover:grayscale transition-all duration-500" />
       ) : (
-        <Image src={image} alt={name} class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
+        <Image  src={image} alt={`Photo de ${name}`} class="w-full h-full object-cover  group-hover:grayscale transition-all duration-500" />
       )
     }
     
-    <div class="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-60"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent opacity-60"></div>
   </div>
 
   <div class="pt-10">
@@ -39,6 +39,26 @@ const { name, role, image } = Astro.props;
 </div>
 
 <script>
+  const heights = [
+    'h-[400px]',
+    'h-[410px]',
+    'h-[415px]',
+    'h-[420px]',
+    'h-[425px]',
+    'h-[430px]',
+    'h-[435px]',
+    'h-[440px]',
+    'h-[450px]'
+  ];
+
+  document.querySelectorAll('.image-container').forEach(card => {
+    const randomClass = heights[Math.floor(Math.random() * heights.length)];
+    card.classList.add(randomClass);
+  });
+</script>
+
+
+<!-- <script>
   // Ce script s'exécute côté client à chaque chargement
   const containers = document.querySelectorAll('.image-container');
   
@@ -48,4 +68,26 @@ const { name, role, image } = Astro.props;
     // Applique la hauteur en pixels
     (container as HTMLElement).style.height = `${randomHeight}px`;
   });
-</script>
+</script> -->
+
+<!-- <script>
+  // Fonction pour ajouter la classe et la variable de style
+  const addDynamicStyle = (el: HTMLElement, min: number, max: number) => {
+    const randomHeight = Math.floor(Math.random() * (max - min + 1)) + min;
+    
+    // 1. On ajoute la classe
+    el.classList.add('dynamic-height');
+    
+    // 2. On injecte la valeur via une variable CSS
+    el.style.setProperty('--card-height', `${randomHeight}px`);
+  };
+
+  // Utilisation
+  const containers = document.querySelectorAll('.image-container');
+  
+  containers.forEach((container) => {
+    if (container instanceof HTMLElement) {
+      addDynamicStyle(container, 390, 450);
+    }
+  });
+</script> -->

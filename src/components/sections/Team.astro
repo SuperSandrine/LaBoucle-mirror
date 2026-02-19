@@ -1,28 +1,32 @@
 ---
 import CardTeam from "../ui/CardTeam.astro";
 import type { ImageMetadata } from 'astro';
-import imageCharlotte from "../../images/charlotte.jpg";
+import imageCharlotte from "../../images/charlotte.webp";
+import imageLeo from "../../images/leo.webp";
+import imageAnabelle from "../../images/anabelle.webp";
+import imageZicky from "../../images/zickyg.webp";
+
 
 interface TeamMember {
   name: string;
   role: string;
-  image: string | ImageMetadata; 
+  image: ImageMetadata; 
 }
 const team: TeamMember[] = [
   { 
     name: "Léo", 
     role: "Co-directeur artistique", 
-    image: "/images/leo.jpg" 
+    image: imageLeo
   },
   { 
     name: "Anabelle", 
     role: "Co-directrice artistique", 
-    image: "/images/anabelle.jpg" 
+    image: imageAnabelle
   },
   { 
     name: "Zicky", 
     role: "Clown", 
-    image: "/images/zicky.jpg" 
+    image: imageZicky
   },
   { 
     name: "Charlotte", 
@@ -42,3 +46,4 @@ const team: TeamMember[] = [
     ))}
 </div>
 </section>
+
