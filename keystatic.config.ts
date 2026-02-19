@@ -49,7 +49,7 @@ export default config({
           // validation: { isRequired: true } // ← Obligatoire
         }),
         lieu: fields.text({ label: 'Lieu', description: 'la ville avec une majuscule et le numéro de département entre parenthèse, exemple : Bayonne (64)' }),
-        titre: fields.text({ label: 'Titre' }),
+        titre: fields.relationship({ label: 'Titre', description: 'La liste des specacles du répertoire', collection: 'Spectacles'}),
         type: fields.select({
           label: 'Type',
           options: [
