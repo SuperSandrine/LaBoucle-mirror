@@ -19,7 +19,7 @@ const spectaclesCollection = await getCollection("spectacles");
       Répertoire
     </h2>
 
-    <div class="space-y-12">
+    <div class="flex justify-center">
       {
         spectaclesCollection.map((event, index) => (
           <ShowCard event={event} index={index} />
