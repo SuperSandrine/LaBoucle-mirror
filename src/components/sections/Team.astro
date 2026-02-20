@@ -1,37 +1,36 @@
 ---
 import CardTeam from "../ui/CardTeam.astro";
-import type { ImageMetadata } from 'astro';
+import type { ImageMetadata } from "astro";
 import imageCharlotte from "../../images/charlotte.webp";
 import imageLeo from "../../images/leo.webp";
 import imageAnabelle from "../../images/anabelle.webp";
-import imageZicky from "../../images/zickyg.webp";
-
+import imageZicky from "../../images/ziky.webp";
 
 interface TeamMember {
   name: string;
   role: string;
-  image: ImageMetadata; 
+  image: ImageMetadata;
 }
 const team: TeamMember[] = [
-  { 
-    name: "Léo", 
-    role: "Co-directeur artistique", 
-    image: imageLeo
+  {
+    name: "Léo Sciarrino",
+    role: "Co-directeur artistique",
+    image: imageLeo,
   },
-  { 
-    name: "Anabelle", 
-    role: "Co-directrice artistique", 
-    image: imageAnabelle
+  {
+    name: "Anabelle Vaillant",
+    role: "Co-directrice artistique",
+    image: imageAnabelle,
   },
-  { 
-    name: "Zicky", 
-    role: "Clown", 
-    image: imageZicky
+  {
+    name: "Ziky Versari",
+    role: "Clown",
+    image: imageZicky,
   },
-  { 
-    name: "Charlotte", 
-    role: "Directrice de production Festival", 
-    image: imageCharlotte // On passe directement l'import, pas de accolades !
+  {
+    name: "Charlotte Weidmann",
+    role: "Directrice de production",
+    image: imageCharlotte, // On passe directement l'import, pas de accolades !
   },
 ];
 ---
@@ -40,10 +39,7 @@ const team: TeamMember[] = [
   <h2 class="font-display--headings text-white text-shine text-h2 pb-8 pl-8">
     Nous sommes :
   </h2>
-<div class="flex flex-wrap justify-center ">
-    {team.map((member) => (
-      <CardTeam {...member} />
-    ))}
-</div>
+  <div class="flex flex-wrap justify-center">
+    {team.map((member) => <CardTeam {...member} />)}
+  </div>
 </section>
-
