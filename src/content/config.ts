@@ -5,9 +5,19 @@ const spectaclesCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     visuel: z.string(),
+    synopsis: z.string(),
     duree: z.string(),
     public: z.string(),
-    synopsis: z.string(),
+    genreEtRegistre: z.string(),
+    creation: z.number(),
+    interprete: z.number(),
+    espace: z.string(),
+    espaceDetail: z.string(),
+    writeAndGame: z.string(),
+    otherPartRole : z.string(),
+    otherPart: z.string(),
+    costume: z.string(),
+    decor: z.string(),
     // ... autres champs
   }),
 });

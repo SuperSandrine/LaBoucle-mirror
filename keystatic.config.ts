@@ -34,9 +34,24 @@ export default config({
         synopsis: fields.text({ label: 'Synopsis' }),
         duree: fields.text({ label: 'Durée' }),
         public: fields.text({label: 'Public'}),
+        genreEtRegistre: fields.text({label: 'Genre et Registre'}),
+        creation: fields.text({label: 'Date de création'}),
+        interprete: fields.text({label: "Nombre d'inteprète"}),
+        espace: fields.text({label: "Type d'espace"}),
+        espaceDetail: fields.text({
+          label: 'Détails type de lieu, terrain', 
+          multiline: true }),
+        writeAndGame: fields.text({label: 'Ecriture et jeu'}),
+        otherPartRole: fields.text({label: 'Le rôle des autres participants'}),
+        otherPart: fields.text({
+          label: 'Autres participants',
+          multiline: true }),
+        costume: fields.text({label: 'Costumier-e'}),
+        decor: fields.text({label: 'Décorateur-e'}),
         contenu: fields.markdoc({ label: 'Contenu' }),
       },
     }),
+
     dates: collection({
       label: 'Dates',
       slugField: 'titreFichier',
