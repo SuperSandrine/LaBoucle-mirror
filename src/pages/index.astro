@@ -13,9 +13,13 @@ import Repertoire from "../components/sections/Repertoire.astro";
 ---
 
 <PageLayout title="La Boucle de la boucle">
-  <Hero />
-  <Services />
-  <Dates />
-  <Team />
-  <Repertoire />
+  <main>
+    <Hero />
+    <Services />
+    <div class="flex flex-col gap-15 bg-dark">
+      <Dates />
+      <Team />
+      <Repertoire />
+    </div>
+  </main>
 </PageLayout>
