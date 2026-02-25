@@ -1,15 +1,22 @@
 ---
 // ShowCard.astro
-const { event, index } = Astro.props;
-const { title, synopsis, duree, public: publicValue, visuel, slug } = event.data;
+const { event, index, anchorMode = false } = Astro.props;
+const {
+  title,
+  synopsis,
+  duree,
+  public: publicValue,
+  visuel,
+  slug,
+} = event.data;
+
+const href = anchorMode ? `#${event.slug}` : `/spectacles/${event.slug}`;
 
 // On alterne le sens des colonnes pour un effet en "Z"
 const isEven = index % 2 === 0;
 
 //console.log(Astro.props);
 console.log("test ===", event.slug);
-
-
 ---
 
 <!-- <article
@@ -75,15 +82,14 @@ console.log("test ===", event.slug);
     </a>
   </div>
 </article> -->
-
 <article
   class={`flex flex-col ${isEven ? "md:flex-row" : "md:flex-row-reverse"} bg-lightGrey overflow-hidden shadow-lg mb-8 w-4/5 mx-auto min-h-[400px]`}
 >
   <div class="md:w-1/2 relative min-h-[300px] md:min-h-full">
-    <img 
-      src={visuel} 
-      alt={title} 
-      class="absolute inset-0 w-full h-full object-cover object-top" 
+    <img
+      src={visuel}
+      alt={title}
+      class="absolute inset-0 w-full h-full object-cover object-top"
     />
   </div>
 
@@ -91,17 +97,38 @@ console.log("test ===", event.slug);
     <h2 class="text-h3 text-dark font-display--headings mb-4">
       {title}
     </h2>
-    
+
     <div class="flex items-center gap-6 pb-6">
       <span class="flex items-center gap-1 text-accentWarning font-bold">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
         </svg>
         <p class="text-dark text-lg font-normal">{duree}</p>
       </span>
       <span class="flex items-center gap-1 text-accentWarning font-bold">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+          ></path>
         </svg>
         <p class="text-dark text-lg font-normal">{publicValue}</p>
       </span>
@@ -112,7 +139,7 @@ console.log("test ===", event.slug);
     </p>
 
     <a
-      href={`/spectacles/${event.slug}`}
+      href={href}
       class="w-fit border-2 border-secondary text-secondary font-display--headings px-10 py-4 text-h4 hover:bg-secondary hover:text-white transition"
     >
       Découvrir le spectacle

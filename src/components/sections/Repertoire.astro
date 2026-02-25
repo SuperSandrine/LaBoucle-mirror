@@ -5,6 +5,8 @@ import ShowCard from "../ui/ShowCard.astro";
 // Simulation des données provenant de sortedShow
 import { getCollection } from "astro:content";
 const spectaclesCollection = await getCollection("spectacles");
+const { anchorMode = false } = Astro.props;
+
 
 // Console log pour debug
 //console.log('=== spectacle DEBUG ===');
@@ -22,7 +24,7 @@ const spectaclesCollection = await getCollection("spectacles");
     <div class="flex flex-col items-center">
       {
         spectaclesCollection.map((event, index) => (
-          <ShowCard event={event} index={index} />
+          <ShowCard event={event} index={index} anchorMode={anchorMode}/>
         ))
       }
     </div>
