@@ -16,9 +16,7 @@ if (!spectacle) {
 
 const { Content } = await spectacle.render();
 
-console.log(
-  "SPECTACLE TROUVÉ : ",
-"RENDERED HTML : ", Content);
+console.log("SPECTACLE TROUVÉ : ", "RENDERED HTML : ", Content);
 // {await spectacle.render().then((r) => r.body)}
 
 //console.log("CEQUEJAI ICI: ", tousLesSpectacles);
@@ -122,49 +120,50 @@ console.log(
             « L'argent n'est qu'une fiction. » — Aristote
           </blockquote>
         </div> -->
-
-      <div class="lg:col-span-2 prose prose-lg max-w-none">
+      <div class="flex flex-row gap-16">
+        <div class="py-10 text-bodyBig text-lightGrey ">
           <Content />
-      </div>
+        </div>
 
-      <aside class="bg-white p-8 shadow-sm h-fit space-y-8">
-        <div>
-          <h4
-            class="font-display--headings uppercase text-secondary mb-4 border-b pb-2"
-          >
-            Distribution
-          </h4>
-          <div class="space-y-4">
-            <div>
-              <p class="text-xs uppercase text-gray-500">Écriture et jeu</p>
-              <p class="font-medium">{spectacle.data.writeAndGame}</p>
+        <aside class="bg-white p-8 shadow-sm h-fit space-y-8">
+          <div>
+            <h4
+              class="font-display--headings uppercase text-secondary mb-4 border-b pb-2"
+            >
+              Distribution
+            </h4>
+            <div class="space-y-4">
+              <div>
+                <p class="text-xs uppercase text-gray-500">Écriture et jeu</p>
+                <p class="font-medium">{spectacle.data.writeAndGame}</p>
+              </div>
+              <div>
+                <p class="text-xs uppercase text-gray-500">
+                  {spectacle.data.otherPartRole}
+                </p>
+                <p class="font-medium">{spectacle.data.otherPart}</p>
+              </div>
             </div>
-            <div>
-              <p class="text-xs uppercase text-gray-500">
-                {spectacle.data.otherPartRole}
+          </div>
+
+          <div>
+            <h4
+              class="font-display--headings uppercase text-secondary mb-4 border-b pb-2"
+            >
+              Infos Terrain
+            </h4>
+            <div class="space-y-4">
+              <div>
+                <p class="text-xs uppercase text-gray-500">Espace</p>
+                <p class="font-medium">{spectacle.data.espace}</p>
+              </div>
+              <p class="text-sm text-gray-600 leading-relaxed">
+                {spectacle.data.espaceDetail}
               </p>
-              <p class="font-medium">{spectacle.data.otherPart}</p>
             </div>
           </div>
-        </div>
-
-        <div>
-          <h4
-            class="font-display--headings uppercase text-secondary mb-4 border-b pb-2"
-          >
-            Infos Terrain
-          </h4>
-          <div class="space-y-4">
-            <div>
-              <p class="text-xs uppercase text-gray-500">Espace</p>
-              <p class="font-medium">{spectacle.data.espace}</p>
-            </div>
-            <p class="text-sm text-gray-600 leading-relaxed">
-              {spectacle.data.espaceDetail}
-            </p>
-          </div>
-        </div>
-      </aside>
+        </aside>
+      </div>
     </div>
   </main>
 </PageLayout>
