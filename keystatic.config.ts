@@ -137,9 +137,9 @@ export default config({
           {
             label: 'Prochaines dates',
             description: 'Ajouter une ligne par date. ex : Du 30 janvier au 2 février 2026',
-            itemLabel: (props) => props.fields.value.value || 'Nouvelle date',
+            itemLabel: (props) => props.value || 'Nouvelle date',
           }
-        ),
+        ), // est ce que ça marche en dépit de la correction?
 
         statut: fields.select({
           label: 'Statut des inscriptions',
