@@ -52,6 +52,115 @@ export default config({
       },
     }),
 
+// ─────────────────────────────────────────
+    // STAGES & ATELIERS
+    // ─────────────────────────────────────────
+    stages: collection({
+      label: 'Stages & Ateliers',
+      slugField: 'title',
+      path: 'src/content/stages/*',
+      format: { contentField: 'contenu' },
+      schema: {
+        title: fields.slug({ name: { label: 'Titre du stage ou atelier' } }),
+
+        typeActivite: fields.select({
+          label: "Type d'activité",
+          options: [
+            { label: 'Stage (plusieurs jours)', value: 'stage' },
+            { label: 'Atelier mensuel', value: 'atelier' },
+          ],
+          defaultValue: 'stage',
+        }),
+
+        format: fields.text({
+          label: 'Format court',
+          description: 'ex : 4 jours intensifs · 9h30–17h30',
+        }),
+
+        visuel: fields.image({
+          label: 'Visuel',
+          // Toutes les images de stages dans un seul dossier
+          directory: 'public/images/stages',
+          publicPath: '/images/stages',
+        }),
+
+        synopsis: fields.text({
+          label: 'Synopsis',
+          multiline: true,
+          description: 'Résumé court affiché sur la carte (2-3 phrases max)',
+        }),
+
+        duree: fields.text({
+          label: 'Durée',
+          description: 'ex : 4 jours · 9h30–17h30, ou : 1 jour/mois + 2 week-ends',
+        }),
+
+        public: fields.text({
+          label: 'Public',
+          description: 'ex : Adultes, tous niveaux',
+        }),
+
+        tarif: fields.text({
+          label: 'Tarif (résumé court)',
+          description: 'Affiché sur la carte. ex : 150€ – 200€',
+        }),
+
+        tarifDetail: fields.text({
+          label: 'Tarifs détaillés',
+          multiline: true,
+          description: 'Texte complet avec les différentes paliers, affiché sur la page complète',
+        }),
+
+        lieu: fields.text({
+          label: 'Lieu',
+          description: 'ex : Espace Confluence, Bourganeuf (23)',
+        }),
+
+        lieuDetail: fields.text({
+          label: 'Détails sur le lieu',
+          multiline: true,
+          description: 'Accessibilité, équipements, hébergement... (optionnel)',
+        }),
+
+        pedagogues: fields.text({
+          label: 'Pédagogues',
+          description: 'ex : Annabelle Vaillant & Leo Sciarrino',
+        }),
+
+        emailContact: fields.text({
+          label: 'Email de contact / inscription',
+          description: 'ex : laboucledelaboucle@gmail.com',
+        }),
+
+        prochainsDates: fields.array(
+          fields.text({ label: 'Date' }),
+          {
+            label: 'Prochaines dates',
+            description: 'Ajouter une ligne par date. ex : Du 30 janvier au 2 février 2026',
+            itemLabel: (props) => props.fields.value.value || 'Nouvelle date',
+          }
+        ),
+
+        statut: fields.select({
+          label: 'Statut des inscriptions',
+          options: [
+            { label: 'Inscriptions ouvertes', value: 'ouvert' },
+            { label: 'Complet', value: 'complet' },
+            { label: 'Bientôt disponible', value: 'bientot' },
+          ],
+          defaultValue: 'ouvert',
+        }),
+
+        contenu: fields.markdoc({ label: 'Contenu (texte de présentation)' }),
+      },
+    }),
+
+    // ─────────────────────────────────────────
+    // DATES (calendrier)
+    // ─────────────────────────────────────────
+
+
+
     dates: collection({
       label: 'Dates',
       slugField: 'titreFichier',
@@ -66,9 +175,9 @@ export default config({
         lieu: fields.text({ label: 'Lieu', description: 'la ville avec une majuscule et le numéro de département entre parenthèse, exemple : Bayonne (64)' }),
         titre: fields.relationship({ 
           label: 'Titre', 
-          description: 'La liste des specacles du répertoire', collection: 'spectacles'}),
+          description: 'La liste des spectacles du répertoire', collection: 'spectacles'}),
         type: fields.select({
-          label: 'Type',
+          label: "Type d'évènement ",
           options: [
             { label: 'Spectacle', value: 'spectacle' },
             { label: 'Stage', value: 'stage' }
@@ -76,7 +185,7 @@ export default config({
           defaultValue: 'spectacle'
         }),
         contenu: fields.markdoc({ 
-      label: 'Contenu'
+      label: 'informations complémentaires'
     }),
       }
     })

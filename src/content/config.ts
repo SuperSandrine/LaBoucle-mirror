@@ -34,8 +34,42 @@ const datesCollection = defineCollection({
     }),
 });
 
+const stagesCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    // --- Identité ---
+    title: z.string(),
+    // "stage" pour les stages 4 jours, "atelier" pour l'atelier mensuel
+    typeActivite: z.enum(['stage', 'atelier']),
+    // Sous-titre / format court (ex: "4 jours intensifs", "Mensuel + 2 week-ends")
+    format: z.string(),
+    visuel: z.string(),
+    synopsis: z.string(),
+
+    // --- Méta affichées sur la carte ---
+    duree: z.string(),        // ex: "4 jours, 9h30-17h30"
+    public: z.string(),       // ex: "Adultes, tous niveaux"
+    tarif: z.string(),        // ex: "150€ – 200€" (résumé court pour la carte)
+
+    // --- Détails page complète ---
+    tarifDetail: z.string(),  // Texte complet avec les paliers
+    lieu: z.string(),
+    lieuDetail: z.string().optional(),
+    pedagogues: z.string(),
+    emailContact: z.string().email(),
+
+    // --- Prochaines dates (tableau de strings lisibles) ---
+    prochainsDates: z.array(z.string()).optional(),
+
+    // --- Statut ---
+    // "ouvert" | "complet" | "bientot"
+    statut: z.enum(['ouvert', 'complet', 'bientot']).default('ouvert'),
+  }),
+});
+
 export const collections = {
   spectacles: spectaclesCollection, 
-  dates: datesCollection
+  dates: datesCollection,
+  stages: stagesCollection,
   // ... autres collections
 };

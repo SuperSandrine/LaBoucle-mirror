@@ -1,0 +1,31 @@
+---
+// src/components/sections/Stages.astro
+// Section liste des stages pour la page d'accueil
+import CardActivities from "../ui/CardActivities.astro";
+import { getCollection } from "astro:content";
+
+const stagesCollection = await getCollection("stages");
+const { anchorMode = false } = Astro.props;
+---
+
+<section class="bg-dark p-10">
+  <h2
+    class="text-center text-h2 font-bold text-white text-shine p-10 font-display--headings"
+  >
+    Stages & Ateliers
+  </h2>
+
+  <div class="flex flex-col items-center">
+    {
+      stagesCollection.map((item, index) => (
+        <CardActivities
+          item={item}
+          index={index}
+          anchorMode={anchorMode}
+          baseUrl="/stages"
+          ctaLabel="En savoir plus"
+        />
+      ))
+    }
+  </div>
+</section>

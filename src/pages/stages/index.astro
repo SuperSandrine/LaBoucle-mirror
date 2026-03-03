@@ -1,0 +1,178 @@
+---
+// src/pages/stages/index.astro
+import PageLayout from "../../layouts/PageLayout.astro";
+import Stages from "../../components/sections/Stages.astro";
+import { getCollection, render } from "astro:content";
+
+const tousLesStages = await getCollection("stages");
+
+
+
+const stagesWithContent = await Promise.all(
+  tousLesStages.map(async (stage) => {
+    console.log("stage", stage);
+    
+    const { Content } = await render(stage);
+    return { stage, Content };
+  }),
+);
+---
+
+<PageLayout title="Stages & Ateliers - La Boucle de la Boucle">
+  <main class="bg-dark pt-40 px-4 flex flex-col items-center">
+
+    <!-- Liste des cartes (anchorMode = scroll vers les fiches) -->
+    <div class="pb-20 w-full">
+      <Stages anchorMode={true} />
+    </div>
+
+    <!-- Fiches détaillées -->
+    {
+      stagesWithContent.map(({ stage, Content }) => (
+        <div id={stage.slug} class="max-w-6xl w-full mb-20">
+
+          <!-- En-tête : visuel + infos principales -->
+          <article class="flex flex-col md:flex-row bg-white shadow-xl overflow-hidden min-h-[500px] mb-0">
+            <div class="md:w-1/2 relative min-h-[350px] md:min-h-full bg-dark">
+              <img
+                src={stage.data.visuel}
+                alt={`Image du stage ${stage.data.title}`}
+                class="absolute inset-0 w-full h-full object-cover object-top"
+              />
+              <!-- Badge -->
+              <span class="absolute top-4 left-4 px-3 py-1 text-sm font-bold uppercase tracking-wide bg-secondary text-white">
+                {stage.data.typeActivite === "atelier" ? "Atelier mensuel" : "Stage"}
+              </span>
+            </div>
+
+            <div class="md:w-1/2 p-8 md:p-12 flex flex-col justify-center border-l border-gray-100">
+              <span class="text-secondary font-bold text-body">
+                {stage.data.format}
+              </span>
+
+              <h2 class="text-heading1 text-dark font-display--headings pb-4 leading-tight">
+                {stage.data.title}
+              </h2>
+
+              <!-- Méta badges -->
+              <div class="flex flex-wrap gap-4 pb-6">
+                <!-- Durée -->
+                <div class="flex items-center gap-2 text-accentWarning">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span class="text-dark font-medium">{stage.data.duree}</span>
+                </div>
+
+                <!-- Public -->
+                <div class="flex items-center gap-2 text-accentWarning">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                  <span class="text-dark font-medium">{stage.data.public}</span>
+                </div>
+
+                <!-- Tarif -->
+                <div class="flex items-center gap-2 text-accentWarning">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span class="text-dark font-medium">{stage.data.tarif}</span>
+                </div>
+              </div>
+
+              <!-- Synopsis -->
+              <p class="text-xl text-dark/80 italic border-l-4 border-secondary pl-4 mb-6">
+                {stage.data.synopsis}
+              </p>
+
+              <!-- CTA contact -->
+              <a
+                href={`mailto:${stage.data.emailContact}`}
+                class="w-fit border-2 border-secondary text-secondary font-display--headings px-10 py-4 text-h4 hover:bg-secondary hover:text-white transition"
+              >
+                S'inscrire
+              </a>
+            </div>
+          </article>
+
+          <!-- Corps : contenu Markdown + aside infos pratiques -->
+          <div class="flex flex-col lg:flex-row gap-0">
+
+            <!-- Contenu markdown -->
+            <div class="lg:w-2/3 bg-dark py-10 px-8 text-body prose prose-invert max-w-none
+              prose-blockquote:border-l-4 prose-blockquote:border-accentWarning
+              prose-blockquote:pl-6
+              prose-blockquote:text-primary prose-blockquote:text-lg
+              prose-blockquote:not-italic">
+              <Content />
+            </div>
+
+            <!-- Aside infos pratiques -->
+            <aside class="lg:w-1/3 bg-white p-8 shadow-sm space-y-8">
+
+              <!-- Pédagogues -->
+              <div>
+                <h4 class="font-display--headings uppercase text-secondary mb-4 border-b pb-2">
+                  Pédagogues
+                </h4>
+                <p class="font-medium text-dark">{stage.data.pedagogues}</p>
+              </div>
+
+              <!-- Prochaines dates -->
+              {stage.data.prochainsDates && stage.data.prochainsDates.length > 0 && (
+                <div>
+                  <h4 class="font-display--headings uppercase text-secondary mb-4 border-b pb-2">
+                    Prochaines dates
+                  </h4>
+                  <ul class="space-y-2">
+                    {stage.data.prochainsDates.map((date: string) => (
+                      <li class="text-dark font-medium flex items-start gap-2">
+                        <span class="text-accentWarning mt-1">▸</span>
+                        {date}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              <!-- Lieu -->
+              <div>
+                <h4 class="font-display--headings uppercase text-secondary mb-4 border-b pb-2">
+                  Lieu
+                </h4>
+                <p class="font-medium text-dark">{stage.data.lieu}</p>
+                {stage.data.lieuDetail && (
+                  <p class="text-sm text-gray-600 leading-relaxed mt-2">{stage.data.lieuDetail}</p>
+                )}
+              </div>
+
+              <!-- Tarif détaillé -->
+              <div>
+                <h4 class="font-display--headings uppercase text-secondary mb-4 border-b pb-2">
+                  Tarifs
+                </h4>
+                <p class="text-sm text-dark leading-relaxed whitespace-pre-line">{stage.data.tarifDetail}</p>
+              </div>
+
+              <!-- Contact -->
+              <div>
+                <h4 class="font-display--headings uppercase text-secondary mb-4 border-b pb-2">
+                  Contact & Inscription
+                </h4>
+                <a
+                  href={`mailto:${stage.data.emailContact}`}
+                  class="text-secondary hover:text-accent transition underline break-all"
+                >
+                  {stage.data.emailContact}
+                </a>
+              </div>
+
+            </aside>
+          </div>
+
+        </div>
+      ))
+    }
+  </main>
+</PageLayout>
