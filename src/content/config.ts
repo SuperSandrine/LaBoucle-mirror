@@ -29,8 +29,10 @@ const datesCollection = defineCollection({
       //date: z.coerce.date(),// ajouter la possibilité de recevoir un format date ou string
       date: z.union([z.coerce.date(), z.string()]).transform((val) => new Date(val)),
       lieu: z.string(),
-      titre: z.string(),
-      type: z.string(),
+      evenement: z.object({
+        discriminant: z.enum(['spectacle', 'stage']),
+        value: z.string(),
+      }),
     }),
 });
 

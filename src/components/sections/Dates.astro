@@ -22,6 +22,14 @@ const sortedDates = datesCollection.sort(
   (a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime(),
 );
 
+const getEventTitle = (event: (typeof sortedDates)[number]) => {
+  return event.data.evenement?.value ?? (event.data as { titre?: string }).titre ?? '';
+};
+
+const getEventType = (event: (typeof sortedDates)[number]) => {
+  return event.data.evenement?.discriminant ?? (event.data as { type?: string }).type ?? '';
+};
+
 const dates = [
   {
     date: "30 janvier au 2 février",
@@ -128,9 +136,9 @@ const dates = [
 
               <div class="flex-grow">
                 <h3 class="font-display--headings text-h3 text-dark">
-                  {event.data.titre}
+                  {getEventTitle(event)}
                 </h3>
-                <p class="text-sm text-dark">{event.data.type}</p>
+                <p class="text-sm text-dark">{getEventType(event)}</p>
               </div>
 
               <a

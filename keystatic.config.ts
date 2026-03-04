@@ -158,9 +158,6 @@ export default config({
     // ─────────────────────────────────────────
     // DATES (calendrier)
     // ─────────────────────────────────────────
-
-
-
     dates: collection({
       label: 'Dates',
       slugField: 'titreFichier',
@@ -173,17 +170,29 @@ export default config({
           // validation: { isRequired: true } // ← Obligatoire
         }),
         lieu: fields.text({ label: 'Lieu', description: 'la ville avec une majuscule et le numéro de département entre parenthèse, exemple : Bayonne (64)' }),
-        titre: fields.relationship({ 
-          label: 'Titre', 
-          description: 'La liste des spectacles du répertoire', collection: 'spectacles'}),
-        type: fields.select({
-          label: "Type d'évènement ",
-          options: [
-            { label: 'Spectacle', value: 'spectacle' },
-            { label: 'Stage', value: 'stage' }
-          ],
-          defaultValue: 'spectacle'
-        }),
+        evenement: fields.conditional(
+          fields.select({
+            label: "Type d'évènement",
+            options: [
+              { label: 'Spectacle', value: 'spectacle' },
+              { label: 'Stage', value: 'stage' }
+            ],
+            defaultValue: 'spectacle'
+          }),
+          {
+            spectacle: fields.relationship({
+              label: 'Titre du spectacle',
+              description: 'Choisir un spectacle du répertoire',
+              collection: 'spectacles',
+            }),
+            stage: fields.relationship({
+              label: 'Titre du stage ou ateliers',
+              description: 'Choisir un stage/atelier',
+              collection: 'stages',
+            }),
+          }
+        ),
+        
         contenu: fields.markdoc({ 
       label: 'informations complémentaires'
     }),
