@@ -166,8 +166,12 @@ export default config({
       schema: {
         titreFichier: fields.slug({name:{ label: 'Titre + date'} }),
         date: fields.date({ 
-          label: "Date de l'événement"
+          label: "Date de début"
           // validation: { isRequired: true } // ← Obligatoire
+        }),
+        dateFin: fields.date({
+          label: "Date de fin (optionnel)",
+          description: "Renseigner uniquement si l'événement dure 2 jours ou plus (ex: stages).",
         }),
         lieu: fields.text({ label: 'Lieu', description: 'la ville avec une majuscule et le numéro de département entre parenthèse, exemple : Bayonne (64)' }),
         evenement: fields.conditional(

@@ -30,22 +30,38 @@ const getEventType = (event: (typeof sortedDates)[number]) => {
   return event.data.evenement?.discriminant ?? (event.data as { type?: string }).type ?? '';
 };
 
-const dates = [
-  {
-    date: "30 janvier au 2 février",
-    year: "2026",
-    lieu: "Espace Confluence, Bourganeuf (26)",
-    titre: "Stage d'exploration du clown contemporain",
-    type: "Spectacle",
-  },
-  {
-    date: "30 janvier au 2 février",
-    year: "2026",
-    lieu: "Espace Confluence, Bourganeuf (26)",
-    titre: "Stage d'exploration du clown contemporain",
-    type: "Spectacle",
-  },
-];
+const formatDayMonth = (date: Date) =>
+  date.toLocaleDateString("fr-FR", {
+    day: "numeric",
+    month: "long",
+  });
+
+const getEventDateDisplay = (event: (typeof sortedDates)[number]) => {
+  const startDate = event.data.date;
+  const endDate = event.data.dateFin;
+
+  if (!endDate || endDate.getTime() <= startDate.getTime()) {
+    return {
+      main: formatDayMonth(startDate),
+      year: startDate.toLocaleDateString("fr-FR", { year: "numeric" }),
+    };
+  }
+
+  const startYear = startDate.getFullYear();
+  const endYear = endDate.getFullYear();
+
+  if (startYear === endYear) {
+    return {
+      main: `${formatDayMonth(startDate)} au ${formatDayMonth(endDate)}`,
+      year: String(endYear),
+    };
+  }
+
+  return {
+    main: `${formatDayMonth(startDate)} ${startYear} au ${formatDayMonth(endDate)}`,
+    year: String(endYear),
+  };
+};
 ---
 
 <!-- <section class="p-10 bg-primary">    
@@ -101,56 +117,40 @@ const dates = [
   </h2>
 
   <div class="space-y-6">
-    {console.log("je suis là 2")}
     {
-      sortedDates.map(
-        (event) => (
-          console.log(
-            event.data.date.toLocaleDateString("fr-FR", {
-              weekday: "long", // "lundi"
-              day: "numeric", // "20"
-              month: "long", // "novembre"
-              year: "numeric", // "2025"
-            }),
-          ),
-          (
-            <div class="flex flex-col md:flex-row md:items-center gap-6 pb-6 border-dark">
-              <div class="md:w-48">
-                <p class="font-display--sans font-bold  text-bodyBig leading-6 text-dark">
-                  {event.data.date.toLocaleDateString("fr-FR", {
-                    //weekday: "long", // "lundi"
-                    day: "numeric", // "20"
-                    month: "long", // "novembre"
-                  })}
-                </p>
-                <p class="text-lg text-dark">
-                  {event.data.date.toLocaleDateString("fr-FR", {
-                    year: "numeric",
-                  })}
-                </p>
-              </div>
-
-              <div class="md:w-64">
-                <p class="text-dark">{event.data.lieu}</p>
-              </div>
-
-              <div class="flex-grow">
-                <h3 class="font-display--headings text-h3 text-dark">
-                  {getEventTitle(event)}
-                </h3>
-                <p class="text-sm text-dark">{getEventType(event)}</p>
-              </div>
-
-              <a
-                href="/calendrier"
-                class="inline-block border-2 border-dark text-dark font-display--headings px-10 py-4 text-h4 hover:bg-dark hover:text-primary transition"
-              >
-                JE VEUX EN SAVOIR PLUS
-              </a>
+      sortedDates.map((event) => {
+        const eventDateDisplay = getEventDateDisplay(event);
+        return (
+          <div class="flex flex-col md:flex-row md:items-center gap-6 pb-6 border-dark">
+            <div class="md:w-48">
+              <p class="font-display--sans font-bold  text-bodyBig leading-6 text-dark">
+                {eventDateDisplay.main}
+              </p>
+              <p class="text-lg text-dark">
+                {eventDateDisplay.year}
+              </p>
             </div>
-          )
-        ),
-      )
+
+            <div class="md:w-64">
+              <p class="text-dark">{event.data.lieu}</p>
+            </div>
+
+            <div class="flex-grow">
+              <h3 class="font-display--headings text-h3 text-dark">
+                {getEventTitle(event)}
+              </h3>
+              <p class="text-sm text-dark">{getEventType(event)}</p>
+            </div>
+
+            <a
+              href="/calendrier"
+              class="inline-block border-2 border-dark text-dark font-display--headings px-10 py-4 text-h4 hover:bg-dark hover:text-primary transition"
+            >
+              JE VEUX EN SAVOIR PLUS
+            </a>
+          </div>
+        );
+      })
     }
   </div>
   <div class="flex justify-center pt-10">

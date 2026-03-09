@@ -1,5 +1,16 @@
 import { defineCollection, z } from 'astro:content';
 
+const dateSchema = z.preprocess((value) => {
+  if (value instanceof Date) return value;
+  return new Date(String(value));
+}, z.date());
+
+const optionalDateSchema = z.preprocess((value) => {
+  if (value === undefined || value === null || value === '') return undefined;
+  if (value instanceof Date) return value;
+  return new Date(String(value));
+}, z.date().optional());
+
 const spectaclesCollection = defineCollection({
   type: 'content',
   schema: z.object({
@@ -26,8 +37,8 @@ const datesCollection = defineCollection({
     type: 'content',
     schema: z.object({
       titreFichier: z.string(),
-      //date: z.coerce.date(),// ajouter la possibilité de recevoir un format date ou string
-      date: z.union([z.coerce.date(), z.string()]).transform((val) => new Date(val)),
+      date: dateSchema,
+      dateFin: optionalDateSchema,
       lieu: z.string(),
       evenement: z.object({
         discriminant: z.enum(['spectacle', 'stage']),
