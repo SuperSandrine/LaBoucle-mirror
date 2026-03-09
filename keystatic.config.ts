@@ -186,7 +186,7 @@ export default config({
               collection: 'spectacles',
             }),
             stage: fields.relationship({
-              label: 'Titre du stage ou ateliers',
+              label: 'Titre du stage ou at',
               description: 'Choisir un stage/atelier',
               collection: 'stages',
             }),
