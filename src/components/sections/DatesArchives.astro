@@ -1,48 +1,47 @@
 ---
-//TODO: nettoyer code
-//DONE: rendre dynamique les dates
-//TODO: afficher 3 dates maximums, à partir de la date d'aujourd'hui; les 3 dates à venir les plus proches.
-// DONE: rendre dynamique le choix des spectacles dans la collection keystatic pour que le choix soit définit entre les spectacle disponibles.
-// DONE: doit aussi afficher les dates de stages (est-ce que c'est une collection avec le choix du stage ou du spectacle ou  est-ce 2 collections différentes ?)
-
-// src/components/sections/Dates.astro
-
 import { getCollection } from "astro:content";
 
-// Récupère toutes les dates
+type EventFilter = "all" | "spectacle" | "stage";
+
+const { filter } = Astro.props as { filter?: EventFilter };
+const pathname = Astro.url.pathname;
+
+console.log("pathname", pathname);
+
+
+const inferredFilter: EventFilter =
+  pathname.startsWith("/stages") ? "stage" :
+  pathname.startsWith("/spectacles") ? "spectacle" :
+  "all";
+
+const activeFilter: EventFilter = filter ?? inferredFilter;
+
 const datesCollection = await getCollection("dates");
 
-// Console log pour debug
-//console.log("=== DATES DEBUG ===");
-//console.log("Nombre de dates:", datesCollection.length);
-//console.log("Dates:", datesCollection);
-//console.log("Première date:", datesCollection[0]?.data);
-
-// Trie par date (optionnel)
 const sortedDates = datesCollection.sort(
   (a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime(),
 );
 
-
-
-// Trie par date et filtre pour n'afficher que les 3 prochaines dates à partir d'aujourd'hui
 const today = new Date();
-const nextDates = sortedDates
+today.setHours(0, 0, 0, 0);
+
+const getEventType = (event: (typeof sortedDates)[number]) => {
+  return event.data.evenement?.discriminant ?? (event.data as { type?: string }).type ?? '';
+};
+
+const filteredDates = sortedDates.filter((event) => {
+  if (activeFilter === "all") return true;
+  return getEventType(event).toLowerCase() === activeFilter;
+});
+
+const nextDates = filteredDates
   .filter(event => new Date(event.data.date) >= today)
   .slice(0, 3);
-
-
-
-//récupère et formate les données pour l'affichage  
 const getEventTitle = (event: (typeof sortedDates)[number]) => {
   return event.data.evenement?.value ?? (event.data as { titre?: string }).titre ?? '';
 };
 const formatTitle = (slug: string) =>
   slug.replace(/-/g, ' ').replace(/^\w/, c => c.toUpperCase());
-
-const getEventType = (event: (typeof sortedDates)[number]) => {
-  return event.data.evenement?.discriminant ?? (event.data as { type?: string }).type ?? '';
-};
 
 const formatDayMonth = (date: Date) =>
   date.toLocaleDateString("fr-FR", {
@@ -76,63 +75,19 @@ const getEventDateDisplay = (event: (typeof sortedDates)[number]) => {
     year: String(endYear),
   };
 };
+
+console.log("nextdates", nextDates);
+
 ---
 
-<!-- <section class="p-10 bg-primary">    
-  <h2 class="font-display--headings text-h2 pb-8 pl-8">
-    Nos prochaines dates    
-  </h2>
-
-  <div class="space-y-6">
-    {datesCollection.map((event) => (
-      <div class="flex flex-col md:flex-row md:items-center gap-6 pb-6 border-b border-very-dark/20">
-        
-        <div class="md:w-48">
-          <p class="font-display--headings text-3xl text-very-dark">
-            {event.date}
-          </p>
-          <p class="text-lg text-very-dark/70">{event.year}</p>
-        </div>
-
-        <div class="md:w-64">
-          <p class="text-very-dark/80">{event.lieu}</p>
-        </div>
-
-        <div class="flex-grow">
-          <h3 class="font-display--headings text-2xl text-very-dark">
-            {event.titre}
-          </h3>
-          <p class="text-sm text-very-dark/70">{event.type}</p>
-        </div>
-
-        <a 
-          href="/calendrier" 
-          class="inline-block border-2 border-very-dark text-very-dark font-display--headings px-6 py-3 text-lg hover:bg-very-dark hover:text-primary transition"
-        >
-          JE VEUX EN SAVOIR PLUS
-        </a>
-
-      </div>
-    ))}
-  </div>
-
-  <div class="text-center mt-12">
-    <a 
-      href="/calendrier" 
-      class="inline-block bg-dark text-primary font-display--headings px-8 py-4 text-xl hover:opacity-90 transition"
-    >
-      ET LES AUTRES DATES, C'EST PAR ICI
-    </a>
-  </div>
-</section> -->
 <section class="p-10 bg-primary">
   <h2 class="font-display--headings text-dark text-h2 pb-8 pl-8">
-    Nos prochaines dates ({nextDates.length})
+    Nos dates de la plus récente à la plus ancienne ({filteredDates.length})
   </h2>
 
   <div class="space-y-6">
     {
-      nextDates.map((event) => {
+      filteredDates.map((event) => {
         const eventDateDisplay = getEventDateDisplay(event);
         return (
           <div class="flex flex-col md:flex-row md:items-center gap-6 pb-6 border-dark">

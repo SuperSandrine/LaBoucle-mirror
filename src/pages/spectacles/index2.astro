@@ -19,11 +19,17 @@ const genres = Array.from(
 
 <PageLayout title="Spectacles - La Boucle de la Boucle">
   <main class="bg-dark pt-36 pb-20 px-4 md:px-8">
-    <section class="mx-auto max-w-7xl rounded-3xl border border-primary/20 bg-gradient-to-br from-dark via-secondary/30 to-dark p-8 md:p-12 shadow-2xl shadow-black/40">
-      <p class="font-display--sans uppercase tracking-[0.2em] text-primary text-sm md:text-base">
+    <section
+      class="mx-auto max-w-7xl border border-primary/20 bg-gradient-to-br from-dark via-secondary/30 to-dark p-8 md:p-12 shadow-2xl shadow-black/40"
+    >
+      <p
+        class="font-display--sans uppercase tracking-[0.2em] text-primary text-sm md:text-base"
+      >
         Répertoire vivant
       </p>
-      <h1 class="mt-4 font-display--headings text-white text-h2 md:text-heading1 leading-none text-shine">
+      <h1
+        class="mt-4 font-display--headings text-white text-h2 md:text-heading1 leading-none text-shine"
+      >
         Nos spectacles en cartes
       </h1>
       <p class="mt-6 max-w-3xl text-lightGrey text-bodyBig leading-relaxed">
@@ -32,15 +38,21 @@ const genres = Array.from(
       </p>
 
       <div class="mt-8 flex flex-wrap items-center gap-3 text-sm md:text-base">
-        <span class="rounded-full border border-primary/40 bg-primary/15 px-4 py-2 text-white">
-          {sortedSpectacles.length} spectacle{sortedSpectacles.length > 1 ? "s" : ""}
+        <span
+          class="rounded-full border border-primary/40 bg-primary/15 px-4 py-2 text-white"
+        >
+          {sortedSpectacles.length} spectacle{
+            sortedSpectacles.length > 1 ? "s" : ""
+          }
         </span>
         {
-          genres.slice(0, 4).map((genre) => (
-            <span class="rounded-full border border-white/20 px-4 py-2 text-lightGrey">
-              {genre}
-            </span>
-          ))
+          genres
+            .slice(0, 4)
+            .map((genre) => (
+              <span class="rounded-full border border-white/20 px-4 py-2 text-lightGrey">
+                {genre}
+              </span>
+            ))
         }
       </div>
     </section>

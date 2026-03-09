@@ -1,297 +1,111 @@
 ---
-import Repertoire from "../../components/sections/Repertoire.astro";
+// TODO: utiliser les meme mises en pages que la page d'accueil
+// TODO: créer un boutoon pour voir la fiche
+import DatesArchives from "../../components/sections/DatesArchives.astro";
 import PageLayout from "../../layouts/PageLayout.astro";
+import { getCollection } from "astro:content";
 
-// Page de liste (ex: src/pages/repertoire.astro)
-import { getCollection, render } from "astro:content";
-const tousLesSpectacles = await getCollection("spectacles");
+const spectacles = await getCollection("spectacles");
 
-const spectaclesWithContent = await Promise.all(
-  tousLesSpectacles.map(async (spectacle) => {
-    const { Content } = await render(spectacle);
-    return { spectacle, Content };
-  }),
+const sortedSpectacles = [...spectacles].sort((a, b) =>
+  a.data.title.localeCompare(b.data.title, "fr", { sensitivity: "base" }),
 );
-//console.log("SPECTACLE TROUVÉ : ", "RENDERED HTML : ", Content);
-// {await spectacle.render().then((r) => r.body)}
 
-//console.log("CEQUEJAI ICI: ", tousLesSpectacles);
+const genres = Array.from(
+  new Set(
+    sortedSpectacles
+      .map((item) => item.data.genreEtRegistre)
+      .filter((genre): genre is string => Boolean(genre?.trim())),
+  ),
+);
 ---
 
-<PageLayout title="page spectacles - La Boucle de la Boucle">
-  <main class="bg-dark pt-40 px-4 flex flex-col items-center">
-    <div class="pb-40">
-      <Repertoire anchorMode={true} />
-    </div>
-    {
-      spectaclesWithContent.map(({ spectacle, Content }) => (
-        <div id={spectacle.slug} class="max-w-6xl w-full">
-          <article class="flex flex-col md:flex-row bg-white shadow-xl overflow-hidden min-h-[500px] mb-16">
-            <div class="md:w-1/2 relative min-h-[350px] md:min-h-full bg-dark">
-              <img
-                src={spectacle.data.visuel}
-                alt={`image du spectacle ${spectacle.data.title}`}
-                class="absolute inset-0 w-full h-full object-cover object-top"
-              />
-            </div>
-
-            <div class="md:w-1/2 p-8 md:p-12 flex flex-col justify-center border-l border-gray-100">
-              <span class="text-secondary font-bold text-body">
-                {spectacle.data.genreEtRegistre}
-              </span>
-              <p class="text-primary font-bold text-bodyBig">
-                {spectacle.data.creation}
-              </p>
-              <h2 class="text-heading1 text-dark font-display--headings pb-4">
-                {spectacle.data.title}
-              </h2>
-
-              <div class="flex flex-wrap gap-4 pb-4">
-                <div class="flex items-center gap-2 text-accentWarning">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                  <span class="text-dark font-medium">
-                    {spectacle.data.duree}h
-                  </span>
-                </div>
-                <div class="flex items-center gap-2 text-accentWarning">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                    />
-                  </svg>
-                  <span class="text-dark font-medium">
-                    {spectacle.data.public}
-                  </span>
-                </div>
-              </div>
-
-              <p class="text-xl text-dark/80 italic border-l-4 border-secondary pl-4 mb-8">
-                {spectacle.data.synopsis}
-              </p>
-            </div>
-          </article>
-
-          <div class="flex flex-row gap-16 pb-16">
-            <div
-              class="py-10 text-body prose prose-invert max-w-none
-          prose-blockquote:border-l-4 prose-blockquote:border-accentWarning
-          prose-blockquote:pl-6
-          prose-blockquote:text-primary prose-blockquote:text-lg
-          prose-blockquote:not-italic"
-            >
-              <Content />
-            </div>
-
-            <aside class="bg-white p-8 shadow-sm h-fit space-y-8 w-full min-w-1/5">
-              <div>
-                <h4 class="font-display--headings uppercase text-secondary mb-4 border-b pb-2">
-                  Distribution
-                </h4>
-                <div class="space-y-4">
-                  <div>
-                    <p class="text-xs uppercase text-gray-500">
-                      Écriture et jeu
-                    </p>
-                    <p class="font-medium">{spectacle.data.writeAndGame}</p>
-                  </div>
-                  <div>
-                    <p class="text-xs uppercase text-gray-500">
-                      {spectacle.data.otherPartRole}
-                    </p>
-                    <p class="font-medium">{spectacle.data.otherPart}</p>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <h4 class="font-display--headings uppercase text-secondary mb-4 border-b pb-2">
-                  Infos Terrain
-                </h4>
-                <div class="space-y-4">
-                  <div>
-                    <p class="text-xs uppercase text-gray-500">Espace</p>
-                    <p class="font-medium">{spectacle.data.espace}</p>
-                  </div>
-                  <p class="text-sm text-gray-600 leading-relaxed">
-                    {spectacle.data.espaceDetail}
-                  </p>
-                </div>
-              </div>
-            </aside>
-          </div>
-        </div>
-      ))
-    }
-  </main>
-  <!-- <main class="bg-dark pt-40 px-4 flex flex-col items-center">
-    <Repertoire anchorMode={true} /> -->
-
-  <!-- <div class="max-w-6xl">
-      <article
-        class="flex flex-col md:flex-row bg-white shadow-xl overflow-hidden min-h-[500px] mb-16"
+<PageLayout title="Spectacles - La Boucle de la Boucle">
+  <main class="bg-dark pt-36 pb-20">
+    <section
+      class="mx-auto max-w-7xl bg-gradient-to-br from-dark via-secondary/30 to-dark p-8 md:p-12 shadow-2xl shadow-black/70"
+    >
+      <p class="font-display--sans uppercase text-primary text-body">
+        Répertoire vivant
+      </p>
+      <h1
+        class="mt-4 font-display--headings text-white text-h2 md:text-heading1 leading-none text-shine"
       >
-        <div class="md:w-1/2 relative min-h-[350px] md:min-h-full bg-dark">
-          <img
-            src={spectacle.data.visuel}
-            alt={`image du spectacle ${spectacle.data.title}`}
-            class="absolute inset-0 w-full h-full object-cover object-top"
-          />
-        </div>
+        Nos spectacles
+      </h1>
+      <p class="pt-6 max-w-3xl text-lightGrey text-bodyBig">
+        Une vue rapide pour choisir un univers, comparer les formats et accéder
+        à chaque fiche complète.
+      </p>
 
-        <div
-          class="md:w-1/2 p-8 md:p-12 flex flex-col justify-center border-l border-gray-100"
+      <div class="mt-8 flex flex-wrap items-center gap-3 text-sm md:text-base">
+        <span
+          class="rounded-full border border-primary/40 bg-primary/15 px-4 py-2 text-white"
         >
-          <span class="text-secondary font-bold text-body">
-            {spectacle.data.genreEtRegistre}
-          </span>
-          <p class="text-primary font-bold text-bodyBig">
-            {spectacle.data.creation}
-          </p>
-          <h1 class="text-heading1 text-dark font-display--headings pb-4">
-            {spectacle.data.title}
-          </h1>
-
-          <div class="flex flex-wrap gap-4 pb-4">
-            <div class="flex items-center gap-2 text-accentWarning">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
-              <span class="text-dark font-medium">
-                {spectacle.data.duree}h
+          {sortedSpectacles.length} spectacle{
+            sortedSpectacles.length > 1 ? "s" : ""
+          }
+        </span>
+        {
+          genres
+            .slice(0, 4)
+            .map((genre) => (
+              <span class="rounded-full border border-white/20 px-4 py-2 text-lightGrey">
+                {genre}
               </span>
-            </div>
-            <div class="flex items-center gap-2 text-accentWarning">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                ></path>
-              </svg>
-              <span class="text-dark font-medium">
-                {spectacle.data.public}
-              </span>
-            </div>
-          </div>
-
-          <p
-            class="text-xl text-dark/80 italic border-l-4 border-secondary pl-4 mb-8"
-          >
-            {spectacle.data.synopsis}
-          </p>
-        </div>
-      </article>
-
-      <!-- <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 text-dark">
-        <div class="lg:col-span-2 prose prose-lg max-w-none">
-          <p class="font-bold text-secondary">
-            Vous cherchez désespérément les moyens de boucler vos fins de mois
-            ou encore vous désirez changer de yatch ?
-          </p>
-          <p>
-            Cette conférence est faite pour vous, chômeureuses, mais aussi pour
-            vos ami.e.s riches. Grâce à René et Marcelle, travailleureuses
-            sociales de terrain, expert.e.s de la finance facile, vous en
-            apprendrez autant sur vous mêmes que sur votre compte en banque.
-          </p>
-          <p>
-            <strong>Comment devenir riche</strong> est une vrai fausse conférence
-            sur les thèmes de l'argent, du développement personnel, des classes sociales,
-            de la vulgarisation économique et des questions de société.
-          </p>
-          <blockquote
-            class="bg-white p-6 rounded-r-lg border-l-4 border-accentWarning italic"
-          >
-            « L'argent n'est qu'une fiction. » — Aristote
-          </blockquote>
-        </div> 
-      <div class="flex flex-row gap-16 pb-16">
-        <div class=" py-10 text-body prose prose-invert max-w-none
-            prose-blockquote:border-l-4 prose-blockquote:border-accentWarning
-            prose-blockquote:pl-6 
-            prose-blockquote:text-primary prose-blockquote:text-lg
-            prose-blockquote:not-italic">
-          <Content />
-        </div>
-
-        <aside class="bg-white p-8 shadow-sm h-fit space-y-8 w-full min-w-1/5">
-          <div>
-            <h4
-              class="font-display--headings uppercase text-secondary mb-4 border-b pb-2"
-            >
-              Distribution
-            </h4>
-            <div class="space-y-4">
-              <div>
-                <p class="text-xs uppercase text-gray-500">Écriture et jeu</p>
-                <p class="font-medium">{spectacle.data.writeAndGame}</p>
-              </div>
-              <div>
-                <p class="text-xs uppercase text-gray-500">
-                  {spectacle.data.otherPartRole}
-                </p>
-                <p class="font-medium">{spectacle.data.otherPart}</p>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <h4
-              class="font-display--headings uppercase text-secondary mb-4 border-b pb-2"
-            >
-              Infos Terrain
-            </h4>
-            <div class="space-y-4">
-              <div>
-                <p class="text-xs uppercase text-gray-500">Espace</p>
-                <p class="font-medium">{spectacle.data.espace}</p>
-              </div>
-              <p class="text-sm text-gray-600 leading-relaxed">
-                {spectacle.data.espaceDetail}
-              </p>
-            </div>
-          </div>
-        </aside>
+            ))
+        }
       </div>
-    </div> -->
-  <!-- </main> -->
+    </section>
+
+    <section class="mx-auto py-10 max-w-7xl">
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
+        {
+          sortedSpectacles.map((spectacle) => (
+            <article class="group overflow-hidden bg-lightGrey shadow-lg transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/90">
+              <a href={`/spectacles/${spectacle.slug}`} class="block">
+                <div class="relative h-64 overflow-hidden bg-black">
+                  <img
+                    src={spectacle.data.visuel}
+                    alt={`Visuel du spectacle ${spectacle.data.title}`}
+                    class="h-full w-full object-cover transition duration-300 group-hover:scale-120"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  <span class="absolute left-4 top-4 rounded-full bg-primary px-3 py-1 text-xs font-bold uppercase tracking-wide text-black">
+                    {spectacle.data.genreEtRegistre}
+                  </span>
+                </div>
+
+                <div class="p-6">
+                  <p class="font-display--sans text-body uppercase text-secondary">
+                    Création {spectacle.data.creation}
+                  </p>
+                  <h2 class="pt-3 font-display--headings text-h3 text-dark">
+                    {spectacle.data.title}
+                  </h2>
+
+                  <p class="pt-3 text-dark/80  ">{spectacle.data.synopsis}</p>
+
+                  <div class="mt-5 flex flex-wrap gap-2 text-sm">
+                    <span class="rounded-full border border-dark/20 px-3 py-1 text-dark">
+                      {spectacle.data.duree}
+                    </span>
+                    <span class="rounded-full border border-dark/20 px-3 py-1 text-dark">
+                      {spectacle.data.public}
+                    </span>
+                  </div>
+
+                  <span class="mt-6 inline-flex items-center gap-2 font-display--headings text-h4 text-secondary transition group-hover:text-accentWarning">
+                    Voir la fiche
+                    <span aria-hidden="true">→</span>
+                  </span>
+                </div>
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+    <DatesArchives filter="spectacle" />
+  </main>
 </PageLayout>
