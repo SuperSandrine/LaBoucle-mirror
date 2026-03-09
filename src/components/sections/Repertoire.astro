@@ -21,7 +21,7 @@ const { anchorMode = false } = Astro.props;
       Répertoire
     </h2>
 
-    <div class="flex flex-col items-center">
+    <div class="flex flex-col items-center gap-6">
       {
         spectaclesCollection.map((event, index) => (
           <ShowCard event={event} index={index} anchorMode={anchorMode}/>

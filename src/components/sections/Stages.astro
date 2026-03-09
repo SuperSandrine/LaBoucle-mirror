@@ -15,7 +15,7 @@ const { anchorMode = false } = Astro.props;
     Stages & Ateliers
   </h2>
 
-  <div class="flex flex-col items-center">
+  <div class="flex flex-col items-center gap-6">
     {
       stagesCollection.map((item, index) => (
         <CardActivities
@@ -23,7 +23,7 @@ const { anchorMode = false } = Astro.props;
           index={index}
           anchorMode={anchorMode}
           baseUrl="/stages"
-          ctaLabel="En savoir plus"
+          ctaLabel={`Découvrir ${item.data.typeActivite === "stage" ? "le stage" : "l'atelier"}`}
         />
       ))
     }

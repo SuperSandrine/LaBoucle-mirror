@@ -15,8 +15,6 @@ const href = anchorMode ? `#${event.slug}` : `/spectacles/${event.slug}`;
 // On alterne le sens des colonnes pour un effet en "Z"
 const isEven = index % 2 === 0;
 
-//console.log(Astro.props);
-console.log("test ===", event.slug);
 ---
 
 <!-- <article
@@ -83,9 +81,9 @@ console.log("test ===", event.slug);
   </div>
 </article> -->
 <article
-  class={`flex flex-col ${isEven ? "md:flex-row" : "md:flex-row-reverse"} bg-lightGrey overflow-hidden shadow-lg mb-8 w-4/5 mx-auto min-h-[400px]`}
+  class={`flex flex-col ${isEven ? "md:flex-row md:rotate-1" : "md:flex-row-reverse md:-rotate-1"} bg-lightGrey overflow-hidden shadow-card mb-8 w-4/5 mx-auto min-h-100 transition `}
 >
-  <div class="md:w-1/2 relative min-h-[300px] md:min-h-full">
+  <div class="md:w-1/2 relative min-h-75 md:min-h-full">
     <img
       src={visuel}
       alt={title}
@@ -93,7 +91,7 @@ console.log("test ===", event.slug);
     />
   </div>
 
-  <div class="md:w-1/2 p-8 py-20 flex flex-col justify-center">
+  <div class="md:w-1/2 px-12 py-20 flex flex-col justify-center">
     <h2 class="text-h3 text-dark font-display--headings mb-4">
       {title}
     </h2>
@@ -113,7 +111,7 @@ console.log("test ===", event.slug);
             stroke-width="2"
             d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
         </svg>
-        <p class="text-dark text-lg font-normal">{duree}</p>
+        <p class="text-dark text-xl font-normal">{duree}</p>
       </span>
       <span class="flex items-center gap-1 text-accentWarning font-bold">
         <svg
@@ -130,11 +128,11 @@ console.log("test ===", event.slug);
             d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
           ></path>
         </svg>
-        <p class="text-dark text-lg font-normal">{publicValue}</p>
+        <p class="text-dark text-xl font-normal">{publicValue}</p>
       </span>
     </div>
 
-    <p class="text-lg text-dark pb-8">
+    <p class="text-body text-dark pb-8">
       {synopsis}
     </p>
 

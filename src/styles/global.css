@@ -28,6 +28,8 @@ html{
   --text-body: 1rem;
   --text-bodyBig:1.5rem;
 
+  --shadow-card:0 2px 45px rgba(99, 106, 181, 1)
+
 }
 
 @font-face {

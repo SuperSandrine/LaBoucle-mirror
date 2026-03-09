@@ -25,16 +25,18 @@ interface Props {
   ctaLabel?: string; // "Découvrir le spectacle" ou "En savoir plus"
 }
 
-const {
-  item,
-  index,
-  anchorMode = false,
-  baseUrl = "/spectacles",
-  ctaLabel = "En savoir plus",
-} = Astro.props;
+const { item, index, anchorMode, baseUrl, ctaLabel } = Astro.props;
 
-const { title, synopsis, duree, public: publicValue, visuel, typeActivite } =
-  item.data;
+const {
+  title,
+  synopsis,
+  duree,
+  public: publicValue,
+  visuel,
+  typeActivite,
+} = item.data;
+
+//console.log(item.data.typeActivite);
 
 const href = anchorMode ? `#${item.slug}` : `${baseUrl}/${item.slug}`;
 
@@ -54,25 +56,29 @@ const badgeLabel =
     ? "Stage"
     : typeActivite === "atelier"
       ? "Atelier mensuel"
-      : item.data.genreEtRegistre ?? "";
+      : (item.data.genreEtRegistre ?? "");
 ---
 
 <article
-  class={`flex flex-col ${isEven ? "md:flex-row" : "md:flex-row-reverse"} bg-lightGrey overflow-hidden shadow-lg mb-8 w-4/5 mx-auto min-h-[400px]`}
+  class={`flex flex-col ${isEven ? "md:flex-row md:rotate-1" : "md:flex-row-reverse md:-rotate-1"} bg-lightGrey overflow-hidden mb-8 w-4/5 mx-auto min-h-100 shadow-card  `}
 >
   <!-- Image -->
-  <div class="md:w-1/2 relative min-h-[300px] md:min-h-full">
+  <div class="md:w-1/2 relative min-h-75 md:min-h-full">
     <img
       src={visuel}
       alt={title}
       class="absolute inset-0 w-full h-full object-cover object-top"
     />
     <!-- Badge type -->
-    {badgeLabel && (
-      <span class={`absolute top-4 left-4 px-3 py-1 text-sm font-bold uppercase tracking-wide ${badgeColor}`}>
-        {badgeLabel}
-      </span>
-    )}
+    {
+      badgeLabel && (
+        <span
+          class={`absolute top-4 left-4 px-3 py-1 text-sm font-bold uppercase tracking-wide ${badgeColor}`}
+        >
+          {badgeLabel}
+        </span>
+      )
+    }
   </div>
 
   <!-- Contenu -->
@@ -121,25 +127,27 @@ const badgeLabel =
       </span>
 
       <!-- Tarif si présent (stages uniquement) -->
-      {item.data.tarif && (
-        <span class="flex items-center gap-1">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5 text-accentWarning"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-            ></path>
-          </svg>
-          <p class="text-dark text-base font-normal">{item.data.tarif}</p>
-        </span>
-      )}
+      {
+        item.data.tarif && (
+          <span class="flex items-center gap-1">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-accentWarning"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <p class="text-dark text-base font-normal">{item.data.tarif}</p>
+          </span>
+        )
+      }
     </div>
 
     <!-- Synopsis -->

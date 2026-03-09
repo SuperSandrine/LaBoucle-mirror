@@ -3,6 +3,8 @@
 import PageLayout from "../../layouts/PageLayout.astro";
 import Stages from "../../components/sections/Stages.astro";
 import { getCollection, render } from "astro:content";
+import Dates from "../../components/sections/Dates.astro";
+import DatesArchives from "../../components/sections/DatesArchives.astro";
 
 const tousLesStages = await getCollection("stages");
 
@@ -174,5 +176,6 @@ const stagesWithContent = await Promise.all(
         </div>
       ))
     }
+    <DatesArchives filter="stage" />
   </main>
 </PageLayout>
