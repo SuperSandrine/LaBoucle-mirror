@@ -1,0 +1,186 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+
+const legalInfo = {
+  siteName: "La Boucle de la Boucle",
+  siteUrl: "https://laboucledelaboucle.netlify.app",
+  email: "contact@laboucle.fr",
+  host: {
+    name: "Netlify, Inc.",
+    address: "44 Montgomery Street, Suite 300, San Francisco, California 94104, United States",
+    website: "https://www.netlify.com",
+    email: "support@netlify.com",
+  },
+};
+---
+
+<PageLayout title="Mentions légales - La Boucle de la Boucle">
+  <main class="bg-dark text-white">
+    <section class="relative overflow-hidden px-6 pb-16 pt-36 md:px-14 lg:px-20">
+      <div class="pointer-events-none absolute inset-0 opacity-60" aria-hidden="true">
+        <div class="absolute -left-16 top-10 h-48 w-48 rounded-full bg-primary/20 blur-3xl"></div>
+        <div class="absolute right-0 top-0 h-64 w-64 rounded-full bg-secondary/20 blur-3xl"></div>
+      </div>
+
+      <div class="relative mx-auto max-w-5xl">
+        <p class="text-primary font-display--sans text-sm uppercase tracking-[0.25em]">
+          Informations légales
+        </p>
+        <h1 class="mt-4 font-display--bigHeading text-[clamp(3rem,8vw,6rem)] leading-[0.92] text-shine">
+          Mentions légales
+        </h1>
+        <p class="mt-6 max-w-3xl text-body leading-relaxed text-white/80">
+          Cette page reprend les rubriques recommandées pour un site professionnel par la LCEN
+          et le guide France Num. Les champs signalés comme étant à compléter doivent être
+          validés avant mise en production définitive.
+        </p>
+      </div>
+    </section>
+
+    <section class="px-6 pb-24 md:px-14 lg:px-20">
+      <div class="mx-auto flex max-w-5xl flex-col gap-8">
+        <article class="border border-primary/25 bg-white/5 p-6 md:p-8">
+          <h2 class="font-display--headings text-h3 text-primary">Éditeur du site</h2>
+          <div class="mt-6 grid gap-4 text-white/85 md:grid-cols-2">
+            <p><strong>Dénomination :</strong> {legalInfo.siteName}</p>
+            <p><strong>Adresse du site :</strong> <a href={legalInfo.siteUrl} class="underline hover:text-primary transition">{legalInfo.siteUrl}</a></p>
+            <p><strong>Forme juridique :</strong> [Association / société / entrepreneur individuel - à compléter]</p>
+            <p><strong>Nom ou raison sociale :</strong> [À compléter]</p>
+            <p><strong>Adresse du siège social :</strong> [À compléter]</p>
+            <p><strong>Téléphone :</strong> [À compléter]</p>
+            <p><strong>Email :</strong> <a href={`mailto:${legalInfo.email}`} class="underline hover:text-primary transition">{legalInfo.email}</a></p>
+            <p><strong>SIRET :</strong> [À compléter]</p>
+            <p><strong>RCS :</strong> [À compléter si applicable]</p>
+            <p><strong>TVA intracommunautaire :</strong> [À compléter si applicable]</p>
+            <p><strong>Capital social :</strong> [À compléter si applicable]</p>
+          </div>
+        </article>
+
+        <article class="border border-white/10 bg-black/20 p-6 md:p-8">
+          <h2 class="font-display--headings text-h3 text-primary">Direction de la publication</h2>
+          <p class="mt-6 leading-relaxed text-white/85">
+            <strong>Directeur ou directrice de la publication :</strong> [Nom, prénom et qualité à compléter]
+          </p>
+          <p class="mt-3 leading-relaxed text-white/65">
+            Cette mention est requise pour identifier la personne responsable du contenu éditorial du site.
+          </p>
+        </article>
+
+        <article class="border border-white/10 bg-black/20 p-6 md:p-8">
+          <h2 class="font-display--headings text-h3 text-primary">Hébergement</h2>
+          <div class="mt-6 space-y-3 leading-relaxed text-white/85">
+            <p><strong>Hébergeur :</strong> {legalInfo.host.name}</p>
+            <p><strong>Adresse :</strong> {legalInfo.host.address}</p>
+            <p>
+              <strong>Site web :</strong>
+              <a href={legalInfo.host.website} target="_blank" rel="noreferrer" class="ml-2 underline hover:text-primary transition">
+                {legalInfo.host.website}
+              </a>
+            </p>
+            <p><strong>Contact :</strong> <a href={`mailto:${legalInfo.host.email}`} class="underline hover:text-primary transition">{legalInfo.host.email}</a></p>
+            <p><strong>Téléphone / identifiant légal :</strong> [À compléter si vous souhaitez reprendre ces informations dans vos mentions]</p>
+          </div>
+        </article>
+
+        <article class="border border-white/10 bg-black/20 p-6 md:p-8">
+          <h2 class="font-display--headings text-h3 text-primary">Propriété intellectuelle</h2>
+          <div class="mt-6 space-y-4 leading-relaxed text-white/85">
+            <p>
+              L'ensemble des contenus présents sur le site {legalInfo.siteName}, notamment les textes,
+              photographies, visuels, éléments graphiques, logo, vidéos, structure et mise en page,
+              est protégé par le droit d'auteur et, plus largement, par le Code de la propriété intellectuelle.
+            </p>
+            <p>
+              Sauf autorisation écrite préalable, toute reproduction, représentation, adaptation,
+              publication, transmission ou exploitation, totale ou partielle, de ces éléments est interdite.
+            </p>
+            <p>
+              Les crédits des photographies, illustrations ou contenus provenant de tiers doivent être
+              ajoutés ici si certains visuels ne sont pas détenus par la compagnie.
+            </p>
+          </div>
+        </article>
+
+        <article class="border border-white/10 bg-black/20 p-6 md:p-8">
+          <h2 class="font-display--headings text-h3 text-primary">Données personnelles</h2>
+          <div class="mt-6 space-y-4 leading-relaxed text-white/85">
+            <p>
+              <strong>Finalité du traitement :</strong> les données éventuellement transmises à la compagnie,
+              notamment par email, sont utilisées uniquement pour traiter votre demande, répondre à votre message
+              et assurer le suivi des échanges.
+            </p>
+            <p>
+              <strong>Base légale :</strong> ce traitement repose, selon la nature de la demande, sur votre
+              consentement lorsque vous prenez l'initiative d'écrire, ou sur l'exécution de mesures
+              précontractuelles lorsque votre demande porte sur une prestation, une diffusion ou une inscription.
+            </p>
+            <p>
+              <strong>Destinataires :</strong> les données sont destinées à la compagnie {legalInfo.siteName}
+              et, le cas échéant, à ses prestataires techniques strictement nécessaires à l'hébergement ou à la
+              messagerie.
+            </p>
+            <p>
+              <strong>Transfert hors Union européenne :</strong> le site étant hébergé par {legalInfo.host.name},
+              société établie aux États-Unis, certaines données techniques peuvent transiter ou être hébergées
+              hors de l'Union européenne.
+            </p>
+            <p>
+              <strong>Durée de conservation :</strong> [À compléter selon vos pratiques réelles de gestion des emails,
+              demandes de contact et dossiers d'inscription].
+            </p>
+            <p>
+              Conformément au règlement général sur la protection des données (RGPD) et à la loi Informatique
+              et Libertés, vous pouvez demander l'accès, la rectification, l'effacement, la limitation ou
+              l'opposition au traitement des données vous concernant en écrivant à
+              <a href={`mailto:${legalInfo.email}`} class="ml-1 underline hover:text-primary transition">{legalInfo.email}</a>.
+            </p>
+            <p>
+              Si des traitements complémentaires sont ajoutés au site, par exemple un formulaire de contact,
+              une newsletter ou un outil de mesure d'audience, cette rubrique devra être mise à jour avec les
+              finalités exactes, la base légale retenue, les destinataires concernés et les durées de conservation.
+            </p>
+          </div>
+        </article>
+
+        <article class="border border-white/10 bg-black/20 p-6 md:p-8">
+          <h2 class="font-display--headings text-h3 text-primary">Cookies</h2>
+          <div class="mt-6 space-y-4 leading-relaxed text-white/85">
+            <p>
+              En l'état actuel du site, aucun outil de mesure d'audience ou cookie publicitaire n'a été identifié
+              sur la partie publique. Le site peut toutefois utiliser des cookies strictement nécessaires à son
+              fonctionnement technique et à son hébergement.
+            </p>
+            <p>
+              Si des cookies non essentiels sont ajoutés ultérieurement, un mécanisme d'information et, si
+              nécessaire, de recueil du consentement devra être mis en place avant leur dépôt.
+            </p>
+          </div>
+        </article>
+
+        <article class="border border-white/10 bg-black/20 p-6 md:p-8">
+          <h2 class="font-display--headings text-h3 text-primary">Responsabilité</h2>
+          <div class="mt-6 space-y-4 leading-relaxed text-white/85">
+            <p>
+              L'éditeur du site s'efforce de fournir des informations aussi exactes et à jour que possible.
+              Il ne peut toutefois garantir l'exactitude, l'exhaustivité ou l'actualité des contenus diffusés.
+            </p>
+            <p>
+              L'utilisation des informations présentes sur le site se fait sous la seule responsabilité de
+              l'utilisateur. L'éditeur ne pourra être tenu responsable des dommages directs ou indirects
+              pouvant résulter de l'accès au site ou de son utilisation.
+            </p>
+          </div>
+        </article>
+
+        <article class="border border-secondary/30 bg-secondary/10 p-6 md:p-8">
+          <h2 class="font-display--headings text-h3 text-white">Avant publication définitive</h2>
+          <ul class="mt-6 list-disc space-y-2 pl-5 leading-relaxed text-white/85">
+            <li>Remplacer tous les champs “à compléter” par les informations légales exactes de la structure.</li>
+            <li>Ajouter les crédits précis des images et contenus tiers si certains éléments ne vous appartiennent pas.</li>
+            <li>Mettre à jour la rubrique “Données personnelles” si vous ajoutez un formulaire, une newsletter ou des statistiques.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </main>
+</PageLayout>
