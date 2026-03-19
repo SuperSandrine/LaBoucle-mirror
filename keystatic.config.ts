@@ -1,21 +1,21 @@
 // keystatic.config.ts
+// TODO: rendre le formulaire plus user friendly en prévenant des champs obligatoire avant la soumission, pour que les champs manquants ne soient pas bloquants.
+
+
 import { config, collection, fields } from '@keystatic/core';
 
+const isDevelopment = process.env.NODE_ENV !== 'production';
+
 export default config({
-  storage: {
-    kind: 'github',
-    repo: {
-      owner: 'SuperSandrine',
-      name: 'LaBoucle-mirror',
-    },
-  
-    //kind: 'local',  // On commence en local, on passera à Git plus tard
-    //repo: {
-    //  owner: 'ton-utilisateur', // Ton pseudo Codeberg/GitHub
-     // name: 'site-clownesque',  // Nom du dépôt
-      //branch: 'main',          // Branche par défaut
-    //},
-  },
+  storage: isDevelopment
+    ? { kind: 'local' }
+    : {
+        kind: 'github',
+        repo: {
+          owner: 'SuperSandrine',
+          name: 'LaBoucle-mirror',
+        },
+      },
   collections: {
     spectacles: collection({
       label: 'Spectacles',

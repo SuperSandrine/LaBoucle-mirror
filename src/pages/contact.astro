@@ -2,26 +2,26 @@
 import PageLayout from "../layouts/PageLayout.astro";
 
 const contactItems = [
-  {
-    id: "address",
-    label: "Adresse",
-    value: "15 rue de la boucle, 30000 ville",
-    displayLines: ["15 rue de la boucle,", "30000 ville"],
-    ariaLabel: "Copier l'adresse postale",
-    icon: "pin",
-  },
-  {
-    id: "phone",
-    label: "Téléphone",
-    value: "+33XXXXXXXXX",
-    displayLines: ["+33 X XX XX XX XX"],
-    ariaLabel: "Copier le numéro de téléphone",
-    icon: "phone",
-  },
+  // {
+  //   id: "address",
+  //   label: "Adresse",
+  //   value: "15 rue de la boucle, 30000 ville",
+  //   displayLines: ["15 rue de la boucle,", "30000 ville"],
+  //   ariaLabel: "Copier l'adresse postale",
+  //   icon: "pin",
+  // },
+  // {
+  //   id: "phone",
+  //   label: "Téléphone",
+  //   value: "+33XXXXXXXXX",
+  //   displayLines: ["+33 X XX XX XX XX"],
+  //   ariaLabel: "Copier le numéro de téléphone",
+  //   icon: "phone",
+  // },
   {
     id: "email",
     label: "Email",
-    value: "contact@laboucle.fr",
+    value: "laboucledelaboucle@gmail.com",
     displayLines: ["contact@laboucle.fr"],
     ariaLabel: "Copier l'adresse email",
     icon: "email",
@@ -30,20 +30,30 @@ const contactItems = [
 ---
 
 <PageLayout title="Contact — La Boucle de La Boucle">
-  <main class="min-h-screen bg-dark flex flex-col items-center justify-center px-6 py-32 gap-4">
+  <main
+    class="min-h-screen bg-dark flex flex-col items-center justify-center px-6 py-32 gap-4"
+  >
     <div class="text-center flex flex-col gap-4">
-      <h1 class="font-display--headings text-heading1 text-white text-shine">Contact</h1>
+      <h1 class="font-display--headings text-heading1 text-white text-shine">
+        Contact
+      </h1>
       <p class="text-body text-lightGrey/80 leading-relaxed">
         Une question, une proposition de collaboration,<br />
         une envie de nous voir jouer ?
       </p>
-      <p class="font-display--headings text-h4 text-primary uppercase tracking-widest -mb-6">
+      <p
+        class="font-display--headings text-h4 text-primary uppercase tracking-widest -mb-6"
+      >
         compagnie
       </p>
-      <h2 class="font-display--bigHeading text-h3 text-white text-shine">La Boucle de la Boucle</h2>
+      <h2 class="font-display--bigHeading text-h3 text-white text-shine">
+        La Boucle de la Boucle
+      </h2>
     </div>
 
-    <div class="w-full max-w-md flex flex-col overflow-hidden border border-primary/30">
+    <div
+      class="w-full max-w-md flex flex-col overflow-hidden border border-primary/30"
+    >
       {
         contactItems.map((item, index) => (
           <>
@@ -54,67 +64,61 @@ const contactItems = [
               aria-label={item.ariaLabel}
             >
               <div class="shrink-0 w-14 h-14 flex items-center justify-center text-primary transition-all duration-600 group-hover:text-glow border border-primary/30 bg-secondary/10">
-                {
-                  item.icon === "pin" && (
-                    <svg
-                      data-role="icon-default"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="26"
-                      height="26"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M12 21s-6.75-5.85-6.75-11.25a6.75 6.75 0 1113.5 0C18.75 15.15 12 21 12 21z"
-                      ></path>
-                      <circle cx="12" cy="9.75" r="2.25"></circle>
-                    </svg>
-                  )
-                }
-                {
-                  item.icon === "phone" && (
-                    <svg
-                      data-role="icon-default"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="26"
-                      height="26"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
-                      ></path>
-                    </svg>
-                  )
-                }
-                {
-                  item.icon === "email" && (
-                    <svg
-                      data-role="icon-default"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="26"
-                      height="26"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
-                      ></path>
-                    </svg>
-                  )
-                }
+                {item.icon === "pin" && (
+                  <svg
+                    data-role="icon-default"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="26"
+                    height="26"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 21s-6.75-5.85-6.75-11.25a6.75 6.75 0 1113.5 0C18.75 15.15 12 21 12 21z"
+                    />
+                    <circle cx="12" cy="9.75" r="2.25" />
+                  </svg>
+                )}
+                {item.icon === "phone" && (
+                  <svg
+                    data-role="icon-default"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="26"
+                    height="26"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
+                    />
+                  </svg>
+                )}
+                {item.icon === "email" && (
+                  <svg
+                    data-role="icon-default"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="26"
+                    height="26"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
+                    />
+                  </svg>
+                )}
                 <svg
                   data-role="icon-check"
                   xmlns="http://www.w3.org/2000/svg"
@@ -126,17 +130,25 @@ const contactItems = [
                   stroke-width="1.5"
                   class="hidden text-primary"
                 >
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path>
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M4.5 12.75l6 6 9-13.5"
+                  />
                 </svg>
               </div>
 
               <div class="flex flex-col gap-1">
-                <span class="text-xs text-secondary uppercase tracking-widest font-medium">{item.label}</span>
+                <span class="text-xs text-secondary uppercase tracking-widest font-medium">
+                  {item.label}
+                </span>
                 <span
                   data-role="label"
                   class="text-h4 text-white font-light tracking-wide transition-colors duration-300 group-hover:text-primary"
                 >
-                  {item.displayLines.map((line) => <span class="block">{line}</span>)}
+                  {item.displayLines.map((line) => (
+                    <span class="block">{line}</span>
+                  ))}
                 </span>
                 <span data-role="copied" class="text-body text-primary hidden">
                   Copié dans le presse-papier !
@@ -144,27 +156,23 @@ const contactItems = [
               </div>
             </button>
 
-            {
-              index < contactItems.length - 1 && (
-                <div
-                  class="mx-10 h-px"
-                  aria-hidden="true"
-                  style="background: linear-gradient(to right, transparent, rgba(228,150,234,0.3), transparent);"
-                >
-                </div>
-              )
-            }
+            {index < contactItems.length - 1 && (
+              <div
+                class="mx-10 h-px"
+                aria-hidden="true"
+                style="background: linear-gradient(to right, transparent, rgba(228,150,234,0.3), transparent);"
+              ></div>
+            )}
           </>
         ))
       }
     </div>
-  
 
-  <p class="text-sm text-lightGrey/50 text-center leading-loose max-w-sm">
-    <br />
-    Pour les demandes de dossier de presse ou dossier technique, merci de le préciser
-    en objet.
-  </p>
+    <p class="text-sm text-lightGrey/50 text-center leading-loose max-w-sm">
+      <br />
+      Pour les demandes de dossier de presse ou dossier technique, merci de le préciser
+      en objet.
+    </p>
   </main>
 </PageLayout>
 
