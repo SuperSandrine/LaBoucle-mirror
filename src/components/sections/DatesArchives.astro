@@ -38,9 +38,15 @@ const filteredDates = sortedDates.filter((event) => {
   return getEventType(event).toLowerCase() === activeFilter;
 });
 
-const nextDates = filteredDates
+// Assure un ordre chronologique du plus récent au plus ancie
+const filteredDatesChrono = filteredDates.sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+);
+
+const nextDates = filteredDatesChrono
   .filter((event) => new Date(event.data.date) >= today)
   .slice(0, 3);
+
 const getEventTitle = (event: (typeof sortedDates)[number]) => {
   return (
     event.data.evenement?.value ??
@@ -90,16 +96,16 @@ console.log("nextdates", nextDates);
 <section class="p-10 bg-primary w-full">
   <div class="max-w-screen-2xl mx-auto">
     <h2 class="font-display--headings text-dark text-h2 pb-8 pl-8">
-      Nos dates de la plus récente à la plus ancienne ({filteredDates.length})
+      Nos dates de la plus récente à la plus ancienne
     </h2>
 
-    <div class="space-y-6">
+    <div class="space-y-6 text-center">
       {
         filteredDates.map((event) => {
           const eventDateDisplay = getEventDateDisplay(event);
           return (
-            <div class="flex flex-col md:flex-row md:items-center gap-6 pb-6 border-dark">
-              <div class="md:w-48">
+            <div class="flex flex-col md:flex-row md:items-center gap-6 pb-6 border-dark text-center md:text-center">
+              <div class="md:w-48 md:mx-auto">
                 <p class="font-display--sans font-bold  text-bodyBig leading-6 text-dark">
                   {eventDateDisplay.main}
                 </p>
@@ -110,19 +116,21 @@ console.log("nextdates", nextDates);
                 <p class="text-dark">{event.data.lieu}</p>
               </div>
 
-              <div class="flex-grow">
+              <div class="flex-1">
                 <h3 class="font-display--headings text-h3 text-dark">
                   {formatTitle(getEventTitle(event))}
                 </h3>
                 <p class="text-sm text-dark">{getEventType(event)}</p>
               </div>
 
-              <a
-                href="/calendrier"
-                class="inline-block border-2 border-dark text-dark font-display--headings px-10 py-4 text-h4 hover:bg-dark hover:text-primary transition"
-              >
-                JE VEUX EN SAVOIR PLUS
-              </a>
+              {activeFilter !== "stage" && (
+                <a
+                  href="/calendrier"
+                  class="inline-block border-2 border-dark text-dark font-display--headings px-10 py-4 text-h4 hover:bg-dark hover:text-primary transition"
+                >
+                  JE VEUX EN SAVOIR PLUS
+                </a>
+              )}
             </div>
           );
         })
