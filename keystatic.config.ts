@@ -4,18 +4,23 @@
 
 import { config, collection, fields } from '@keystatic/core';
 
-const isDevelopment = process.env.NODE_ENV !== 'production';
+//const isDevelopment = process.env.NODE_ENV !== 'production';
 
 export default config({
-  storage: isDevelopment
-    ? { kind: 'local' }
-    : {
-        kind: 'github',
-        repo: {
-          owner: 'SuperSandrine',
-          name: 'LaBoucle-mirror',
-        },
-      },
+//  storage: isDevelopment
+    // ? { kind: 'local' }
+    // : {
+    //     kind: 'github',
+    //     repo: {
+    //       owner: 'SuperSandrine',
+    //       name: 'LaBoucle-mirror',
+    //     },
+    //   },
+  storage: { kind: 'github', 
+      repo: {
+           owner: 'SuperSandrine',
+           name: 'LaBoucle-mirror',
+        }, },
   collections: {
     spectacles: collection({
       label: 'Spectacles',
