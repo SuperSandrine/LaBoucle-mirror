@@ -80,9 +80,22 @@ const stagesCollection = defineCollection({
   }),
 });
 
+const galerieCollection = defineCollection({
+  type: 'data',
+  schema: z.object({
+    titreFichier: z.string(),
+    image: z.string(),
+    legende: z.string().optional(),
+    categorie: z.object({
+      discriminant: z.enum(['spectacle', 'stage', 'artiste']),
+      value: z.string(),
+    }),
+  }),
+});
+
 export const collections = {
-  spectacles: spectaclesCollection, 
+  spectacles: spectaclesCollection,
   dates: datesCollection,
   stages: stagesCollection,
-  // ... autres collections
+  galerie: galerieCollection,
 };

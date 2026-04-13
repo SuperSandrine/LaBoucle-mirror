@@ -240,16 +240,57 @@ export default config({
       label: 'informations complémentaires'
     }),
       }
-    })
-    // ateliers: collection({
-    //   label: 'Ateliers',
-    //   slugField: 'title',
-    //   path: 'src/content/ateliers/*',
-    //   schema: {
-    //     title: fields.text({ label: 'Titre' }),
-    //     date: fields.date({ label: 'Date' }),
-    //     content: fields.markdoc({ label: 'Contenu' }),
-    //   },
-    // }),
+    }),
+    // ─────────────────────────────────────────
+    // GALERIE
+    // ─────────────────────────────────────────
+    galerie: collection({
+      label: 'Galerie',
+      slugField: 'titreFichier',
+      path: 'src/content/galerie/*',
+      format: { data: 'yaml' },
+      schema: {
+        titreFichier: fields.slug({
+          name: {
+            label: 'Titre de la photo',
+            description: 'Un titre court pour identifier la photo (ex: "Prince-sse Pudeur - répétition 2024")',
+          },
+        }),
+        image: fields.image({
+          label: 'Photo',
+          directory: 'public/images/galerie',
+          publicPath: '/images/galerie',
+          validation: { isRequired: true },
+        }),
+        legende: fields.text({
+          label: 'Légende',
+          description: 'Optionnel — texte affiché sous la photo',
+        }),
+        categorie: fields.conditional(
+          fields.select({
+            label: 'Catégorie',
+            options: [
+              { label: 'Spectacle', value: 'spectacle' },
+              { label: 'Stage', value: 'stage' },
+              { label: 'Artiste', value: 'artiste' },
+            ],
+            defaultValue: 'spectacle',
+          }),
+          {
+            spectacle: fields.relationship({
+              label: 'Spectacle associé',
+              collection: 'spectacles',
+            }),
+            stage: fields.relationship({
+              label: 'Stage associé',
+              collection: 'stages',
+            }),
+            artiste: fields.text({
+              label: "Nom de l'artiste",
+            }),
+          }
+        ),
+      },
+    }),
   },
 });
