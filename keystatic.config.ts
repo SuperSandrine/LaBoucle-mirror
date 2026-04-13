@@ -177,6 +177,11 @@ export default config({
           defaultValue: 'ouvert',
         }),
 
+        prochainsDates: fields.text({
+          label:'Indication sur les prochaines inscriptions',
+          description: 'Exemple: "Prochaine inscription à partie juillet pour 2026/27."'
+        }),
+
         contenu: fields.markdoc({ label: 'Contenu (texte de présentation)' }),
       },
     }),
@@ -190,10 +195,12 @@ export default config({
       path: 'src/content/dates/*',
       format: { contentField: 'contenu' },
       schema: {
-        titreFichier: fields.slug({name:{ 
-          label: 'Titre + date', 
-          description: 'Le format de date est : AAAA/MM/JJ, utiliser le format de titre de fichier suivant "Titre + AAAA/MM/JJ"; exemple: PatPatrouille + 2018/03/27', 
-          validation: { isRequired: true }} 
+        titreFichier: fields.slug({
+          name:{ 
+            label: 'Titre + date', 
+            description: 'Le format de date est : AAAA/MM/JJ, utiliser le format de titre de fichier suivant "Titre + AAAA/MM/JJ"; exemple: PatPatrouille + 2018/03/27', 
+            validation: { isRequired: true }
+          }
         }),
         date: fields.date({ 
           label: "Date de début",
