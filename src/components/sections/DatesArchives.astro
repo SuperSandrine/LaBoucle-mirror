@@ -38,14 +38,13 @@ const filteredDates = sortedDates.filter((event) => {
   return getEventType(event).toLowerCase() === activeFilter;
 });
 
-// Assure un ordre chronologique du plus récent au plus ancie
-const filteredDatesChrono = filteredDates.sort(
-  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
-);
-
-const nextDates = filteredDatesChrono
+const upcomingDates = filteredDates
   .filter((event) => new Date(event.data.date) >= today)
-  .slice(0, 3);
+  .sort((a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime());
+
+const pastDates = filteredDates
+  .filter((event) => new Date(event.data.date) < today)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 
 const getEventTitle = (event: (typeof sortedDates)[number]) => {
   return (
@@ -90,18 +89,17 @@ const getEventDateDisplay = (event: (typeof sortedDates)[number]) => {
   };
 };
 
-console.log("nextdates", nextDates);
 ---
 
 <section class="p-10 bg-primary w-full">
   <div class="max-w-screen-2xl mx-auto">
     <h2 class="font-display--headings text-dark text-h2 pb-8 pl-8">
-      Nos dates de la plus récente à la plus ancienne
+      Nos dates
     </h2>
 
     <div class="space-y-6 text-center">
       {
-        filteredDates.map((event) => {
+        upcomingDates.map((event) => {
           const eventDateDisplay = getEventDateDisplay(event);
           return (
             <div class="flex flex-col md:flex-row md:items-center gap-6 pb-6 border-dark text-center md:text-center">
@@ -131,6 +129,43 @@ console.log("nextdates", nextDates);
                   JE VEUX EN SAVOIR PLUS
                 </a>
               )}
+            </div>
+          );
+        })
+      }
+
+      {pastDates.length > 0 && (
+        <div class="flex items-center gap-4 py-4">
+          <div class="flex-1 border-t border-dark/30"></div>
+          <span class="font-display--headings text-dark/50 text-sm uppercase tracking-widest">
+            Dates passées
+          </span>
+          <div class="flex-1 border-t border-dark/30"></div>
+        </div>
+      )}
+
+      {
+        pastDates.map((event) => {
+          const eventDateDisplay = getEventDateDisplay(event);
+          return (
+            <div class="flex flex-col md:flex-row md:items-center gap-6 pb-6 border-dark text-center md:text-center opacity-60">
+              <div class="md:w-48 md:mx-auto">
+                <p class="font-display--sans font-bold  text-bodyBig leading-6 text-dark">
+                  {eventDateDisplay.main}
+                </p>
+                <p class="text-lg text-dark">{eventDateDisplay.year}</p>
+              </div>
+
+              <div class="md:w-64">
+                <p class="text-dark">{event.data.lieu}</p>
+              </div>
+
+              <div class="flex-1">
+                <h3 class="font-display--headings text-h3 text-dark">
+                  {formatTitle(getEventTitle(event))}
+                </h3>
+                <p class="text-sm text-dark">{getEventType(event)}</p>
+              </div>
             </div>
           );
         })
