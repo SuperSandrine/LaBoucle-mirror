@@ -28,31 +28,48 @@ export default config({
       path: 'src/content/spectacles/*', // Chemin vers tes fichiers Markdown
       format: { contentField: 'contenu' },
       schema: {
-        title: fields.slug({ name: { label: 'Titre du spectacle' } }),
+        title: fields.slug({ name: { 
+          label: 'Titre du spectacle' } }),
         //date: fields.date({ label: 'Date' }),
         // lieu: fields.text({ label: 'Lieu' }),
         visuel: fields.image({
           label: 'Visuel',
           directory: 'public/images/spectacles',
           publicPath: '/images/spectacles',
+          validation: { isRequired: true },
         }),
-        synopsis: fields.text({ label: 'Synopsis' }),
-        duree: fields.text({ label: 'Durée' }),
-        public: fields.text({label: 'Public'}),
+        synopsis: fields.text({ 
+          label: 'Synopsis',
+          multiline: true,
+          validation: { isRequired: true },
+        }),
+        duree: fields.text({ 
+          label: 'Durée',
+          validation: { isRequired: true }, 
+        }),
+        public: fields.text({
+          label: 'Public', 
+          description: 'Exemple: "Tout public dès 12 ans" ou "Tout public"',
+          validation: { isRequired: true },
+        }),
         genreEtRegistre: fields.text({label: 'Genre et Registre'}),
-        creation: fields.text({label: 'Date de création'}),
-        interprete: fields.text({label: "Nombre d'inteprète"}),
+        creation: fields.text({
+          label: 'Date de création',
+          validation: { isRequired: true },
+        }),
+        interprete: fields.text({label: "Nombre d'inteprètes"}),
         espace: fields.text({label: "Type d'espace"}),
         espaceDetail: fields.text({
-          label: 'Détails type de lieu, terrain', 
+          label: 'Détails sur le type de lieu, terrain', 
           multiline: true }),
         writeAndGame: fields.text({label: 'Ecriture et jeu'}),
         otherPartRole: fields.text({label: 'Le rôle des autres participants'}),
         otherPart: fields.text({
           label: 'Autres participants',
           multiline: true }),
+        support: fields.text({label: 'Soutien à la création'}),
         costume: fields.text({label: 'Costumier-e'}),
-        decor: fields.text({label: 'Décorateur-e'}),
+        decor: fields.text({label: 'Scénographe'}),
         contenu: fields.markdoc({ label: 'Contenu' }),
       },
     }),
@@ -98,16 +115,19 @@ export default config({
         duree: fields.text({
           label: 'Durée',
           description: 'ex : 4 jours · 9h30–17h30, ou : 1 jour/mois + 2 week-ends',
+          validation: { isRequired: true },
         }),
 
         public: fields.text({
           label: 'Public',
           description: 'ex : Adultes, tous niveaux',
+          validation: { isRequired: true },
         }),
 
         tarif: fields.text({
           label: 'Tarif (résumé court)',
           description: 'Affiché sur la carte. ex : 150€ – 200€',
+          validation: { isRequired: true },
         }),
 
         tarifDetail: fields.text({
@@ -119,6 +139,7 @@ export default config({
         lieu: fields.text({
           label: 'Lieu',
           description: 'ex : Espace Confluence, Bourganeuf (23)',
+          validation: { isRequired: true },
         }),
 
         lieuDetail: fields.text({
@@ -137,14 +158,14 @@ export default config({
           description: 'ex : laboucledelaboucle@gmail.com',
         }),
 
-        prochainsDates: fields.array(
-          fields.text({ label: 'Date' }),
-          {
-            label: 'Prochaines dates',
-            description: 'Ajouter une ligne par date. ex : Du 30 janvier au 2 février 2026',
-            itemLabel: (props) => props.value || 'Nouvelle date',
-          }
-        ), // est ce que ça marche en dépit de la correction?
+        // prochainsDates: fields.array(
+        //   fields.text({ label: 'Date' }),
+        //   {
+        //     label: 'Prochaines dates',
+        //     description: 'Ajouter une ligne par date. ex : Du 30 janvier au 2 février 2026',
+        //     itemLabel: (props) => props.value || 'Nouvelle date',
+        //   }
+        // ), // est ce que ça marche en dépit de la correction?
 
         statut: fields.select({
           label: 'Statut des inscriptions',
@@ -169,16 +190,20 @@ export default config({
       path: 'src/content/dates/*',
       format: { contentField: 'contenu' },
       schema: {
-        titreFichier: fields.slug({name:{ label: 'Titre + date'} }),
+        titreFichier: fields.slug({name:{ 
+          label: 'Titre + date', 
+          description: 'Le format de date est : AAAA/MM/JJ, utiliser le format de titre de fichier suivant "Titre + AAAA/MM/JJ"; exemple: PatPatrouille + 2018/03/27', 
+          validation: { isRequired: true }} 
+        }),
         date: fields.date({ 
-          label: "Date de début"
-          // validation: { isRequired: true } // ← Obligatoire
+          label: "Date de début",
+          validation: { isRequired: true } // ← Obligatoire
         }),
         dateFin: fields.date({
           label: "Date de fin (optionnel)",
-          description: "Renseigner uniquement si l'événement dure 2 jours ou plus (ex: stages).",
+          description: "Renseigner uniquement si l'événement dure 2 jours ou plus (exemple: stages).",
         }),
-        lieu: fields.text({ label: 'Lieu', description: 'la ville avec une majuscule et le numéro de département entre parenthèse, exemple : Bayonne (64)' }),
+        lieu: fields.text({ label: 'Lieu', description: 'La ville avec une majuscule et le numéro de département entre parenthèse; exemple: Bayonne (64)' }),
         evenement: fields.conditional(
           fields.select({
             label: "Type d'évènement",
@@ -193,11 +218,13 @@ export default config({
               label: 'Titre du spectacle',
               description: 'Choisir un spectacle du répertoire',
               collection: 'spectacles',
+              validation: { isRequired: true },
             }),
             stage: fields.relationship({
               label: 'Titre du stage ou at',
               description: 'Choisir un stage/atelier',
               collection: 'stages',
+              validation: { isRequired: true },
             }),
           }
         ),
