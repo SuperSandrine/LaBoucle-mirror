@@ -6,13 +6,14 @@ import markdoc from '@astrojs/markdoc'
 import keystatic from '@keystatic/astro'
 import tailwindcss from '@tailwindcss/vite';
 import netlify from '@astrojs/netlify';
+import sitemap from '@astrojs/sitemap';
 
 
 // https://astro.build/config
 export default defineConfig({
   site:'https://Laboucledelaboucle.netlify.app',
   output: 'server',
-  integrations: [react(), markdoc(), keystatic() ],  // dans la doc de astro: https://docs.astro.build/fr/guides/cms/keystatic/
+  integrations: [react(), markdoc(), keystatic(), sitemap()],  // dans la doc de astro: https://docs.astro.build/fr/guides/cms/keystatic/
   //  integrations: [react(), markdoc()],
   adapter: netlify(),
 

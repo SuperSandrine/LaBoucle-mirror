@@ -32,55 +32,58 @@ const membres = [
   },
 ];
 
-const engagements = [
-  {
-    titre: "Queer & inclusif",
-    texte:
-      "Une scène ouverte aux identités multiples, aux récits minorés et aux formes de représentation non normées.",
-    icone: "✦",
-  },
-  {
-    titre: "Itinérant",
-    texte:
-      "Théâtres, places, jardins, salles des fêtes: nous adaptons les formes au lieu et aux publics.",
-    icone: "◈",
-  },
-  {
-    titre: "Piquant",
-    texte:
-      "Humour, friction, tendresse: des spectacles qui déplacent sans moraliser.",
-    icone: "⬡",
-  },
-  {
-    titre: "Ancré en Creuse",
-    texte:
-      "Depuis 2021, nous affirmons qu'une création exigeante peut naître et rayonner depuis les territoires ruraux.",
-    icone: "◎",
-  },
-];
+// const engagements = [
+//   {
+//     titre: "Queer & inclusif",
+//     texte:
+//       "Une scène ouverte aux identités multiples, aux récits minorés et aux formes de représentation non normées.",
+//     icone: "✦",
+//   },
+//   {
+//     titre: "Itinérant",
+//     texte:
+//       "Théâtres, places, jardins, salles des fêtes: nous adaptons les formes au lieu et aux publics.",
+//     icone: "◈",
+//   },
+//   {
+//     titre: "Piquant",
+//     texte:
+//       "Humour, friction, tendresse: des spectacles qui déplacent sans moraliser.",
+//     icone: "⬡",
+//   },
+//   {
+//     titre: "Ancré en Creuse",
+//     texte:
+//       "Depuis 2021, nous affirmons qu'une création exigeante peut naître et rayonner depuis les territoires ruraux.",
+//     icone: "◎",
+//   },
+// ];
 
-const repere = [
-  {
-    annee: "2021",
-    titre: "Création de la compagnie",
-    texte:
-      "Naissance en Creuse autour d'une pratique de clown politique et populaire.",
-  },
-  {
-    annee: "2023",
-    titre: "Déploiement des stages",
-    texte:
-      "Mise en place d'ateliers et de stages pour amateurices et professionnel·les.",
-  },
-  {
-    annee: "2025",
-    titre: "Diffusion nationale",
-    texte: "Tournées et présence sur des festivals de rue, dont Aurillac.",
-  },
-];
+// const repere = [
+//   {
+//     annee: "2021",
+//     titre: "Création de la compagnie",
+//     texte:
+//       "Naissance en Creuse autour d'une pratique de clown politique et populaire.",
+//   },
+//   {
+//     annee: "2023",
+//     titre: "Déploiement des stages",
+//     texte:
+//       "Mise en place d'ateliers et de stages pour amateurices et professionnel·les.",
+//   },
+//   {
+//     annee: "2025",
+//     titre: "Diffusion nationale",
+//     texte: "Tournées et présence sur des festivals de rue, dont Aurillac.",
+//   },
+// ];
 ---
 
-<PageLayout title="Compagnie - La Boucle de la Boucle">
+<PageLayout
+  title="La compagnie - La Boucle de la Boucle"
+  description="La Boucle de la boucle est une compagnie de théâtre et clown basée en Creuse. Rencontrez les artistes et découvrez leur univers."
+>
   <main class="bg-dark overflow-hidden">
     <section class="relative pt-36 pb-20 px-6 md:px-14 lg:px-20">
       <div
@@ -109,9 +112,7 @@ const repere = [
           <h1
             class="mt-5 font-display--bigHeading text-white leading-[0.9] text-[clamp(3rem,8vw,7rem)] text-shine"
           >
-            La Boucle
-            <br />
-            de La Boucle
+            La Boucle de La Boucle
           </h1>
 
           <div
@@ -133,14 +134,29 @@ const repere = [
             class="mt-8 max-w-2xl space-y-5 text-white/80 leading-relaxed text-body"
           >
             <p>
-              Nous créons des spectacles de clown contemporains, des formes de
-              rue et des temps de transmission. Notre ligne: faire rire fort,
-              ouvrir des brèches, et garder le lien direct avec les publics.
+              Compagnie de clown et théâtre de rue créée en Creuse en 2021, <b>La boucle de la boucle</b> porte des spectacles, des activités pédagogiques et des événements
+              culturels. Nos projets sont queers, ludiques, tout terrains et piquants.
             </p>
             <p>
-              La compagnie défend une pratique populaire et exigeante, qui
-              circule entre festivals, petites communes et scènes
-              conventionnées.
+              La boucle de la boucle porte le spectacle <b>Comment devenir riche</b> (2023), <b>La Lutte finale</b> (prévu 2027), plusieurs numéros de cabarets
+              et le festival multidisciplinaire <b>Les Désinvoltes</b> dont la première
+              édition a eu lieu à l’automne 2025.
+            </p>
+            <p>
+              La compagnie organise des ateliers artistiques autour des
+              pratiques du clown, du théâtre, du drag, du cabaret et des
+              écritures contemporaines. Ces ateliers sont menés avec l’objectif
+              de créer une porte d’entrée joyeuse et un cadre pédagogique
+              accessible à un large public, inclusif et attentif aux dynamiques
+              de pouvoirs et d’oppressions.
+            </p>
+            <p>
+              L’identité de la compagnie est marquée par une équipe concernée et
+              sensibilisée aux questions LGBT, féministes et classistes.
+            </p>
+            <p>
+              La direction artistique est assurée par Annabelle Vaillant et Leo
+              Sciarrino.
             </p>
           </div>
 
@@ -165,7 +181,7 @@ const repere = [
             [imageLeo, imageAnnabelle, imageZicky, imageCharlotte].map(
               (img, idx) => (
                 <div
-                  class={`overflow-hidden border border-white/15 ${idx === 0 ? "col-span-2 aspect-[16/10]" : "aspect-[4/5]"}`}
+                  class={`overflow-hidden ${idx === 0 ? "col-span-2 aspect-16/10" : "aspect-4/5"}`}
                 >
                   <img
                     src={img.src}
@@ -203,7 +219,7 @@ const repere = [
         }
       </div>
     </section> -->
-<!-- 
+    <!-- 
     <section
       class="py-20 px-6 md:px-14 lg:px-20 bg-black/25 border-y border-white/10"
     >

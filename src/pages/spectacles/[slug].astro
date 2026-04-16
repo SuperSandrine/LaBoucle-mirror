@@ -24,7 +24,12 @@ const { Content } = await spectacle.render();
 // TODO: reduire espacement entre les lignes du tires, ajuster les couleurs du surtitre
 ---
 
-<PageLayout title={spectacle.data.title}>
+<PageLayout
+  title={`${spectacle.data.title} — La Boucle de la boucle`}
+  description={spectacle.data.synopsis}
+  ogImage={spectacle.data.visuel}
+  ogType="article"
+>
   <main class="bg-dark pt-40 px-4 flex flex-col items-center">
     <div class="max-w-6xl">
       <article
