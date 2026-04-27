@@ -23,12 +23,14 @@ const spectaclesCollection = defineCollection({
     creation: z.string(),
     interprete: z.string(),
     espace: z.string(),
-    espaceDetail: z.string(),
+    espaceDetail: z.string().optional(),
     writeAndGame: z.string(),
     otherPartRole : z.string(),
     otherPart: z.string(),
     costume: z.string(),
     decor: z.string(),
+    support: z.string().optional(),
+
     // ... autres champs
   }),
 });
