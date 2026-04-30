@@ -93,5 +93,20 @@ html{
   .anchor-offset {
     scroll-margin-top: 120px;
   }
+
+  .btn-outline {
+    @apply border border-secondary text-secondary 
+           font-display--headings px-8 py-3 text-h4
+           hover:bg-secondary hover:text-white 
+           transition-all duration-300;
+  }
+
+    .btn-outlineDark {
+    @apply border border-dark text-dark 
+           font-display--headings px-8 py-3 text-h4
+           hover:bg-dark hover:text-white 
+           transition-all duration-300;
+  }
 }
+
 

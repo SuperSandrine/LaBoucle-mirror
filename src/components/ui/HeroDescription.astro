@@ -1,0 +1,41 @@
+---
+// Section description du hero - apparaît au scroll sur mobile uniquement
+---
+
+<section
+  class="hero-description-section relative bg-black py-2 md:py-32 md:hidden"
+>
+  <div class="max-w-4xl mx-auto px-6 md:px-12 lg:px-24 text-center">
+    <!-- <p
+      class="hero-description text-white/90 text-body leading-relaxed opacity-0 translate-y-8 transition-all duration-1000 ease-out"
+    > -->
+    <p
+      class="hero-description text-white/90 text-body leading-relaxed opacity-100 "
+    >
+      Compagnie de clown et théâtre de rue, créée en Creuse en 2021, nous
+      portons des spectacles, des activités pédagogiques et des événements
+      culturels. Nos projets sont queers, ludiques, tous terrains et piquants.
+    </p>
+  </div>
+</section>
+
+<!-- <script>
+  // Animation au scroll pour la description
+  function animateDescriptionOnScroll() {
+    const description = document.querySelector(".hero-description");
+    if (!description) return;
+
+    const rect = description.getBoundingClientRect();
+    const isVisible = rect.top < window.innerHeight - 100 && rect.bottom > 0;
+
+    if (isVisible) {
+      description.classList.remove("opacity-0", "translate-y-8");
+      description.classList.add("opacity-100", "translate-y-0");
+    }
+  }
+
+  // Écouter le scroll
+  window.addEventListener("scroll", animateDescriptionOnScroll);
+  // Vérifier au chargement de la page
+  window.addEventListener("load", animateDescriptionOnScroll);
+</script> -->

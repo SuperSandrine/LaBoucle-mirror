@@ -7,7 +7,6 @@ import { getCollection } from "astro:content";
 const spectaclesCollection = await getCollection("spectacles");
 const { anchorMode = false } = Astro.props;
 
-
 // Console log pour debug
 //console.log('=== spectacle DEBUG ===');
 //console.log('Nombre de dates:', spectaclesCollection.length);
@@ -15,17 +14,20 @@ const { anchorMode = false } = Astro.props;
 ---
 
 <section class="bg-dark p-10">
-    <h2
+  <div class="max-w-[1440px] mx-auto">
+    <!-- <h2
       class="text-center text-h2 font-bold text-white text-shine p-10 font-display--headings"
-    >
-      Répertoire
+    > -->
+    <h2 class="font-display--headings text-white text-shine text-h2 pb-8 pl-8">
+      Répertoire :
     </h2>
 
     <div class="flex flex-col items-center gap-6">
       {
         spectaclesCollection.map((event, index) => (
-          <ShowCard event={event} index={index} anchorMode={anchorMode}/>
+          <ShowCard event={event} index={index} anchorMode={anchorMode} />
         ))
       }
     </div>
+  </div>
 </section>
