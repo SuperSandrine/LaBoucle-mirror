@@ -14,12 +14,12 @@ interface TeamMember {
 const team: TeamMember[] = [
   {
     name: "Leo Sciarrino",
-    role: "Co-directeur artistique",
+    role: "Co-directeur artistique, clown",
     image: imageLeo,
   },
   {
     name: "Annabelle Vaillant",
-    role: "Co-directrice artistique",
+    role: "Co-directrice artistique, clown",
     image: imageAnnabelle,
   },
   {
@@ -36,10 +36,12 @@ const team: TeamMember[] = [
 ---
 
 <section class="p-10 bg-dark">
-  <h2 class="font-display--headings text-white text-shine text-h2 pb-8 pl-8">
-    Nous sommes :
-  </h2>
-  <div class="flex flex-wrap justify-center">
-    {team.map((member) => <CardTeam {...member} />)}
+  <div class="max-w-[1440px] mx-auto">
+    <h2 class="font-display--headings text-white text-shine text-h2 pb-8 pl-8">
+      Nous sommes :
+    </h2>
+    <div class="flex flex-wrap justify-center">
+      {team.map((member, index) => <CardTeam {...member} index={index} />)}
+    </div>
   </div>
 </section>
