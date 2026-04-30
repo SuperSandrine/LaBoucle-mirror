@@ -1,0 +1,133 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+
+const accessibiliteInfo = {
+  contact: "laboucledelaboucle@gmail.com",
+};
+---
+
+<PageLayout
+  title="Accessibilité — La Boucle de la Boucle"
+  description="Déclaration d'accessibilité du site La Boucle de la Boucle : engagements, niveaux de conformité, limitations et contact."
+>
+  <main class="bg-dark text-white">
+    <section
+      class="relative overflow-hidden px-6 pb-16 pt-36 md:px-14 lg:px-20"
+    >
+      <div
+        class="pointer-events-none absolute inset-0 opacity-60"
+        aria-hidden="true"
+      >
+        <div
+          class="absolute -left-16 top-10 h-48 w-48 rounded-full bg-primary/20 blur-3xl"
+        >
+        </div>
+        <div
+          class="absolute right-0 top-0 h-64 w-64 rounded-full bg-secondary/20 blur-3xl"
+        >
+        </div>
+      </div>
+
+      <div class="relative mx-auto max-w-5xl">
+        <h1
+          class="font-display--headings text-white text-h2 md:text-heading1 leading-none text-shine"
+        >
+          Accessibilité
+        </h1>
+        <p class="mt-6 max-w-3xl text-body leading-relaxed text-white/80">
+          La Boucle de la Boucle souhaite offrir un site accessible, inclusif et
+          facile à utiliser. Cette déclaration présente l'état de
+          l'accessibilité, les actions engagées et les modalités de contact en
+          cas de difficulté.
+        </p>
+      </div>
+    </section>
+
+    <section class="px-6 pb-24 md:px-14 lg:px-20">
+      <div class="mx-auto flex max-w-5xl flex-col gap-8">
+        <article class="bg-white/5 p-6 md:p-8">
+          <h2 class="font-display--headings text-h3 text-primary">
+            Engagement d'accessibilité
+          </h2>
+          <p class="mt-6 leading-relaxed text-white/85">
+            Le site est conçu pour faciliter l'accès à l'information, la
+            navigation et la lecture pour tous les utilisateurs. Nous attachons
+            une attention particulière à la lisibilité, à la compatibilité avec
+            les technologies d'assistance et à la simplicité d'utilisation.
+          </p>
+        </article>
+
+        <article class="bg-black/20 p-6 md:p-8">
+          <h2 class="font-display--headings text-h3 text-primary">
+            Référentiels et conformité
+          </h2>
+          <p class="mt-6 leading-relaxed text-white/85">
+            La démarche d'accessibilité s'appuie sur les principes du
+            référentiel général d'amélioration de l'accessibilité (RGAA) et sur
+            les recommandations internationales WCAG. L'objectif est de
+            progresser vers une conformité durable et vérifiable.
+          </p>
+          <p class="mt-4 leading-relaxed text-white/85">
+            Ce site est en cours d'amélioration continue. Les points
+            prioritaires identifiés portent sur l'optimisation des contrastes,
+            l'amélioration de la navigation clavier et la complétude des
+            alternatives textuelles.
+          </p>
+        </article>
+
+        <article class="bg-black/20 p-6 md:p-8">
+          <h2 class="font-display--headings text-h3 text-primary">
+            Mesures mises en œuvre
+          </h2>
+          <ul
+            class="mt-6 list-disc pl-5 space-y-3 leading-relaxed text-white/85"
+          >
+            <li>Organisation claire des contenus avec titres hiérarchisés.</li>
+            <li>
+              Contrastes de texte et d'arrière-plan améliorés pour une meilleure
+              lisibilité.
+            </li>
+            <li>Navigation au clavier disponible sur l'ensemble des pages.</li>
+            <li>Liens identifiés clairement et mises en évidence au focus.</li>
+            <li>
+              Présence d'un contact dédié pour signaler les problèmes
+              d'accessibilité.
+            </li>
+          </ul>
+        </article>
+
+        <article class="bg-black/20 p-6 md:p-8">
+          <h2 class="font-display--headings text-h3 text-primary">
+            Limitations connues
+          </h2>
+          <p class="mt-6 leading-relaxed text-white/85">
+            Certains éléments graphiques et interactions complexes sont encore
+            en cours d'optimisation. Nous poursuivons les travaux afin de
+            réduire progressivement ces limitations et de garantir une
+            expérience satisfaisante à tous les utilisateurs.
+          </p>
+        </article>
+
+        <article class="bg-black/20 p-6 md:p-8">
+          <h2 class="font-display--headings text-h3 text-primary">
+            Contact et retour d'expérience
+          </h2>
+          <p class="mt-6 leading-relaxed text-white/85">
+            Si vous rencontrez une difficulté d'accès ou si vous souhaitez
+            proposer une amélioration, merci de nous contacter. Votre retour est
+            pris en compte et permet d'améliorer rapidement le site.
+          </p>
+          <p class="mt-4 leading-relaxed text-white/85">
+            <strong>Adresse :</strong>
+            <a
+              href={`mailto:${accessibiliteInfo.contact}`}
+              class="underline hover:text-primary transition"
+            >
+              {accessibiliteInfo.contact}
+            </a>
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+</PageLayout>

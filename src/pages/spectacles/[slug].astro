@@ -46,9 +46,6 @@ const { Content } = await spectacle.render();
         <div
           class="md:w-1/2 p-8 md:p-12 flex flex-col justify-center border-l border-gray-100"
         >
-          <span class="text-secondary font-bold text-body">
-            {spectacle.data.genreEtRegistre}
-          </span>
           <p class="text-primary font-bold text-bodyBig">
             {spectacle.data.creation}
           </p>
@@ -128,11 +125,13 @@ const { Content } = await spectacle.render();
           </blockquote>
         </div> -->
       <div class="flex flex-row gap-16 pb-16">
-        <div class=" py-10 text-body prose prose-invert max-w-none
+        <div
+          class="py-10 text-body prose prose-invert max-w-none
             prose-blockquote:border-l-4 prose-blockquote:border-accentWarning
-            prose-blockquote:pl-6 
+            prose-blockquote:pl-6
             prose-blockquote:text-primary prose-blockquote:text-lg
-            prose-blockquote:not-italic">
+            prose-blockquote:not-italic"
+        >
           <Content />
         </div>
 
