@@ -23,25 +23,29 @@ const sortedDates = datesCollection.sort(
   (a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime(),
 );
 
-
-
 // Trie par date et filtre pour n'afficher que les 3 prochaines dates à partir d'aujourd'hui
 const today = new Date();
 const nextDates = sortedDates
-  .filter(event => new Date(event.data.date) >= today)
+  .filter((event) => new Date(event.data.date) >= today)
   .slice(0, 3);
 
-
-
-//récupère et formate les données pour l'affichage  
+//récupère et formate les données pour l'affichage
 const getEventTitle = (event: (typeof sortedDates)[number]) => {
-  return event.data.evenement?.value ?? (event.data as { titre?: string }).titre ?? '';
+  return (
+    event.data.evenement?.value ??
+    (event.data as { titre?: string }).titre ??
+    ""
+  );
 };
 const formatTitle = (slug: string) =>
-  slug.replace(/-/g, ' ').replace(/^\w/, c => c.toUpperCase());
+  slug.replace(/-/g, " ").replace(/^\w/, (c) => c.toUpperCase());
 
 const getEventType = (event: (typeof sortedDates)[number]) => {
-  return event.data.evenement?.discriminant ?? (event.data as { type?: string }).type ?? '';
+  return (
+    event.data.evenement?.discriminant ??
+    (event.data as { type?: string }).type ??
+    ""
+  );
 };
 
 const formatDayMonth = (date: Date) =>
@@ -125,39 +129,37 @@ const getEventDateDisplay = (event: (typeof sortedDates)[number]) => {
     </a>
   </div>
 </section> -->
-<section class="p-10 bg-primary">
-  <h2 class="font-display--headings text-dark text-h2 pb-8 pl-8">
-    Nos prochaines dates 
+<section class="p-10 px-4 md:px-10 xl:px-16 2xl:px-24 bg-primary">
+  <h2 class="font-display--headings text-dark text-h2 pb-8 pl-4 md:pl-8">
+    Nos prochaines dates
   </h2>
 
-  <div class="space-y-6">
+  <div class="">
     {
       nextDates.map((event) => {
         const eventDateDisplay = getEventDateDisplay(event);
         return (
           <div class="flex flex-col md:flex-row md:items-center gap-6 pb-6 border-dark">
-            <div class="md:w-48">
-              <p class="font-display--sans font-bold  text-bodyBig leading-6 text-dark">
+            <div class="md:w-48 lg:w-40">
+              <p class="font-display--sans font-bold  text-[1.25rem] leading-8 text-dark">
                 {eventDateDisplay.main}
               </p>
-              <p class="text-lg text-dark">
-                {eventDateDisplay.year}
-              </p>
+              <p class="text-body text-dark">{eventDateDisplay.year}</p>
             </div>
 
-            <div class="md:w-64">
-              <p class="text-dark">{event.data.lieu}</p>
+            <div class="md:w-48 lg:w-40">
+              <p class="text-dark text-body">{event.data.lieu}</p>
             </div>
 
             <div class="flex-grow">
-              <h3 class="font-display--headings text-h3 text-dark">
+              <h3 class="font-display--headings text-h3 text-dark leading-8">
                 {formatTitle(getEventTitle(event))}
               </h3>
-              <p class="text-sm text-dark">{getEventType(event)}</p>
+              <p class="text-body text-dark">{getEventType(event)}</p>
             </div>
 
             <a
-              href="/calendrier"
+              href={`/spectacles/${getEventTitle(event)}`}
               class="inline-block btn-outlineDark"
             >
               JE VEUX EN SAVOIR PLUS
@@ -167,14 +169,14 @@ const getEventDateDisplay = (event: (typeof sortedDates)[number]) => {
       })
     }
   </div>
-  <div class="flex justify-center pt-10">
+  <!-- <div class="flex justify-center pt-10">
     <a
       href="/calendrier"
       class="inline-block bg-dark text-white font-display--headings px-10 py-4 text-h4 hover:bg-dark hover:text-primary transition"
     >
       Et les autres dates, c'est par ici !
     </a>
-  </div>
+  </div> -->
 </section>
 
 <!-- 

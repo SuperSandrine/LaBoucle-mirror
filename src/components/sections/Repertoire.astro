@@ -5,7 +5,26 @@ import ShowCard from "../ui/ShowCard.astro";
 // Simulation des données provenant de sortedShow
 import { getCollection } from "astro:content";
 const spectaclesCollection = await getCollection("spectacles");
+const datesCollection = await getCollection("dates");
 const { anchorMode = false } = Astro.props;
+
+const findFirstDate = (slug: string) => {
+  const datesForShow = datesCollection
+    .filter((item) => item.data.evenement?.discriminant === "spectacle")
+    .filter((item) => item.data.evenement?.value === slug)
+    .map((item) => item.data.date)
+    .sort((a, b) => a.getTime() - b.getTime());
+  return datesForShow.length > 0 ? datesForShow[0] : undefined;
+};
+
+const sortedSpectaclesCollection = [...spectaclesCollection].sort((a, b) => {
+  const dateA = findFirstDate(a.slug);
+  const dateB = findFirstDate(b.slug);
+  if (!dateA && !dateB) return 0;
+  if (!dateA) return 1;
+  if (!dateB) return -1;
+  return dateA.getTime() - dateB.getTime();
+});
 
 // Console log pour debug
 //console.log('=== spectacle DEBUG ===');
@@ -24,7 +43,7 @@ const { anchorMode = false } = Astro.props;
 
     <div class="flex flex-col items-center gap-6">
       {
-        spectaclesCollection.map((event, index) => (
+        sortedSpectaclesCollection.map((event, index) => (
           <ShowCard event={event} index={index} anchorMode={anchorMode} />
         ))
       }
