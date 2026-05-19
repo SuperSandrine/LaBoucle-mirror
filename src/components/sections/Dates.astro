@@ -81,6 +81,111 @@ const getEventDateDisplay = (event: (typeof sortedDates)[number]) => {
   };
 };
 ---
+<section class="bg-primary py-16 md:py-20 px-6">
+  <div class="max-w-5xl mx-auto">
+
+    <h2 class="font-display--headings text-dark text-h2 mb-4">
+      Nos prochaines dates
+    </h2>
+
+    <!-- Liste desktop : tableau horizontal border-b ou pas dans la div -->
+    <div class="hidden md:block">
+      {nextDates.map((event) => {
+        const eventDateDisplay = getEventDateDisplay(event);
+        return (
+          <div class="flex items-center gap-8 py-6  border-dark/20 last:border-0">
+            
+            <!-- Date -->
+            <div class="w-44 shrink-0">
+              <p class="font-bold text-bodyBig text-dark leading-snug">
+                {eventDateDisplay.main}
+              </p>
+              <p class="text-body text-dark/70">{eventDateDisplay.year}</p>
+            </div>
+
+            <!-- Lieu -->
+            <div class="w-44 shrink-0">
+              <p class="text-body text-dark/80">{event.data.lieu}</p>
+            </div>
+
+            <!-- Titre + type -->
+            <div class="flex-grow">
+              <h3 class="font-display--headings text-h3 text-dark leading-tight">
+                {formatTitle(getEventTitle(event))}
+              </h3>
+              <p class="text-body text-dark/60 mt-1">{getEventType(event)}</p>
+            </div>
+
+            <!-- CTA -->
+            <a
+              href={`/spectacles/${getEventTitle(event)}`}
+              class="shrink-0 border border-dark text-dark font-display--headings px-6 py-3 text-body
+                     hover:bg-dark hover:text-primary transition-all duration-300 whitespace-nowrap"
+            >
+              En savoir plus
+            </a>
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- Liste mobile : cartes empilées -->
+    <div class="flex flex-col gap-4 md:hidden">
+      {nextDates.map((event) => {
+        const eventDateDisplay = getEventDateDisplay(event);
+        return (
+          <div class="border border-dark/20 p-5 flex flex-col gap-3">
+
+            <!-- Date + type en ligne -->
+            <div class="flex items-start justify-between gap-2">
+              <div>
+                <p class="font-bold text-bodyBig text-dark leading-snug">
+                  {eventDateDisplay.main}
+                </p>
+                <p class="text-body text-dark/70">{eventDateDisplay.year}</p>
+              </div>
+              <span class="text-xs font-bold text-dark/50 uppercase tracking-widest pt-1">
+                {getEventType(event)}
+              </span>
+            </div>
+
+            <!-- Séparateur -->
+            <div class="border-t border-dark/15"></div>
+
+            <!-- Titre -->
+            <h3 class="font-display--headings text-h3 text-dark leading-tight">
+              {formatTitle(getEventTitle(event))}
+            </h3>
+
+            <!-- Lieu -->
+            <p class="text-body text-dark/70">{event.data.lieu}</p>
+
+            <!-- CTA pleine largeur -->
+            <a
+              href={`/spectacles/${getEventTitle(event)}`}
+              class="mt-1 text-center border border-dark text-dark font-display--headings px-6 py-3 text-body
+                     hover:bg-dark hover:text-primary transition-all duration-300"
+            >
+              En savoir plus
+            </a>
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- Lien calendrier complet -->
+    <!-- <div class="flex justify-center mt-10">
+      <a
+        href="/calendrier"
+        class="bg-dark text-white font-display--headings px-10 py-4 text-h4
+               hover:text-primary transition-colors duration-300"
+      >
+        Toutes les dates →
+      </a>
+    </div> -->
+
+  </div>
+</section>
 
 <!-- <section class="p-10 bg-primary">    
   <h2 class="font-display--headings text-h2 pb-8 pl-8">
