@@ -26,6 +26,7 @@ html{
   --text-h3: 2.25rem;
   --text-h4: 1.5rem;
   --text-body: 1rem;
+  --text-bodyMedium: 1.25rem;
   --text-bodyBig:1.5rem;
 
   --shadow-card:0 2px 45px rgba(99, 106, 181, 1)
