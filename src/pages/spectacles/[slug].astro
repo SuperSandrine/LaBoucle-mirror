@@ -31,9 +31,9 @@ const { Content } = await spectacle.render();
   ogType="article"
 >
   <main class="bg-dark pt-40 px-4 flex flex-col items-center">
-    <div class="max-w-6xl">
+    <div class="max-w-6xl w-full">
       <article
-        class="flex flex-col md:flex-row bg-white shadow-xl overflow-hidden min-h-[500px] mb-16"
+        class="flex flex-col md:flex-row shadow-xl overflow-hidden min-h-[500px] mb-16 bg-gradient-to-br from-dark via-secondary/30 to-dark shadow-2xl shadow-primary/50 -rotate-1"
       >
         <div class="md:w-1/2 relative min-h-[350px] md:min-h-full bg-dark">
           <img
@@ -43,13 +43,11 @@ const { Content } = await spectacle.render();
           />
         </div>
 
-        <div
-          class="md:w-1/2 p-8 md:p-12 flex flex-col justify-center border-l border-gray-100"
-        >
+        <div class="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
           <p class="text-primary font-bold text-bodyBig">
             {spectacle.data.creation}
           </p>
-          <h1 class="text-heading1 text-dark font-display--headings pb-4">
+          <h1 class="text-heading1 text-white font-display--headings pb-4">
             {spectacle.data.title}
           </h1>
 
@@ -68,8 +66,8 @@ const { Content } = await spectacle.render();
                   stroke-width="2"
                   d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
-              <span class="text-dark font-medium">
-                {spectacle.data.duree}h
+              <span class="text-white text-bodyMedium font-medium">
+                {spectacle.data.duree}
               </span>
             </div>
             <div class="flex items-center gap-2 text-accentWarning">
@@ -87,17 +85,11 @@ const { Content } = await spectacle.render();
                   d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                 ></path>
               </svg>
-              <span class="text-dark font-medium">
+              <span class="text-white text-bodyMedium font-medium">
                 {spectacle.data.public}
               </span>
             </div>
           </div>
-
-          <p
-            class="text-xl text-dark/80 italic border-l-4 border-secondary pl-4 mb-8"
-          >
-            {spectacle.data.synopsis}
-          </p>
         </div>
       </article>
 
@@ -124,9 +116,9 @@ const { Content } = await spectacle.render();
             « L'argent n'est qu'une fiction. » — Aristote
           </blockquote>
         </div> -->
-      <div class="flex flex-row gap-16 pb-16">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-16 pb-16">
         <div
-          class="py-10 text-body prose prose-invert max-w-none
+          class="lg:col-span-2 py-10 text-body prose prose-invert max-w-none
             prose-blockquote:border-l-4 prose-blockquote:border-accentWarning
             prose-blockquote:pl-6
             prose-blockquote:text-primary prose-blockquote:text-lg
@@ -135,7 +127,9 @@ const { Content } = await spectacle.render();
           <Content />
         </div>
 
-        <aside class="bg-white p-8 shadow-sm h-fit space-y-8 w-full min-w-1/5">
+        <aside
+          class="bg-dark/80 border border-white/10 text-white p-8 shadow-sm h-fit space-y-8"
+        >
           <div>
             <h4
               class="font-display--headings uppercase text-secondary mb-4 border-b pb-2"
@@ -144,14 +138,16 @@ const { Content } = await spectacle.render();
             </h4>
             <div class="space-y-4">
               <div>
-                <p class="text-xs uppercase text-gray-500">Écriture et jeu</p>
-                <p class="font-medium">{spectacle.data.writeAndGame}</p>
+                <p class="text-xs uppercase text-white/60">Écriture et jeu</p>
+                <p class="font-medium text-white">
+                  {spectacle.data.writeAndGame}
+                </p>
               </div>
               <div>
-                <p class="text-xs uppercase text-gray-500">
+                <p class="text-xs uppercase text-white/60">
                   {spectacle.data.otherPartRole}
                 </p>
-                <p class="font-medium">{spectacle.data.otherPart}</p>
+                <p class="font-medium text-white">{spectacle.data.otherPart}</p>
               </div>
             </div>
           </div>
@@ -164,10 +160,10 @@ const { Content } = await spectacle.render();
             </h4>
             <div class="space-y-4">
               <div>
-                <p class="text-xs uppercase text-gray-500">Espace</p>
-                <p class="font-medium">{spectacle.data.espace}</p>
+                <p class="text-xs uppercase text-white/60">Espace</p>
+                <p class="font-medium text-white">{spectacle.data.espace}</p>
               </div>
-              <p class="text-sm text-gray-600 leading-relaxed">
+              <p class="text-sm text-white/60 leading-relaxed">
                 {spectacle.data.espaceDetail}
               </p>
             </div>
@@ -180,8 +176,8 @@ const { Content } = await spectacle.render();
             </h4>
             <div class="space-y-4">
               <div>
-                <p class="text-xs uppercase text-gray-500">Support</p>
-                <p class="font-medium">{spectacle.data.support}</p>
+                <p class="text-xs uppercase text-white/60">Support</p>
+                <p class="font-medium text-white">{spectacle.data.support}</p>
               </div>
             </div>
           </div>
