@@ -4,12 +4,31 @@
 import DatesArchives from "../../components/sections/DatesArchives.astro";
 import PageLayout from "../../layouts/PageLayout.astro";
 import { getCollection } from "astro:content";
+import ShowCard from "../../components/ui/ShowCard.astro";
 
 const spectacles = await getCollection("spectacles");
+const datesCollection = await getCollection("dates");
 
-const sortedSpectacles = [...spectacles].sort((a, b) =>
-  a.data.title.localeCompare(b.data.title, "fr", { sensitivity: "base" }),
-);
+const findFirstDate = (slug: string) => {
+  const datesForShow = datesCollection
+    .filter((item) => item.data.evenement?.discriminant === "spectacle")
+    .filter((item) => item.data.evenement?.value === slug)
+    .map((item) => item.data.date)
+    .sort((a, b) => a.getTime() - b.getTime());
+  return datesForShow.length > 0 ? datesForShow[0] : undefined;
+};
+
+const sortedSpectacles = [...spectacles].sort((a, b) => {
+  const dateA = findFirstDate(a.slug);
+  const dateB = findFirstDate(b.slug);
+  if (!dateA && !dateB)
+    return a.data.title.localeCompare(b.data.title, "fr", {
+      sensitivity: "base",
+    });
+  if (!dateA) return 1;
+  if (!dateB) return -1;
+  return dateA.getTime() - dateB.getTime();
+});
 
 const genres = Array.from(
   new Set(
@@ -68,7 +87,9 @@ const genres = Array.from(
                   <img
                     src={spectacle.data.visuel}
                     alt={`Visuel du spectacle ${spectacle.data.title}`}
-                    class="h-full w-full object-cover transition duration-300 group-hover:scale-120"
+                    class={
+                      `h-full w-full object-cover ${spectacle.slug === "prince-sse-pudeur" ? "object-[0%_25%]" : "object-center"} transition duration-300 group-hover:scale-120`
+                    }
                   />
                   <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                   <span class="absolute left-4 top-4 rounded-full bg-primary px-3 py-1 text-xs font-bold uppercase tracking-wide text-black">
