@@ -1,7 +1,7 @@
 ---
 //TODO: nettoyer code
 //DONE: rendre dynamique les dates
-//TODO: afficher 3 dates maximums, à partir de la date d'aujourd'hui; les 3 dates à venir les plus proches.
+//DONE: afficher 3 dates maximums, à partir de la date d'aujourd'hui; les 3 dates à venir les plus proches.
 // DONE: rendre dynamique le choix des spectacles dans la collection keystatic pour que le choix soit définit entre les spectacle disponibles.
 // DONE: doit aussi afficher les dates de stages (est-ce que c'est une collection avec le choix du stage ou du spectacle ou  est-ce 2 collections différentes ?)
 
@@ -93,14 +93,13 @@ const getEventDateDisplay = (event: (typeof sortedDates)[number]) => {
               <h3 class="font-display--headings text-h3 text-dark leading-tight">
                 {formatTitle(getEventTitle(event))}
               </h3>
-              <p class="text-body text-dark/60 mt-1">{getEventType(event)}</p>
+              <p class="text-body text-dark/60 ">{getEventType(event)}</p>
             </div>
 
             <!-- CTA -->
             <a
-              href={`/spectacles/${getEventTitle(event)}`}
-              class="shrink-0 border border-dark text-dark font-display--headings px-6 py-3 text-body
-                     hover:bg-dark hover:text-primary transition-all duration-300 whitespace-nowrap"
+              href={getEventType(event) === "spectacle" ? `/spectacles/${getEventTitle(event)}` : `/stages`}
+              class="shrink-0 btn-outlineDark whitespace-nowrap"
             >
               En savoir plus
             </a>
@@ -142,9 +141,8 @@ const getEventDateDisplay = (event: (typeof sortedDates)[number]) => {
 
             <!-- CTA pleine largeur -->
             <a
-              href={`/spectacles/${getEventTitle(event)}`}
-              class="mt-1 text-center border border-dark text-dark font-display--headings px-6 py-3 text-body
-                     hover:bg-dark hover:text-primary transition-all duration-300"
+              href={getEventType(event) === "spectacle" ? `/spectacles/${getEventTitle(event)}` : `/stages`}
+              class="mt-1 text-center btn-outlineDark w-full"
             >
               En savoir plus
             </a>
@@ -154,47 +152,11 @@ const getEventDateDisplay = (event: (typeof sortedDates)[number]) => {
     </div>
 
     <!-- Lien calendrier complet -->
+    <div class="flex justify-center mt-10">
+      <a href="/calendrier" class="btn-outlineDark">
+        Voir toutes nos dates
+      </a>
+    </div>
 
-  </div>
-</section>
-<section class="p-10 px-4 md:px-10 xl:px-16 2xl:px-24 bg-primary">
-  <h2 class="font-display--headings text-dark text-h2 pb-8 pl-4 md:pl-8">
-    Nos prochaines dates
-  </h2>
-
-  <div class="">
-    {
-      nextDates.map((event) => {
-        const eventDateDisplay = getEventDateDisplay(event);
-        return (
-          <div class="flex flex-col md:flex-row md:items-center gap-6 pb-6 border-dark">
-            <div class="md:w-48 lg:w-40">
-              <p class="font-display--sans font-bold  text-[1.25rem] leading-8 text-dark">
-                {eventDateDisplay.main}
-              </p>
-              <p class="text-body text-dark">{eventDateDisplay.year}</p>
-            </div>
-
-            <div class="md:w-48 lg:w-40">
-              <p class="text-dark text-body">{event.data.lieu}</p>
-            </div>
-
-            <div class="flex-grow">
-              <h3 class="font-display--headings text-h3 text-dark leading-8">
-                {formatTitle(getEventTitle(event))}
-              </h3>
-              <p class="text-body text-dark">{getEventType(event)}</p>
-            </div>
-
-            <a
-              href={`/spectacles/${getEventTitle(event)}`}
-              class="inline-block btn-outlineDark"
-            >
-              JE VEUX EN SAVOIR PLUS
-            </a>
-          </div>
-        );
-      })
-    }
   </div>
 </section>

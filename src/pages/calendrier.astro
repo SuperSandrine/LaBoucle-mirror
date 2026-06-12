@@ -1,0 +1,538 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import { getCollection, render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import { formatDayMonth, getEventTitle, getEventType } from "../utils/dates";
+
+type DateEntry = CollectionEntry<"dates">;
+
+const datesCollection = await getCollection("dates");
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+
+const formatTitle = (slug: string) =>
+  slug.replace(/-/g, " ").replace(/^\w/, (c) => c.toUpperCase());
+
+// Même format que Dates.astro : { main: "14 juillet", year: "2026" }
+const getEventDateDisplay = (event: DateEntry) => {
+  const startDate = event.data.date;
+  const endDate = event.data.dateFin;
+
+  if (!endDate || endDate.getTime() <= startDate.getTime()) {
+    return {
+      main: formatDayMonth(startDate),
+      year: startDate.toLocaleDateString("fr-FR", { year: "numeric" }),
+    };
+  }
+
+  const startYear = startDate.getFullYear();
+  const endYear = endDate.getFullYear();
+
+  if (startYear === endYear) {
+    return {
+      main: `${formatDayMonth(startDate)} au ${formatDayMonth(endDate)}`,
+      year: String(endYear),
+    };
+  }
+
+  return {
+    main: `${formatDayMonth(startDate)} ${startYear} au ${formatDayMonth(endDate)}`,
+    year: String(endYear),
+  };
+};
+
+const getEventLink = (event: DateEntry) => {
+  const type = getEventType(event);
+  const slug = getEventTitle(event);
+  return type === "spectacle" ? `/spectacles/${slug}` : `/stages`;
+};
+
+const upcomingDates = datesCollection
+  .filter((e) => new Date(e.data.date) >= today)
+  .sort((a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime());
+
+const pastDates = datesCollection
+  .filter((e) => new Date(e.data.date) < today)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+const upcomingWithContent = await Promise.all(
+  upcomingDates.map(async (event) => {
+    const { Content } = await render(event);
+    return { event, Content };
+  })
+);
+
+const pastWithContent = await Promise.all(
+  pastDates.map(async (event) => {
+    const { Content } = await render(event);
+    return { event, Content };
+  })
+);
+---
+
+<PageLayout
+  title="Calendrier – La Boucle de la Boucle"
+  description="Tous les spectacles et stages de La Boucle de la Boucle : dates à venir et archives."
+>
+  <main class="bg-dark min-h-screen pt-[100px]">
+    <div class="max-w-5xl mx-auto px-6 py-16">
+
+      <!-- En-tête -->
+      <div class="mb-12">
+        <h1 class="font-display--headings text-primary" style="font-size: var(--text-h2);">
+          Nos dates
+        </h1>
+        <p class="text-lightGrey/60 mt-2" style="font-size: var(--text-bodyMedium);">
+          Retrouvez tous nos spectacles et stages, passés et à venir.
+        </p>
+      </div>
+
+      <!-- Filtres -->
+      <div
+        class="flex flex-wrap items-center gap-3 mb-12"
+        role="group"
+        aria-label="Filtrer par type d'événement"
+      >
+        <button data-filter="all" class="filter-btn filter-active">Tous</button>
+        <button data-filter="spectacle" class="filter-btn">Spectacles</button>
+        <button data-filter="stage" class="filter-btn">Stages &amp; ateliers</button>
+        <button
+          id="reset-filter"
+          class="ml-2 text-lightGrey/40 text-sm underline underline-offset-4 hover:text-lightGrey/70 transition-colors duration-200"
+        >
+          Tout effacer
+        </button>
+      </div>
+
+      <!-- Liste des événements -->
+      <div id="events-container">
+
+        <!-- Dates à venir -->
+        {
+          upcomingDates.length === 0 && (
+            <p
+              class="text-lightGrey/40 py-8"
+              style="font-size: var(--text-bodyMedium);"
+              data-upcoming-empty
+            >
+              Aucune date à venir pour le moment.
+            </p>
+          )
+        }
+
+        {
+          upcomingWithContent.map(({ event, Content }) => {
+            const type = getEventType(event);
+            const title = formatTitle(getEventTitle(event));
+            const link = getEventLink(event);
+            const dateDisplay = getEventDateDisplay(event);
+            const hasContent = !!event.body?.trim();
+            return (
+              <div
+                class="event-item border-b border-lightGrey/15 py-7"
+                data-type={type}
+                data-upcoming="true"
+              >
+                <!-- Desktop -->
+                <div class="hidden md:flex items-start gap-6">
+                  <div class="w-52 shrink-0">
+                    <p class="font-bold text-primary leading-snug" style="font-size: var(--text-bodyBig);">
+                      {dateDisplay.main}
+                    </p>
+                    <p class="text-primary/70" style="font-size: var(--text-body);">
+                      {dateDisplay.year}
+                    </p>
+                  </div>
+                  <div class="w-40 shrink-0">
+                    <p class="text-lightGrey/60" style="font-size: var(--text-body);">
+                      {event.data.lieu}
+                    </p>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <h2
+                      class="font-display--headings text-lightGrey leading-tight"
+                      style="font-size: var(--text-h3);"
+                    >
+                      {title}
+                    </h2>
+                    <p class="text-lightGrey/50" style="font-size: var(--text-body);">{type}</p>
+                    {hasContent && (
+                      <details class="accordion mt-3">
+                        <summary class="accordion-trigger">
+                          <span class="accordion-label">Informations complémentaires</span>
+                          <span class="accordion-icon" aria-hidden="true">+</span>
+                        </summary>
+                        <div class="event-content accordion-content">
+                          <Content />
+                        </div>
+                      </details>
+                    )}
+                  </div>
+                  <div class="shrink-0 self-center">
+                    <a href={link} class="btn-outline whitespace-nowrap">
+                      En savoir plus
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Mobile -->
+                <div class="md:hidden flex flex-col gap-3">
+                  <div class="flex items-start justify-between gap-2">
+                    <div>
+                      <p class="font-bold text-primary leading-snug" style="font-size: var(--text-bodyBig);">
+                        {dateDisplay.main}
+                      </p>
+                      <p class="text-primary/70" style="font-size: var(--text-body);">
+                        {dateDisplay.year}
+                      </p>
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-lightGrey/50 pt-1 shrink-0">
+                      {type}
+                    </span>
+                  </div>
+                  <h2
+                    class="font-display--headings text-lightGrey leading-tight"
+                    style="font-size: var(--text-h3);"
+                  >
+                    {title}
+                  </h2>
+                  <p class="text-lightGrey/60" style="font-size: var(--text-body);">
+                    {event.data.lieu}
+                  </p>
+                  {hasContent && (
+                    <details class="accordion">
+                      <summary class="accordion-trigger">
+                        <span class="accordion-label">Informations complémentaires</span>
+                        <span class="accordion-icon" aria-hidden="true">+</span>
+                      </summary>
+                      <div class="event-content accordion-content">
+                        <Content />
+                      </div>
+                    </details>
+                  )}
+                  <a href={link} class="btn-outline text-center mt-2 block">
+                    En savoir plus
+                  </a>
+                </div>
+              </div>
+            );
+          })
+        }
+
+        <!-- Séparateur dates passées -->
+        {
+          pastDates.length > 0 && (
+            <div id="past-separator" class="flex items-center gap-4 py-10">
+              <div class="flex-1 border-t border-lightGrey/20" />
+              <span
+                class="font-display--headings text-lightGrey/30 uppercase tracking-widest whitespace-nowrap"
+                style="font-size: var(--text-body);"
+              >
+                Dates passées
+              </span>
+              <div class="flex-1 border-t border-lightGrey/20" />
+            </div>
+          )
+        }
+
+        <!-- Dates passées -->
+        {
+          pastWithContent.map(({ event, Content }) => {
+            const type = getEventType(event);
+            const title = formatTitle(getEventTitle(event));
+            const dateDisplay = getEventDateDisplay(event);
+            const hasContent = !!event.body?.trim();
+            return (
+              <div
+                class="event-item border-b border-lightGrey/10 py-7 opacity-40"
+                data-type={type}
+                data-upcoming="false"
+              >
+                <!-- Desktop -->
+                <div class="hidden md:flex items-start gap-6">
+                  <div class="w-52 shrink-0">
+                    <p class="font-bold text-lightGrey leading-snug" style="font-size: var(--text-bodyBig);">
+                      {dateDisplay.main}
+                    </p>
+                    <p class="text-lightGrey/70" style="font-size: var(--text-body);">
+                      {dateDisplay.year}
+                    </p>
+                  </div>
+                  <div class="w-40 shrink-0">
+                    <p class="text-lightGrey/60" style="font-size: var(--text-body);">
+                      {event.data.lieu}
+                    </p>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <h2
+                      class="font-display--headings text-lightGrey leading-tight"
+                      style="font-size: var(--text-h3);"
+                    >
+                      {title}
+                    </h2>
+                    <p class="text-lightGrey/50" style="font-size: var(--text-body);">{type}</p>
+                    {hasContent && (
+                      <details class="accordion mt-3">
+                        <summary class="accordion-trigger">
+                          <span class="accordion-label accordion-label--past">Informations complémentaires</span>
+                          <span class="accordion-icon accordion-icon--past" aria-hidden="true">+</span>
+                        </summary>
+                        <div class="event-content accordion-content">
+                          <Content />
+                        </div>
+                      </details>
+                    )}
+                  </div>
+                </div>
+
+                <!-- Mobile -->
+                <div class="md:hidden flex flex-col gap-3">
+                  <div class="flex items-start justify-between gap-2">
+                    <div>
+                      <p class="font-bold text-lightGrey leading-snug" style="font-size: var(--text-bodyBig);">
+                        {dateDisplay.main}
+                      </p>
+                      <p class="text-lightGrey/70" style="font-size: var(--text-body);">
+                        {dateDisplay.year}
+                      </p>
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-lightGrey/50 pt-1 shrink-0">
+                      {type}
+                    </span>
+                  </div>
+                  <h2
+                    class="font-display--headings text-lightGrey leading-tight"
+                    style="font-size: var(--text-h3);"
+                  >
+                    {title}
+                  </h2>
+                  <p class="text-lightGrey/60" style="font-size: var(--text-body);">
+                    {event.data.lieu}
+                  </p>
+                  {hasContent && (
+                    <details class="accordion">
+                      <summary class="accordion-trigger">
+                        <span class="accordion-label accordion-label--past">Informations complémentaires</span>
+                        <span class="accordion-icon accordion-icon--past" aria-hidden="true">+</span>
+                      </summary>
+                      <div class="event-content accordion-content">
+                        <Content />
+                      </div>
+                    </details>
+                  )}
+                </div>
+              </div>
+            );
+          })
+        }
+      </div>
+
+      <!-- Message aucun résultat -->
+      <div id="no-results" class="hidden text-center py-20">
+        <p
+          class="font-display--headings text-lightGrey/30"
+          style="font-size: var(--text-h3);"
+        >
+          Aucune date pour ce filtre
+        </p>
+      </div>
+
+    </div>
+  </main>
+</PageLayout>
+
+<style>
+  .filter-btn {
+    border: 1px solid rgba(237, 239, 253, 0.3);
+    color: rgba(237, 239, 253, 0.6);
+    font-family: var(--font-display--headings);
+    font-size: var(--text-h4);
+    padding: 0.5rem 1.5rem;
+    transition: all 200ms ease;
+    cursor: pointer;
+  }
+
+  .filter-btn:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .filter-active {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-dark);
+  }
+
+  .filter-active:hover {
+    background-color: var(--color-primary);
+    color: var(--color-dark);
+  }
+
+  /* Accordéon */
+  .accordion {
+    border-top: 1px solid rgba(237, 239, 253, 0.1);
+    padding-top: 0.75rem;
+  }
+
+  .accordion-trigger {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+  }
+
+  .accordion-trigger::-webkit-details-marker {
+    display: none;
+  }
+
+  .accordion-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(228, 150, 234, 0.6);
+    transition: color 200ms ease;
+  }
+
+  .accordion-label--past {
+    color: rgba(237, 239, 253, 0.45);
+  }
+
+  .accordion-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 1px solid rgba(228, 150, 234, 0.4);
+    color: rgba(228, 150, 234, 0.7);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    line-height: 1;
+    flex-shrink: 0;
+    transition: transform 250ms ease, border-color 200ms ease, color 200ms ease;
+  }
+
+  .accordion-icon--past {
+    border-color: rgba(237, 239, 253, 0.25);
+    color: rgba(237, 239, 253, 0.45);
+  }
+
+  details[open] .accordion-label {
+    color: var(--color-primary);
+  }
+
+  details[open] .accordion-icon {
+    transform: rotate(45deg);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .accordion-trigger:hover .accordion-label {
+    color: var(--color-primary);
+  }
+
+  .accordion-trigger:hover .accordion-icon {
+    border-color: rgba(228, 150, 234, 0.7);
+    color: rgba(228, 150, 234, 0.9);
+  }
+
+  .accordion-content {
+    margin-top: 0.875rem;
+  }
+
+  /* Contenu Markdoc rendu */
+  .event-content {
+    color: rgba(237, 239, 253, 0.65);
+    font-size: var(--text-body);
+    line-height: 1.75;
+  }
+
+  .event-content p {
+    margin-bottom: 0.6em;
+  }
+
+  .event-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  .event-content strong {
+    color: rgba(237, 239, 253, 0.95);
+    font-weight: 700;
+  }
+
+  .event-content em {
+    font-style: italic;
+    color: rgba(237, 239, 253, 0.8);
+  }
+
+  .event-content a {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .event-content a:hover {
+    color: var(--color-white);
+  }
+
+  .event-content ul,
+  .event-content ol {
+    margin: 0.5em 0 0.5em 1.25em;
+  }
+
+  .event-content li {
+    margin-bottom: 0.25em;
+  }
+</style>
+
+<script>
+  const filterBtns = document.querySelectorAll<HTMLButtonElement>("[data-filter]");
+  const resetBtn = document.getElementById("reset-filter");
+  const eventItems = document.querySelectorAll<HTMLElement>(".event-item");
+  const noResults = document.getElementById("no-results");
+  const pastSeparator = document.getElementById("past-separator");
+
+  function applyFilter(filter: string) {
+    let visibleCount = 0;
+    let visiblePastCount = 0;
+
+    eventItems.forEach((item) => {
+      const type = item.dataset.type ?? "";
+      const isUpcoming = item.dataset.upcoming === "true";
+      const visible = filter === "all" || type === filter;
+      item.style.display = visible ? "" : "none";
+      if (visible) {
+        visibleCount++;
+        if (!isUpcoming) visiblePastCount++;
+      }
+    });
+
+    filterBtns.forEach((btn) => {
+      if (btn.dataset.filter === filter) {
+        btn.classList.add("filter-active");
+      } else {
+        btn.classList.remove("filter-active");
+      }
+    });
+
+    if (noResults) {
+      noResults.classList.toggle("hidden", visibleCount > 0);
+    }
+
+    if (pastSeparator) {
+      pastSeparator.style.display = visiblePastCount > 0 ? "" : "none";
+    }
+  }
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      applyFilter(btn.dataset.filter ?? "all");
+    });
+  });
+
+  resetBtn?.addEventListener("click", () => {
+    applyFilter("all");
+  });
+</script>

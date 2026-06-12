@@ -32,14 +32,21 @@ const currentPath = Astro.url.pathname;
       >
         <span class={currentPath.startsWith('/spectacles') ? 'nav-link-active' : ''}>Spectacles</span>
       </a>
-      <a 
-        href="/stages" 
+      <a
+        href="/stages"
         class="heading-h3Type text-lightGrey text-glow transition nav-link"
         aria-current={currentPath === '/stages' ? 'page' : undefined}
       >
         <span class={currentPath === '/stages' ? 'nav-link-active' : ''}>Stages</span>
       </a>
-      <a 
+      <a
+        href="/calendrier"
+        class="heading-h3Type text-lightGrey text-glow transition nav-link"
+        aria-current={currentPath === '/calendrier' ? 'page' : undefined}
+      >
+        <span class={currentPath === '/calendrier' ? 'nav-link-active' : ''}>Calendrier</span>
+      </a>
+      <a
         href="/compagnie" 
         class="heading-h3Type text-lightGrey text-glow transition nav-link"
         aria-current={currentPath === '/compagnie' ? 'page' : undefined}
@@ -72,11 +79,12 @@ const currentPath = Astro.url.pathname;
   class="fixed inset-0 bg-dark z-40 hidden md:hidden"
 >
   <nav class="flex flex-col items-center justify-center h-full gap-8">
-    <a href="/" class="font-display text-3xl text-white uppercase">Accueil</a>
-    <a href="/spectacles" class="font-display text-3xl text-white uppercase">Spectacles</a>
-    <a href="/stages" class="font-display text-3xl text-white uppercase">Stages</a>
-    <a href="/compagnie" class="font-display text-3xl text-white uppercase">Compagnie</a>
-    <a href="/contact" class="font-display text-3xl text-white uppercase">Contact</a>
+    <a href="/" class="font-display text-3xl text-white uppercase tracking-wider">Accueil</a>
+    <a href="/spectacles" class="font-display text-3xl text-white uppercase tracking-wider">Spectacles</a>
+    <a href="/stages" class="font-display text-3xl text-white uppercase tracking-wider">Stages</a>
+    <a href="/calendrier" class="font-display text-3xl text-white uppercase tracking-wider">Calendrier</a>
+    <a href="/compagnie" class="font-display text-3xl text-white uppercase tracking-wider">Compagnie</a>
+    <a href="/contact" class="font-display text-3xl text-white uppercase tracking-wider">Contact</a>
   </nav>
 </div>
 

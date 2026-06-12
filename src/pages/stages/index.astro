@@ -3,7 +3,6 @@
 import PageLayout from "../../layouts/PageLayout.astro";
 import Stages from "../../components/sections/Stages.astro";
 import { getCollection, render } from "astro:content";
-import Dates from "../../components/sections/Dates.astro";
 import DatesArchives from "../../components/sections/DatesArchives.astro";
 
 const tousLesStages = await getCollection("stages");
@@ -118,7 +117,7 @@ const stagesWithContent = await Promise.all(
 
               <!-- Pédagogues -->
               <div>
-                <h4 class="font-display--headings uppercase text-secondary mb-4 border-b pb-2">
+                <h4 class="font-display--headings uppercase tracking-wider text-secondary mb-4 border-b pb-2">
                   Pédagogues
                 </h4>
                 <p class="font-medium text-white">{stage.data.pedagogues}</p>
@@ -127,7 +126,7 @@ const stagesWithContent = await Promise.all(
               <!-- Prochaines dates -->
               {stage.data.prochainsDates && stage.data.prochainsDates.length > 0 && (
                 <div>
-                  <h4 class="font-display--headings uppercase text-secondary mb-4 border-b pb-2">
+                  <h4 class="font-display--headings uppercase tracking-wider text-secondary mb-4 border-b pb-2">
                     Prochaines dates
                   </h4>
                   <ul class="space-y-2">
@@ -143,26 +142,26 @@ const stagesWithContent = await Promise.all(
 
               <!-- Lieu -->
               <div>
-                <h4 class="font-display--headings uppercase text-secondary mb-4 border-b pb-2">
+                <h4 class="font-display--headings uppercase tracking-wider text-secondary mb-4 border-b pb-2">
                   Lieu
                 </h4>
                 <p class="font-medium text-white">{stage.data.lieu}</p>
                 {stage.data.lieuDetail && (
-                  <p class="text-sm text-white/60 leading-relaxed mt-2">{stage.data.lieuDetail}</p>
+                  <p class="text-body text-white/60 mt-2">{stage.data.lieuDetail}</p>
                 )}
               </div>
 
               <!-- Tarif détaillé -->
               <div>
-                <h4 class="font-display--headings uppercase text-secondary mb-4 border-b pb-2">
+                <h4 class="font-display--headings uppercase tracking-wider text-secondary mb-4 border-b pb-2">
                   Tarifs
                 </h4>
-                <p class="text-sm text-white/60 leading-relaxed whitespace-pre-line">{stage.data.tarifDetail}</p>
+                <p class="text-body text-white/60 whitespace-pre-line">{stage.data.tarifDetail}</p>
               </div>
 
               <!-- Contact -->
               <div>
-                <h4 class="font-display--headings uppercase text-secondary mb-4 border-b pb-2">
+                <h4 class="font-display--headings uppercase tracking-wider text-secondary mb-4 border-b pb-2">
                   Contact & Inscription
                 </h4>
                 <a
