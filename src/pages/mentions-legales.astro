@@ -61,32 +61,31 @@ const legalInfo = {
             Éditeur du site
           </h2>
           <div class="mt-6 gap-4 text-white/85 leading-relaxed flex flex-col">
-            <p><strong>Dénomination :</strong> {legalInfo.siteName}</p>
+            <p>Dénomination :<strong> {legalInfo.siteName}</strong></p>
             <p>
-              <strong>Adresse du site :</strong>
+              Adresse du site :
               <a
                 href={legalInfo.siteUrl}
                 class="underline hover:text-primary transition"
                 >{legalInfo.siteUrl}</a
               >
             </p>
-            <p><strong>Forme juridique :</strong> Association loi 1901</p>
             <p>
-              <strong>Nom ou raison sociale :</strong> La boucle de la boucle
+              Forme juridique : Association régie par la loi du 1er juillet 1901
             </p>
+            <p>Nom ou raison sociale : La boucle de la boucle</p>
+            <p>Adresse du siège social : 30T Bouzogles, 23400 Bourganeuf</p>
+
             <p>
-              <strong>Adresse du siège social :</strong> 30T Bouzogles, 23400 Bourganeuf
-            </p>
-            <p><strong>Téléphone :</strong> 0587540269</p>
-            <p>
-              <strong>Email :</strong>
+              Email :
               <a
                 href={`mailto:${legalInfo.email}`}
                 class="underline hover:text-primary transition"
                 >{legalInfo.email}</a
               >
             </p>
-            <p><strong>SIRET :</strong> 904 004 389 00014</p>
+            <p>SIRET : 904 004 389 00014</p>
+            <!-- <p><strong>RNA :</strong> [WXXXXXXXXX si disponible]</p> -->
           </div>
         </article>
 
@@ -181,13 +180,17 @@ const legalInfo = {
                 La boucle de la boucle — propriétaire et créateur des contenus
                 du site
               </li>
-              Credits Photos, visuels de communication : Hosanna Gardner, Elisa Verbeke,
-              Myriam Adjaout
               <li>Hosanna Gardner - photos et visuels de communication</li>
               <li>Elisa Verbeke - photos et visuels de communication</li>
               <li>Myriam Adjaout - photos et visuels de communication</li>
+              <li>Lou Moreigne - photos et visuels de communication</li>
               <!-- <li>[Crédit photo / illustration / contenu tiers à préciser, mentions de provenance]</li> -->
             </ul>
+            <p>
+              Sauf dans les cas prévus par le Code de la propriété
+              intellectuelle, notamment au titre de l'exception de courte
+              citation, toute reproduction...
+            </p>
           </div>
         </article>
 
@@ -196,6 +199,11 @@ const legalInfo = {
             Données personnelles
           </h2>
           <div class="mt-6 space-y-4 leading-relaxed text-white/85">
+            <p>
+              <strong>Responsable du traitement :</strong>
+              L'association La boucle de la boucle, représentée par ses co-présidents,
+              contact : laboucledelaboucle@gmail.com
+            </p>
             <p>
               <strong>Données collectées :</strong> adresse email, nom, prénom, message
               et toutes informations transmises via le formulaire de contact ou par
@@ -210,9 +218,10 @@ const legalInfo = {
             </p>
             <p>
               <strong>Base légale :</strong> le traitement est fondé sur l'exécution
-              de mesures précontractuelles lorsque votre demande porte sur une prestation
-              ou une inscription, et sur votre consentement lorsque vous fournissez
-              volontairement vos données via le formulaire ou par email.
+              de mesures précontractuelles lorsque votre demande concerne une prestation,
+              une intervention ou une inscription. Pour les autres demandes de contact,
+              le traitement repose sur l'intérêt légitime de l'association à répondre
+              aux sollicitations reçues.
             </p>
             <p>
               <strong>Destinataires :</strong> les données sont destinées à La boucle
@@ -223,9 +232,12 @@ const legalInfo = {
             <p>
               <strong>Transfert hors Union européenne :</strong> le site est hébergé
               par
-              {legalInfo.host.name}, une société établie aux États-Unis. Les
-              données peuvent donc être transférées hors de l'Union européenne
-              selon les garanties prévues par l'hébergeur.
+              {legalInfo.host.name}, étant établie aux États-Unis, certaines
+              données techniques peuvent être transférées hors de l'Union
+              européenne. Ces transferts sont encadrés conformément aux
+              mécanismes prévus par le RGPD, notamment par la conclusion de
+              clauses contractuelles types adoptées par la Commission européenne
+              lorsque cela est applicable.
             </p>
             <p>
               <strong>Durée de conservation :</strong> les données personnelles sont
@@ -244,6 +256,10 @@ const legalInfo = {
                 >{legalInfo.email}</a
               >.
             </p>
+            <p>
+              Vous disposez également du droit d'introduire une réclamation
+              auprès de la CNIL (www.cnil.fr).
+            </p>
             <p class="text-sm text-white/70">
               Si des traitements complémentaires sont ajoutés au site, par
               exemple un formulaire de contact, une newsletter ou un outil de
@@ -258,20 +274,29 @@ const legalInfo = {
           <h2 class="font-display--headings text-h3 text-primary">Cookies</h2>
           <div class="mt-6 space-y-4 leading-relaxed text-white/85">
             <p>
-              Ce site n'utilise pas de cookies publicitaires ni de cookies de
-              mesure d'audience sur la partie publique. Seuls des cookies
-              strictement nécessaires au fonctionnement technique du site et à
-              l'hébergement peuvent être présents.
+              Le site public n'utilise pas de cookies publicitaires, de cookies
+              de mesure d'audience, de cookies tiers de réseaux sociaux ni de
+              cookies liés à un outil d'analyse.
             </p>
             <p>
-              Les cookies strictement nécessaires ne requièrent pas de
-              consentement préalable.
+              Les polices du site sont chargées localement depuis le dossier
+              public/fonts, et le code ne contient ni script d'analyse (Google
+              Analytics / Tag Manager), ni intégration Netlify Forms, ni
+              configuration GitHub OAuth pour la partie publique.
             </p>
-
-            <p class="text-sm text-white/70">
-              Si des cookies non essentiels sont ajoutés ultérieurement, un
-              mécanisme d'information et de recueil du consentement sera mis en
-              place avant leur dépôt.
+            <p>
+              Les éventuels cookies techniques liés à l'administration du site
+              sont exclusivement utilisés dans les espaces réservés aux
+              administrateurs.
+            </p>
+            <p>
+              En l'absence de cookies non essentiels, aucun consentement
+              préalable n'est demandé sur cette version du site.
+            </p>
+            <p>
+              La liste des cookies utilisés pourra évoluer en fonction des
+              fonctionnalités mises en œuvre sur le site. La présente politique
+              sera mise à jour en conséquence.
             </p>
           </div>
         </article>
@@ -282,15 +307,15 @@ const legalInfo = {
           </h2>
           <div class="mt-6 space-y-4 leading-relaxed text-white/85">
             <p>
-              L'éditeur du site s'efforce de fournir des informations aussi
-              exactes et à jour que possible. Il ne peut toutefois garantir
-              l'exactitude, l'exhaustivité ou l'actualité des contenus diffusés.
+              L'éditeur du site s'efforce de fournir des informations exactes et
+              régulièrement mises à jour. Toutefois, il ne saurait garantir
+              l'absence d'erreurs ou d'omissions.
             </p>
             <p>
-              L'utilisation des informations présentes sur le site se fait sous
-              la seule responsabilité de l'utilisateur. L'éditeur ne pourra être
-              tenu responsable des dommages directs ou indirects pouvant
-              résulter de l'accès au site ou de son utilisation.
+              L'éditeur ne pourra être tenu responsable des dommages résultant
+              de l'utilisation des informations diffusées sur le site, sauf
+              disposition légale impérative contraire ou faute démontrée lui
+              étant directement imputable.
             </p>
           </div>
         </article>

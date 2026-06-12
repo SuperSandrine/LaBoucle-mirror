@@ -5,6 +5,7 @@
 html{
   font-size: 16px;
   font-family: 'Inter',sans-serif;
+  line-height: 1.7;
 }
 
 @theme {
@@ -103,9 +104,16 @@ html{
   }
 
     .btn-outlineDark {
-    @apply border border-dark text-dark 
+    @apply border border-dark text-dark
            font-display--headings px-8 py-3 text-h4
-           hover:bg-dark hover:text-white 
+           hover:bg-dark hover:text-white
+           transition-all duration-300;
+  }
+
+  .btn-filled {
+    @apply bg-dark text-white
+           font-display--headings px-8 py-3 text-h4
+           hover:text-primary
            transition-all duration-300;
   }
 }
