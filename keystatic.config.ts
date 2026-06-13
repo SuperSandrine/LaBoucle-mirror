@@ -210,6 +210,10 @@ export default config({
           label: "Date de fin (optionnel)",
           description: "Renseigner uniquement si l'événement dure 2 jours ou plus (exemple: stages).",
         }),
+        heure: fields.text({
+          label: 'Heure',
+          description: "Optionnel — format: 20h30 ou 15h00",
+        }),
         lieu: fields.text({ label: 'Lieu', description: 'La ville avec une majuscule et le numéro de département entre parenthèse; exemple: Bayonne (64)' }),
         evenement: fields.conditional(
           fields.select({

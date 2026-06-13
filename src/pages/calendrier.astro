@@ -18,8 +18,12 @@ const getEventDateDisplay = (event: DateEntry) => {
   const startDate = event.data.date;
   const endDate = event.data.dateFin;
 
+  const dayOfWeek = startDate.toLocaleDateString("fr-FR", { weekday: "long" });
+  const capitalizedDay = dayOfWeek.charAt(0).toUpperCase() + dayOfWeek.slice(1);
+
   if (!endDate || endDate.getTime() <= startDate.getTime()) {
     return {
+      dayOfWeek: capitalizedDay,
       main: formatDayMonth(startDate),
       year: startDate.toLocaleDateString("fr-FR", { year: "numeric" }),
     };
@@ -30,12 +34,14 @@ const getEventDateDisplay = (event: DateEntry) => {
 
   if (startYear === endYear) {
     return {
+      dayOfWeek: capitalizedDay,
       main: `${formatDayMonth(startDate)} au ${formatDayMonth(endDate)}`,
       year: String(endYear),
     };
   }
 
   return {
+    dayOfWeek: capitalizedDay,
     main: `${formatDayMonth(startDate)} ${startYear} au ${formatDayMonth(endDate)}`,
     year: String(endYear),
   };
@@ -79,7 +85,7 @@ const pastWithContent = await Promise.all(
 
       <!-- En-tête -->
       <div class="mb-12">
-        <h1 class="font-display--headings text-primary" style="font-size: var(--text-h2);">
+        <h1 class="font-display--headings text-primary text-h2 md:text-heading1 leading-none ">
           Nos dates
         </h1>
         <p class="text-lightGrey/60 mt-2" style="font-size: var(--text-bodyMedium);">
@@ -136,12 +142,20 @@ const pastWithContent = await Promise.all(
                 <!-- Desktop -->
                 <div class="hidden md:flex items-start gap-6">
                   <div class="w-52 shrink-0">
-                    <p class="font-bold text-primary leading-snug" style="font-size: var(--text-bodyBig);">
+                    <p class="text-white/70" style="font-size: var(--text-body);">
+                      {dateDisplay.dayOfWeek}
+                    </p>
+                    <p class="font-bold text-white leading-snug" style="font-size: var(--text-bodyBig);">
                       {dateDisplay.main}
                     </p>
-                    <p class="text-primary/70" style="font-size: var(--text-body);">
+                    <p class="text-white/70" style="font-size: var(--text-body);">
                       {dateDisplay.year}
                     </p>
+                    {event.data.heure && (
+                      <p class="text-primary pt-4 font-bold">
+                        {event.data.heure}
+                      </p>
+                    )}
                   </div>
                   <div class="w-40 shrink-0">
                     <p class="text-lightGrey/60" style="font-size: var(--text-body);">
@@ -169,8 +183,8 @@ const pastWithContent = await Promise.all(
                     )}
                   </div>
                   <div class="shrink-0 self-center">
-                    <a href={link} class="btn-outline whitespace-nowrap">
-                      En savoir plus
+                    <a href={link} class="btn-outlineLight whitespace-nowrap">
+                      Découvrir le {type}
                     </a>
                   </div>
                 </div>
@@ -185,6 +199,11 @@ const pastWithContent = await Promise.all(
                       <p class="text-primary/70" style="font-size: var(--text-body);">
                         {dateDisplay.year}
                       </p>
+                      {event.data.heure && (
+                        <p class="text-primary/50" style="font-size: var(--text-body);">
+                          {event.data.heure}
+                        </p>
+                      )}
                     </div>
                     <span class="text-xs font-bold uppercase tracking-widest text-lightGrey/50 pt-1 shrink-0">
                       {type}

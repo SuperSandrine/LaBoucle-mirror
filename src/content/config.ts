@@ -41,6 +41,7 @@ const datesCollection = defineCollection({
       titreFichier: z.string(),
       date: dateSchema,
       dateFin: optionalDateSchema,
+      heure: z.string().optional(),
       lieu: z.string(),
       evenement: z.object({
         discriminant: z.enum(['spectacle', 'stage']),
