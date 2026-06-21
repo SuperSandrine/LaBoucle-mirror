@@ -10,25 +10,25 @@ const membres = [
     name: "Leo Sciarrino",
     role: "Co-directeur artistique",
     image: imageLeo,
-    bio: "Leo est clown, performeur drag/burlesque, metteur en scène. Il a travaillé à Paris dans le social jusqu'en 2018. En 2021, avec Annabelle Vaillant, il co-créé La compagnie La Boucle de la Boucle, dont il est co-directeur artistique. Au sein de la compagnie, il joue, met en scène, et facilite des stages et ateliers. Il a également co-créé le festival Les Désinvoltes avec Charlotte Weidmann. </br>En dehors de la compagnie, il milite au sein de l'association LGBTQIA+ Creuse.",
+    bio: `Leo est <strong class="text-white font-medium">clown, performeur drag/burlesque, metteur en scène</strong>. Il a travaillé à Paris dans le social jusqu'en 2018. En 2021, avec Annabelle Vaillant, il co-créé la compagnie <strong class="text-white font-medium">La Boucle de la Boucle</strong>, dont il est co-directeur artistique. Au sein de la compagnie, il joue, met en scène, et facilite des stages et ateliers. Il a également co-créé le <strong class="text-white font-medium">festival Les Désinvoltes</strong> avec Charlotte Weidmann.<br>En dehors de la compagnie, il milite au sein de l'association <strong class="text-white font-medium">LGBTQIA+ Creuse</strong>.`,
   },
   {
     name: "Annabelle Vaillant",
     role: "Co-directrice artistique",
     image: imageAnnabelle,
-    bio: "Co-directrice de la compagnie, Annabelle est clown, autrice et metteuse en scène (Soyez Libres c’est un ordre, Le temps c’est de l’argent, Comment devenir riche, La lutte Finale, ou encore SPUNNK avec Anna Gianferrari). </br>En dehors de la compagnie, elle écrit des textes de non-fiction (publiés dans des revues telles que Baragouine ou Woman Journal).",
+    bio: `Co-directrice de la compagnie, Annabelle est <strong class="text-white font-medium">clown, autrice et metteuse en scène</strong> (<em>Soyez Libres c’est un ordre</em>, <em>Le temps c’est de l’argent</em>, <em>Comment devenir riche</em>, <em>La lutte Finale</em>, ou encore <em>SPUNNK</em> avec Anna Gianferrari).<br>En dehors de la compagnie, elle écrit des <strong class="text-white font-medium">textes de non-fiction</strong> (publiés dans des revues telles que <em>Baragouine</em> ou <em>Woman Journal</em>).`,
   },
   {
     name: "Ziky Versari",
     role: "Clown",
     image: imageZicky,
-    bio: "Ziky Versari est clown-e et jongleureuse antipodiste. Iel a suivi une formation de cirque, à laquelle iel a ajouté le clown. Iel développe des univers artistiques en plaçant le corps au centre de l’action : un corps malléable, hors norme et queer. À travers le clown et la jonglerie, iel explore des comportements non normés, dans une démarche de légitimation des existences marginales. Au sein de la compagnie la Boucle de la Boucle, iel est pédagogue d'ateliers clown, comédienx et metteureuse et scène pour 'la Lutte Finale', et en cours de création de son solo 'Baignoire'.",
+    bio: `Ziky Versari est <strong class="text-white font-medium">clown-e et jongleureuse antipodiste</strong>. Iel a suivi une formation de cirque, à laquelle iel a ajouté le clown. Iel développe des univers artistiques en plaçant <strong class="text-white font-medium">le corps</strong> au centre de l’action : un corps malléable, hors norme et <strong class="text-white font-medium">queer</strong>. À travers le clown et la jonglerie, iel explore des comportements non normés, dans une démarche de <strong class="text-white font-medium">légitimation des existences marginales</strong>. Au sein de la compagnie la Boucle de la Boucle, iel est pédagogue d’ateliers clown, comédienx et metteureuse et scène pour <em>La Lutte Finale</em>, et en cours de création de son solo <em>Baignoire</em>.`,
   },
   {
     name: "Charlotte Weidmann",
     role: "Directrice de production",
     image: imageCharlotte,
-    bio: "Charlotte travaille en production / administration / coordination dans le spectacle vivant depuis 13 ans, après des études à Sciences Po Paris. </br>Elle a créé avec Leo Sciarrino le festival Les Désinvoltes, évènement queer et pluridisciplinaire dont elle assure la coordination. </br>Elle est aussi directrice de production pour 2 autres compagnies, le Blast Collective à Limoges et la cie Yvonne III à ***",
+    bio: `Charlotte travaille en <strong class="text-white font-medium">production / administration / coordination</strong> dans le <strong class="text-white font-medium">spectacle vivant</strong> depuis 13 ans, après des études à Sciences Po Paris.<br>Elle a créé avec Leo Sciarrino le <strong class="text-white font-medium">festival Les Désinvoltes</strong>, évènement <strong class="text-white font-medium">queer et pluridisciplinaire</strong> dont elle assure la coordination.<br>Elle est aussi directrice de production pour 2 autres compagnies, le <strong class="text-white font-medium">Blast Collective</strong> à Limoges et la <strong class="text-white font-medium">cie Yvonne III</strong> à ***`,
   },
 ];
 
@@ -120,52 +120,39 @@ const membres = [
             La Boucle de La Boucle
           </h1> -->
 
-          <div
-            class="mt-7 flex flex-wrap gap-3 text-xs md:text-sm uppercase tracking-widest"
-          >
-            <span
-              class="border border-primary/60 bg-primary/10 text-primary px-3 py-2"
-              >Creuse</span
-            >
-            <span class="border border-white/20 text-white/80 px-3 py-2"
-              >Créée en 2021</span
-            >
-            <span class="border border-secondary/50 text-secondary px-3 py-2"
-              >Queer & tout-terrain</span
-            >
+          <div class="mt-7 flex flex-wrap gap-3">
+            <span class="badge-outline">Creuse</span>
+            <span class="badge-outline">Créée en 2021</span>
+            <span class="badge-outline">Queer & tout-terrain</span>
           </div>
 
           <div
             class="mt-8 max-w-2xl space-y-5 text-white/80 leading-relaxed text-body"
           >
             <p>
-              Compagnie de clown et théâtre de rue créée en Creuse en 2021, <b
-                >La boucle de la boucle</b
-              > porte des spectacles, des activités pédagogiques et des événements
-              culturels. Nos projets sont queers, ludiques, tout terrains et piquants.
+              Compagnie de <strong class="text-white font-semibold">clown et théâtre de rue</strong> créée en <strong class="text-white font-semibold">Creuse</strong> en 2021,
+              <strong class="text-white font-semibold">La boucle de la boucle</strong> porte des spectacles, des activités pédagogiques et des événements
+              culturels. Nos projets sont <strong class="text-white font-semibold">queers, ludiques, tout terrains et piquants</strong>.
             </p>
             <p>
-              La boucle de la boucle porte le spectacle <b
-                >Comment devenir riche</b
-              > (2023), <b>La Lutte finale</b> (prévu 2027), plusieurs numéros de
-              cabarets et le festival multidisciplinaire <b>Les Désinvoltes</b> dont
+              La boucle de la boucle porte le spectacle <strong class="text-white font-semibold">Comment devenir riche</strong> (2023),
+              <strong class="text-white font-semibold">La Lutte finale</strong> (prévu 2027), plusieurs numéros de
+              cabarets et le festival multidisciplinaire <strong class="text-white font-semibold">Les Désinvoltes</strong> dont
               la première édition a eu lieu à l’automne 2025.
             </p>
             <p>
               La compagnie organise des ateliers artistiques autour des
-              pratiques du clown, du théâtre, du drag, du cabaret et des
-              écritures contemporaines. Ces ateliers sont menés avec l’objectif
-              de créer une porte d’entrée joyeuse et un cadre pédagogique
-              accessible à un large public, inclusif et attentif aux dynamiques
-              de pouvoirs et d’oppressions.
+              pratiques du <strong class="text-white font-semibold">clown, du théâtre, du drag, du cabaret et des écritures contemporaines</strong>.
+              Ces ateliers sont menés avec l’objectif de créer une porte d’entrée joyeuse
+              et un cadre pédagogique accessible à un large public, inclusif et attentif
+              aux dynamiques de pouvoirs et d’oppressions.
             </p>
             <p>
               L’identité de la compagnie est marquée par une équipe concernée et
-              sensibilisée aux questions LGBT, féministes et classistes.
+              sensibilisée aux questions <strong class="text-white font-semibold">LGBT, féministes et classistes</strong>.
             </p>
             <p>
-              La direction artistique est assurée par Annabelle Vaillant et Leo
-              Sciarrino.
+              La direction artistique est assurée par <strong class="text-white font-semibold">Annabelle Vaillant et Leo Sciarrino</strong>.
             </p>
           </div>
 
@@ -298,8 +285,8 @@ const membres = [
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           {
             membres.map((membre) => (
-              <article class="group border border-white/12 bg-black/20 p-5 md:p-6 flex flex-col sm:flex-row gap-5 hover:bg-white/5 transition">
-                <div class="w-full sm:w-40 shrink-0 aspect-3/4 overflow-hidden border border-white/15">
+              <article class="group  bg-black/20 p-5 md:p-6 flex flex-col sm:flex-row gap-5 hover:bg-white/5 transition">
+                <div class="w-full sm:w-40 shrink-0 aspect-3/4 overflow-hidden ">
                   <img
                     src={membre.image.src}
                     alt={`Photo de ${membre.name}`}
@@ -313,9 +300,7 @@ const membres = [
                   <p class="mt-1 text-primary uppercase tracking-widest text-xs">
                     {membre.role}
                   </p>
-                  <p class="mt-4 text-white/70 text-sm leading-relaxed">
-                    {membre.bio}
-                  </p>
+                  <p class="mt-4 text-white/70 text-sm leading-relaxed" set:html={membre.bio} />
                 </div>
               </article>
             ))
@@ -334,7 +319,7 @@ const membres = [
           <p class="text-secondary uppercase tracking-[0.2em] text-xs">
             Festival
           </p>
-          <h2 class="mt-3 font-display--headings text-h2 text-white">
+          <h2 class="mt-3 font-display--headings text-h2 text-white text-shine">
             Les Désinvoltes
           </h2>
           <p class="mt-5 text-white/80 leading-relaxed">
@@ -343,39 +328,28 @@ const membres = [
             festival affirme notre volonté de créer des espaces festifs,
             exigeants et accessibles.
           </p>
-          <div
-            class="mt-8 flex gap-3 flex-wrap text-xs uppercase tracking-wider"
-          >
-            <span
-              class="border border-secondary/60 bg-secondary/20 px-3 py-2 text-white"
-              >Clown</span
-            >
-            <span
-              class="border border-secondary/60 bg-secondary/20 px-3 py-2 text-white"
-              >Cabaret</span
-            >
-            <span
-              class="border border-secondary/60 bg-secondary/20 px-3 py-2 text-white"
-              >Performance</span
-            >
+          <div class="mt-8 flex gap-3 flex-wrap">
+            <span class="badge-outline">Clown</span>
+            <span class="badge-outline">Cabaret</span>
+            <span class="badge-outline">Performance</span>
           </div>
         </div>
 
         <div class="grid grid-cols-2 gap-3">
           <img
-            src="/images/spectacles/comment-devenir-riche/visuel.webp"
+            src="/images/spectacles/comment-devenir-riche/visuel.jpg"
             alt="Visuel du spectacle Comment devenir riche"
-            class="w-full h-44 md:h-52 object-cover border border-secondary/30"
+            class="w-full h-44 md:h-52 object-cover "
           />
           <img
             src="/images/spectacles/la-lutte-finale/visuel.jpg"
             alt="Visuel du spectacle La lutte finale"
-            class="w-full h-44 md:h-52 object-cover border border-secondary/30"
+            class="w-full h-44 md:h-52 object-cover"
           />
           <img
             src="/images/spectacles/billets.webp"
             alt="Billetterie spectacle"
-            class="col-span-2 h-40 md:h-48 w-full object-cover border border-secondary/30"
+            class="col-span-2 h-40 md:h-48 w-full object-cover "
           />
         </div>
       </div>
@@ -384,7 +358,7 @@ const membres = [
     <section class="py-24 px-6 text-center">
       <div class="max-w-3xl mx-auto">
         <h2
-          class="font-display--bigHeading text-white leading-tight text-[clamp(2.3rem,6vw,5rem)] text-shine"
+          class="font-display--headings text-white leading-tight text-h2 text-shine"
         >
           Une date a proposer ?
         </h2>

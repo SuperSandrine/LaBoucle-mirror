@@ -46,10 +46,10 @@ const isEven = index % 2 === 0;
 // Badge couleur selon le type
 const badgeColor =
   typeActivite === "stage"
-    ? "bg-secondary text-white"
+    ? "badge-secondary-solid"
     : typeActivite === "atelier"
-      ? "bg-accent text-white"
-      : "bg-primary text-dark";
+      ? "badge-primary-solid"
+      : "badge-primary-solid";
 
 const badgeLabel =
   typeActivite === "stage"
@@ -73,7 +73,7 @@ const badgeLabel =
     {
       badgeLabel && (
         <span
-          class={`absolute top-4 left-4 px-3 py-1 text-sm font-bold uppercase tracking-wide ${badgeColor}`}
+          class={`absolute top-4 left-4 ${badgeColor}`}
         >
           {badgeLabel}
         </span>

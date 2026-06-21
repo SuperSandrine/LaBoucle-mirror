@@ -124,6 +124,38 @@ html{
            hover:text-primary
            transition-all duration-300;
   }
+
+  /* Badges — système unifié, forme rectangulaire */
+  .badge-primary {
+    @apply px-3 py-1 text-xs font-bold uppercase tracking-widest
+           border border-primary/60 bg-primary/10 text-primary;
+  }
+
+  .badge-secondary {
+    @apply px-3 py-1 text-xs font-bold uppercase tracking-widest
+           border border-secondary/50 bg-secondary/10 text-secondary;
+  }
+
+  .badge-outline {
+    @apply px-3 py-1 text-xs font-bold uppercase tracking-widest
+           border border-white/25 bg-white/5 text-white/75;
+  }
+
+  .badge-outline-dark {
+    @apply px-3 py-1 text-xs font-bold uppercase tracking-widest
+           border border-dark/25 text-dark/70;
+  }
+
+  /* Variantes fond plein — pour badges en overlay sur image */
+  .badge-primary-solid {
+    @apply px-3 py-1 text-xs font-bold uppercase tracking-widest
+           bg-primary text-dark;
+  }
+
+  .badge-secondary-solid {
+    @apply px-3 py-1 text-xs font-bold uppercase tracking-widest
+           bg-secondary text-white;
+  }
 }
 
 
