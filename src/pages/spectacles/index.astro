@@ -43,9 +43,9 @@ const genres = Array.from(
   title="Spectacles - La Boucle de la Boucle"
   description="Découvrez les spectacles de la compagnie La Boucle de la boucle : théâtre, clown, tout terrain. Disponibles pour festivals, tournées et représentations."
 >
-  <main class="bg-dark pt-36 pb-20">
+  <main class="bg-dark pt-36 pb-20 px-6">
     <section
-      class="mx-auto max-w-7xl bg-gradient-to-br from-dark via-secondary/30 to-dark p-8 md:p-12 shadow-2xl shadow-black/70"
+      class="mx-auto max-w-7xl pb-10"
     >
       <h1
         class="font-display--headings text-white text-h2 md:text-heading1 leading-none text-shine"
@@ -77,7 +77,7 @@ const genres = Array.from(
       <div class="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
         {
           sortedSpectacles.map((spectacle) => (
-            <article class="group overflow-hidden bg-lightGrey shadow-lg transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/90">
+            <article class="group overflow-hidden bg-secondary/10  shadow-lg transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/90">
               <a href={`/spectacles/${spectacle.slug}`} class="block">
                 <div class="relative h-64 overflow-hidden bg-black">
                   <img
@@ -93,24 +93,23 @@ const genres = Array.from(
                   </span>
                 </div>
 
-                <div class="p-6">
+                <div class="p-6 flex flex-col">
                   <p class="font-display--sans text-body uppercase tracking-wider text-secondary">
                     Création {spectacle.data.creation}
                   </p>
-                  <h2 class="pt-3 font-display--headings text-h3 text-dark">
+                  <h2 class="pt-3 font-display--headings text-h3 text-white">
                     {spectacle.data.title}
                   </h2>
 
-                  <p class="pt-3 text-dark/80  ">{spectacle.data.synopsis}</p>
+                  <p class="pt-3 text-white/70">{spectacle.data.synopsis}</p>
 
                   <div class="mt-5 flex flex-wrap gap-2">
-                    <span class="badge-outline-dark">{spectacle.data.duree}</span>
-                    <span class="badge-outline-dark">{spectacle.data.public}</span>
+                    <span class="badge-outline">{spectacle.data.duree}</span>
+                    <span class="badge-outline">{spectacle.data.public}</span>
                   </div>
 
-                  <span class="mt-6 inline-flex items-center gap-2 font-display--headings text-h4 text-secondary transition group-hover:text-accentWarning">
-                    Voir la fiche
-                    <span aria-hidden="true">→</span>
+                  <span class="mt-5 w-fit btn-outline">
+                    En savoir plus
                   </span>
                 </div>
               </a>

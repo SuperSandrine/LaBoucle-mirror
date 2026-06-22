@@ -103,14 +103,12 @@ const getEventDateDisplay = (event: (typeof sortedDates)[number]) => {
               </h3>
               <p class="text-body text-dark/60">{getEventType(event)}</p>
             </div>
-            {activeFilter !== "stage" && (
-              <a
-                href={getEventType(event) === "spectacle" ? `/spectacles/${getEventTitle(event)}` : `/stages`}
-                class="shrink-0 btn-outlineDark whitespace-nowrap"
-              >
-                En savoir plus
-              </a>
-            )}
+            <a
+              href={getEventType(event) === "spectacle" ? `/spectacles/${getEventTitle(event)}` : `/stages#${getEventTitle(event)}`}
+              class="shrink-0 btn-outlineDark whitespace-nowrap"
+            >
+              En savoir plus
+            </a>
           </div>
         );
       })}
@@ -169,14 +167,12 @@ const getEventDateDisplay = (event: (typeof sortedDates)[number]) => {
               {formatTitle(getEventTitle(event))}
             </h3>
             <p class="text-body text-dark/70">{event.data.lieu}</p>
-            {activeFilter !== "stage" && (
-              <a
-                href={getEventType(event) === "spectacle" ? `/spectacles/${getEventTitle(event)}` : `/stages`}
-                class="mt-1 text-center btn-outlineDark w-full"
-              >
-                En savoir plus
-              </a>
-            )}
+            <a
+              href={getEventType(event) === "spectacle" ? `/spectacles/${getEventTitle(event)}` : `/stages#${getEventTitle(event)}`}
+              class="mt-1 text-center btn-outlineDark w-full"
+            >
+              En savoir plus
+            </a>
           </div>
         );
       })}

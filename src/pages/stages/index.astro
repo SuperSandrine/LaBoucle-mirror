@@ -23,9 +23,11 @@ const stagesWithContent = await Promise.all(
   title="Stages & Ateliers - La Boucle de la Boucle"
   description="Stages de clown et ateliers de théâtre avec la compagnie La Boucle de la boucle. Formations pour adultes, tous niveaux, en Creuse et en France."
 >
-  <main class="bg-dark pt-36 px-4 flex flex-col items-center">
+  <main class="bg-dark pt-36 pb-20 px-6 ">
 
-    <section class="w-full max-w-7xl bg-linear-to-br from-dark via-secondary/30 to-dark p-8 md:p-12 shadow-2xl shadow-black/70 mb-10">
+    <div class="flex flex-col items-center">
+
+    <section class="w-full max-w-7xl md:p-12 pb-10">
       <h1 class="font-display--headings text-white text-h2 md:text-heading1 leading-none text-shine">
         Stages & Ateliers
       </h1>
@@ -184,6 +186,8 @@ const stagesWithContent = await Promise.all(
         </div>
       ))
     }
+
+    </div>
     <DatesArchives filter="stage" />
   </main>
 </PageLayout>
