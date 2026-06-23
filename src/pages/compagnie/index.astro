@@ -1,5 +1,6 @@
 ---
 import PageLayout from "../../layouts/PageLayout.astro";
+import { Image } from "astro:assets";
 import imageCharlotte from "../../images/charlotte.webp";
 import imageLeo from "../../images/leo.webp";
 import imageAnnabelle from "../../images/annabelle.webp";
@@ -130,29 +131,49 @@ const membres = [
             class="mt-8 max-w-2xl space-y-5 text-white/80 leading-relaxed text-body"
           >
             <p>
-              Compagnie de <strong class="text-white font-semibold">clown et théâtre de rue</strong> créée en <strong class="text-white font-semibold">Creuse</strong> en 2021,
-              <strong class="text-white font-semibold">La boucle de la boucle</strong> porte des spectacles, des activités pédagogiques et des événements
-              culturels. Nos projets sont <strong class="text-white font-semibold">queers, ludiques, tout terrains et piquants</strong>.
+              Compagnie de <strong class="text-white font-semibold"
+                >clown et théâtre de rue</strong
+              > créée en <strong class="text-white font-semibold">Creuse</strong
+              > en 2021,
+              <strong class="text-white font-semibold"
+                >La boucle de la boucle</strong
+              > porte des spectacles, des activités pédagogiques et des événements
+              culturels. Nos projets sont <strong
+                class="text-white font-semibold"
+                >queers, ludiques, tout terrains et piquants</strong
+              >.
             </p>
             <p>
-              La boucle de la boucle porte le spectacle <strong class="text-white font-semibold">Comment devenir riche</strong> (2023),
-              <strong class="text-white font-semibold">La Lutte finale</strong> (prévu 2027), plusieurs numéros de
-              cabarets et le festival multidisciplinaire <strong class="text-white font-semibold">Les Désinvoltes</strong> dont
+              La boucle de la boucle porte le spectacle <strong
+                class="text-white font-semibold">Comment devenir riche</strong
+              > (2023),
+              <strong class="text-white font-semibold">La Lutte finale</strong> (prévu
+              2027), plusieurs numéros de cabarets et le festival multidisciplinaire
+              <strong class="text-white font-semibold">Les Désinvoltes</strong> dont
               la première édition a eu lieu à l’automne 2025.
             </p>
             <p>
               La compagnie organise des ateliers artistiques autour des
-              pratiques du <strong class="text-white font-semibold">clown, du théâtre, du drag, du cabaret et des écritures contemporaines</strong>.
-              Ces ateliers sont menés avec l’objectif de créer une porte d’entrée joyeuse
-              et un cadre pédagogique accessible à un large public, inclusif et attentif
-              aux dynamiques de pouvoirs et d’oppressions.
+              pratiques du <strong class="text-white font-semibold"
+                >clown, du théâtre, du drag, du cabaret et des écritures
+                contemporaines</strong
+              >. Ces ateliers sont menés avec l’objectif de créer une porte
+              d’entrée joyeuse et un cadre pédagogique accessible à un large
+              public, inclusif et attentif aux dynamiques de pouvoirs et
+              d’oppressions.
             </p>
             <p>
               L’identité de la compagnie est marquée par une équipe concernée et
-              sensibilisée aux questions <strong class="text-white font-semibold">LGBT, féministes et classistes</strong>.
+              sensibilisée aux questions <strong
+                class="text-white font-semibold"
+                >LGBT, féministes et classistes</strong
+              >.
             </p>
             <p>
-              La direction artistique est assurée par <strong class="text-white font-semibold">Annabelle Vaillant et Leo Sciarrino</strong>.
+              La direction artistique est assurée par <strong
+                class="text-white font-semibold"
+                >Annabelle Vaillant et Leo Sciarrino</strong
+              >.
             </p>
           </div>
 
@@ -176,13 +197,12 @@ const membres = [
           {
             [imageLeo, imageAnnabelle, imageZicky, imageCharlotte].map(
               (img, idx) => (
-                <div
-                  class={`overflow-hidden ${idx === 0 ? "col-span-2 aspect-16/10" : "aspect-4/5"}`}
-                >
-                  <img
-                    src={img.src}
+                <div class="aspect-4/5">
+                  <Image
+                    src={img}
                     alt="Membre de la compagnie"
-                    class="h-full w-full object-cover object-top transition duration-500 hover:scale-105"
+                    class={`h-full w-full object-cover object-top transition duration-500 hover:scale-105`}
+                    loading="eager"
                   />
                 </div>
               ),
@@ -284,13 +304,14 @@ const membres = [
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           {
-            membres.map((membre) => (
+            membres.map((membre, idx) => (
               <article class="group  bg-black/20 p-5 md:p-6 flex flex-col sm:flex-row gap-5 hover:bg-white/5 transition">
                 <div class="w-full sm:w-40 shrink-0 aspect-3/4 overflow-hidden ">
-                  <img
-                    src={membre.image.src}
-                    alt={`Photo de ${membre.name}`}
-                    class="h-full w-full object-cover object-top grayscale group-hover:grayscale-0 transition duration-500"
+                  <Image
+                    src={membre.image}
+                    alt={membre.name}
+                    class={`h-full w-full object-cover object-top grayscale group-hover:grayscale-0 transition duration-500${idx === 0 ? " contrast-125" : ""}`}
+                    loading="lazy"
                   />
                 </div>
                 <div>
@@ -300,7 +321,10 @@ const membres = [
                   <p class="mt-1 text-primary uppercase tracking-widest text-xs">
                     {membre.role}
                   </p>
-                  <p class="mt-4 text-white/70 text-sm leading-relaxed" set:html={membre.bio} />
+                  <p
+                    class="mt-4 text-white/70 text-sm leading-relaxed"
+                    set:html={membre.bio}
+                  />
                 </div>
               </article>
             ))
@@ -336,20 +360,27 @@ const membres = [
         </div>
 
         <div class="grid grid-cols-2 gap-3">
-          <img
-            src="/images/spectacles/comment-devenir-riche/visuel.jpg"
-            alt="Visuel du spectacle Comment devenir riche"
-            class="w-full h-44 md:h-52 object-cover "
-          />
-          <img
-            src="/images/spectacles/la-lutte-finale/visuel.jpg"
-            alt="Visuel du spectacle La lutte finale"
+          <Image
+            src="/images/galerie/festival/desinvoltes-1.webp"
+            alt="rassemblement extérieur du festival Désinvoltes"
+            width={600}
+            height={400}
             class="w-full h-44 md:h-52 object-cover"
+            loading="lazy"
           />
-          <img
-            src="/images/spectacles/billets.webp"
-            alt="Billetterie spectacle"
-            class="col-span-2 h-40 md:h-48 w-full object-cover "
+          <Image
+            src="/images/galerie/festival/desinvoltes-2.webp"
+            alt="soirée DJ du festival Désinvoltes"
+            width={989}
+            height={600}
+            class="w-full h-44 md:h-52 object-cover"
+            loading="lazy"
+          />
+          <Image
+            src="/images/galerie/festival/desinvoltes.webp"
+            alt="scène musicale du festival Désinvoltes"
+            class="col-span-2 md:h-52 h-44 w-full object-cover"
+            loading="lazy"
           />
         </div>
       </div>

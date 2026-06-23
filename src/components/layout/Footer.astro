@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 // Données du footer
 const navigationLinks = [
   { label: "Spectacles", href: "/spectacles" },
@@ -27,10 +28,12 @@ const socialLinks = [
     <!-- Logo -->
     <div class="pb-1 md:pb-2 ml-[-1.4rem]">
         <a href="/" class="block">
-      <img 
-        src="/images/logo-white.svg" 
-        alt="La Boucle - Logo" 
-        class="w-30 h-30 "
+      <Image
+        src="/images/logo-white.svg"
+        alt="La Boucle - Logo"
+        width={120}
+        height={120}
+        class="w-30 h-30"
       />
     </a>
     </div>

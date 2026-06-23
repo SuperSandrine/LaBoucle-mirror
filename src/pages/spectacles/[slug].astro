@@ -1,5 +1,6 @@
 ---
 import PageLayout from "../../layouts/PageLayout.astro";
+import { Image } from 'astro:assets';
 
 // Page de liste (ex: src/pages/repertoire.astro)
 import { getCollection } from "astro:content";
@@ -36,10 +37,14 @@ const { Content } = await spectacle.render();
         class="flex flex-col md:flex-row shadow-xl overflow-hidden min-h-[500px] mb-16 bg-gradient-to-br from-dark via-secondary/30 to-dark shadow-2xl shadow-primary/50 -rotate-1"
       >
         <div class="md:w-1/2 relative min-h-[350px] md:min-h-full bg-dark">
-          <img
+          <Image
             src={spectacle.data.visuel}
-            alt={`image du spectacle ${spectacle.data.title}`}
+            alt={spectacle.data.title}
+            width={800}
+            height={600}
             class="absolute inset-0 w-full h-full object-cover object-top"
+            loading="eager"
+            fetchpriority="high"
           />
         </div>
 

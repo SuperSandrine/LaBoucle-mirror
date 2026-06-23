@@ -1,5 +1,6 @@
 ---
 // src/components/sections/About.astro
+import { Image } from 'astro:assets';
 import heroImage from "../../images/hero-accueil.webp";
 import Card from "../ui/CardService.astro";
 
@@ -43,10 +44,12 @@ const cards = [
 <section id="services" class="relative w-full h-fit">
   <!-- fond -->
   <div class="absolute inset-0">
-    <img
-      src={heroImage.src}
+    <Image
+      src={heroImage}
       alt="La Boucle de La Boucle - Spectacle : Comment devenir riche"
       class="hero-image2 w-full h-full object-cover object-center"
+      loading="eager"
+      fetchpriority="high"
     />
     <!-- Overlay dégradé -->
     <div class="absolute top-[-35vh] left-0 right-0 bottom-0 hero-overlay2">

@@ -31,14 +31,16 @@ const heights = [400, 475, 415, 450];
       typeof image === "string" ? (
         <img
           src={image}
-          alt={`Photo de ${name}`}
-          class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+          alt={name}
+          class={`w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500${index === 0 ? ' contrast-125' : ''}`}
+          loading="lazy"
+          decoding="async"
         />
       ) : (
         <Image
           src={image}
-          alt={`Photo de ${name}`}
-          class="w-full h-full object-cover  grayscale group-hover:grayscale-0 transition-all duration-500"
+          alt={name}
+          class={`w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500${index === 0 ? ' contrast-125' : ''}`}
         />
       )
     }

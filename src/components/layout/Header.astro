@@ -1,5 +1,5 @@
 ---
-// Props (optionnel)
+import { Image } from 'astro:assets';
 const currentPath = Astro.url.pathname;
 ---
 
@@ -8,10 +8,14 @@ const currentPath = Astro.url.pathname;
     
     <!-- Logo -->
     <a href="/" class="block">
-      <img 
-        src="/images/logo-white.svg" 
-        alt="La Boucle - Logo" 
+      <Image
+        src="/images/logo-white.svg"
+        alt="La Boucle - Logo"
+        width={96}
+        height={96}
         class="w-24 h-24 hover:scale-110 transition-transform"
+        loading="eager"
+        fetchpriority="high"
       />
     </a>
     

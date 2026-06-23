@@ -5,6 +5,7 @@ import DatesArchives from "../../components/sections/DatesArchives.astro";
 import PageLayout from "../../layouts/PageLayout.astro";
 import { getCollection } from "astro:content";
 import ShowCard from "../../components/ui/ShowCard.astro";
+import { Image } from 'astro:assets';
 
 const spectacles = await getCollection("spectacles");
 const datesCollection = await getCollection("dates");
@@ -80,12 +81,15 @@ const genres = Array.from(
             <article class="group overflow-hidden bg-secondary/10  shadow-lg transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/90">
               <a href={`/spectacles/${spectacle.slug}`} class="block">
                 <div class="relative h-64 overflow-hidden bg-black">
-                  <img
+                  <Image
                     src={spectacle.data.visuel}
-                    alt={`Visuel du spectacle ${spectacle.data.title}`}
+                    alt={spectacle.data.title}
+                    width={800}
+                    height={600}
                     class={
                       `h-full w-full object-cover ${spectacle.slug === "prince-sse-pudeur" ? "object-[0%_25%]" : "object-center"} transition duration-300 group-hover:scale-120`
                     }
+                    loading="lazy"
                   />
                   <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                   <span class="absolute left-4 top-4 badge-primary-solid">

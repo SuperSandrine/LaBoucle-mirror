@@ -1,5 +1,6 @@
 ---
 // ShowCard.astro
+import { Image } from 'astro:assets';
 const { event, index, anchorMode = false } = Astro.props;
 const {
   title,
@@ -7,7 +8,6 @@ const {
   duree,
   public: publicValue,
   visuel,
-  slug,
 } = event.data;
 
 const href = anchorMode ? `#${event.slug}` : `/spectacles/${event.slug}`;
@@ -84,10 +84,13 @@ const isEven = index % 2 === 0;
 >
   <!-- Image -->
   <div class="md:w-1/2 relative min-h-75 md:min-h-full">
-    <img
+    <Image
       src={visuel}
       alt={title}
+      width={800}
+      height={600}
       class="absolute inset-0 w-full h-full object-cover object-top"
+      loading="lazy"
     />
   </div>
 

@@ -2,6 +2,7 @@
 // src/components/ui/CardActivite.astro
 // Composant générique pour spectacles ET stages
 // Props communes, rendu identique au ShowCard original
+import { Image } from 'astro:assets';
 
 interface Props {
   item: {
@@ -64,10 +65,13 @@ const badgeLabel =
 >
   <!-- Image -->
   <div class="md:w-1/2 relative min-h-75 md:min-h-full">
-    <img
+    <Image
       src={visuel}
       alt={title}
+      width={800}
+      height={600}
       class="absolute inset-0 w-full h-full object-cover object-top"
+      loading="lazy"
     />
     <!-- Badge type -->
     {

@@ -4,6 +4,7 @@ import PageLayout from "../../layouts/PageLayout.astro";
 import Stages from "../../components/sections/Stages.astro";
 import { getCollection, render } from "astro:content";
 import DatesArchives from "../../components/sections/DatesArchives.astro";
+import { Image } from 'astro:assets';
 
 const tousLesStages = await getCollection("stages");
 
@@ -46,10 +47,13 @@ const stagesWithContent = await Promise.all(
           <!-- En-tête : visuel + infos principales -->
               <article class="flex flex-col md:flex-row bg-dark/80 border border-white/10 shadow-xl overflow-hidden min-h-[500px] mb-0">
             <div class="md:w-1/2 relative min-h-[350px] md:min-h-full bg-dark">
-              <img
+              <Image
                 src={stage.data.visuel}
-                alt={`Image du stage ${stage.data.title}`}
+                alt={stage.data.title}
+                width={800}
+                height={600}
                 class="absolute inset-0 w-full h-full object-cover object-top"
+                loading="lazy"
               />
               <!-- Badge -->
               <span class={`absolute top-4 left-4 ${stage.data.typeActivite === "atelier" ? "badge-primary-solid" : "badge-secondary-solid"}`}>

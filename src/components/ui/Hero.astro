@@ -1,15 +1,18 @@
 ---
 // src/components/sections/Hero.astro
+import { Image } from 'astro:assets';
 import heroImage from "../../images/hero-accueil.webp";
 ---
 
 <section class="hero-section relative h-screen w-full overflow-hidden">
   <!-- Image de fond avec filtres -->
   <div class="absolute inset-0 z-0">
-    <img
-      src={heroImage.src}
+    <Image
+      src={heroImage}
       alt="La Boucle de La Boucle - Spectacle : Comment devenir riche"
       class="hero-image w-screen h-screen object-cover object-center"
+      loading="eager"
+      fetchpriority="high"
     />
     <!-- Overlay dégradé -->
     <div class="absolute inset-0 z-1 hero-overlay"></div>
