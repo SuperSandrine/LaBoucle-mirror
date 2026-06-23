@@ -11,9 +11,7 @@ const tousLesStages = await getCollection("stages");
 
 
 const stagesWithContent = await Promise.all(
-  tousLesStages.map(async (stage) => {
-    console.log("stage", stage);
-    
+  tousLesStages.map(async (stage) => {    
     const { Content } = await render(stage);
     return { stage, Content };
   }),
@@ -40,9 +38,15 @@ const stagesWithContent = await Promise.all(
     </div>
 
     <!-- Fiches détaillées -->
+    <section class="w-full max-w-7xl md:p-12 pb-10">
+      <h2 class="font-display--headings text-white text-h2 md:text-heading1 leading-none text-shine">
+        Les fiches détaillées
+      </h2>
+    </section>
+
     {
       stagesWithContent.map(({ stage, Content }) => (
-        <div id={stage.slug} class="max-w-6xl w-full mb-20">
+        <div id={stage.slug} class="max-w-6xl w-full mb-20 anchor-offset">
 
           <!-- En-tête : visuel + infos principales -->
               <article class="flex flex-col md:flex-row bg-dark/80 border border-white/10 shadow-xl overflow-hidden min-h-[500px] mb-0">
@@ -71,26 +75,26 @@ const stagesWithContent = await Promise.all(
               </h2>
 
               <!-- Méta badges -->
-              <div class="flex flex-wrap gap-4 pb-6">
+              <div class="flex flex-wrap gap-1 pb-6 text-xl">
                 <!-- Durée -->
-                <div class="flex items-center gap-2 text-accentWarning">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div class="flex items-center gap-2 text-primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                      <span class="text-white font-medium">{stage.data.duree}</span>
+                      <span class="text-white font-medium ">{stage.data.duree}</span>
                 </div>
 
                 <!-- Public -->
-                <div class="flex items-center gap-2 text-accentWarning">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div class="flex items-center gap-2 text-primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                   </svg>
                       <span class="text-white font-medium">{stage.data.public}</span>
                 </div>
 
                 <!-- Tarif -->
-                <div class="flex items-center gap-2 text-accentWarning">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div class="flex items-center gap-2 text-primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                       <span class="text-white font-medium">{stage.data.tarif}</span>
@@ -105,7 +109,7 @@ const stagesWithContent = await Promise.all(
               <!-- CTA contact -->
               <a
                 href={`mailto:${stage.data.emailContact}`}
-                class="w-fit btn-outline"
+                class="w-fit btn-outlineLight"
               >
                 S'inscrire
               </a>
@@ -144,7 +148,7 @@ const stagesWithContent = await Promise.all(
                   <ul class="space-y-2">
                     {stage.data.prochainsDates.map((date: string) => (
                       <li class="text-white font-medium flex items-start gap-2">
-                        <span class="text-accentWarning mt-1">▸</span>
+                        <span class="text-primary mt-1">▸</span>
                         {date}
                       </li>
                     ))}
