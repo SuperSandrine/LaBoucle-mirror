@@ -214,7 +214,11 @@ export default config({
           label: 'Heure',
           description: "Optionnel — format: 20h30 ou 15h00",
         }),
-        lieu: fields.text({ label: 'Lieu', description: 'La ville avec une majuscule et le numéro de département entre parenthèse; exemple: Bayonne (64)' }),
+        lieu: fields.text({ label: 'Ville', description: 'La ville avec une majuscule et le numéro de département entre parenthèse; exemple: Bayonne (64)' }),
+        salle: fields.text({
+          label: 'Nom du lieu / salle',
+          description: 'Optionnel — le nom du lieu précis; exemple: Théâtre de la Salamandre, La Gare de Felletin…',
+        }),
         evenement: fields.conditional(
           fields.select({
             label: "Type d'évènement",

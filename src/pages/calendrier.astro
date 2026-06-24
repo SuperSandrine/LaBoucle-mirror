@@ -161,6 +161,11 @@ const pastWithContent = await Promise.all(
                     <p class="text-lightGrey/60" style="font-size: var(--text-body);">
                       {event.data.lieu}
                     </p>
+                    {event.data.salle && (
+                      <p class="font-bold text-primary mt-0.5" style="font-size: var(--text-body);">
+                        {event.data.salle}
+                      </p>
+                    )}
                   </div>
                   <div class="flex-1 min-w-0">
                     <h2
@@ -218,6 +223,11 @@ const pastWithContent = await Promise.all(
                   <p class="text-lightGrey/60" style="font-size: var(--text-body);">
                     {event.data.lieu}
                   </p>
+                  {event.data.salle && (
+                    <p class="font-bold text-primary" style="font-size: var(--text-body);">
+                      {event.data.salle}
+                    </p>
+                  )}
                   {hasContent && (
                     <details class="accordion">
                       <summary class="accordion-trigger">
@@ -281,6 +291,11 @@ const pastWithContent = await Promise.all(
                     <p class="text-lightGrey/60" style="font-size: var(--text-body);">
                       {event.data.lieu}
                     </p>
+                    {event.data.salle && (
+                      <p class="font-bold text-lightGrey/70 mt-0.5" style="font-size: var(--text-body);">
+                        {event.data.salle}
+                      </p>
+                    )}
                   </div>
                   <div class="flex-1 min-w-0">
                     <h2
@@ -328,6 +343,11 @@ const pastWithContent = await Promise.all(
                   <p class="text-lightGrey/60" style="font-size: var(--text-body);">
                     {event.data.lieu}
                   </p>
+                  {event.data.salle && (
+                    <p class="font-bold text-lightGrey/70" style="font-size: var(--text-body);">
+                      {event.data.salle}
+                    </p>
+                  )}
                   {hasContent && (
                     <details class="accordion">
                       <summary class="accordion-trigger">
