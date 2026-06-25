@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50  backdrop-blur-md px-8 py-1 h-[100px]">
+<header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md px-4 md:px-8 py-1 h-[100px]">
   <div class="max-w-[1440px] w-full mx-auto flex justify-between items-center">
     
     <!-- Logo -->
@@ -78,34 +78,60 @@ const currentPath = Astro.url.pathname;
 </header>
 
 <!-- Mobile Menu (caché par défaut) -->
-<div 
-  id="mobile-menu" 
+<div
+  id="mobile-menu"
   class="fixed inset-0 bg-dark z-40 hidden md:hidden"
 >
+  <button
+    id="close-menu"
+    class="absolute top-6 right-6 text-lightGrey text-4xl leading-none"
+    aria-label="Fermer le menu"
+  >✕</button>
   <nav class="flex flex-col items-center justify-center h-full gap-8">
-    <a href="/" class="font-display text-3xl text-white uppercase tracking-wider">Accueil</a>
-    <a href="/spectacles" class="font-display text-3xl text-white uppercase tracking-wider">Spectacles</a>
-    <a href="/stages" class="font-display text-3xl text-white uppercase tracking-wider">Stages</a>
-    <a href="/calendrier" class="font-display text-3xl text-white uppercase tracking-wider">Calendrier</a>
-    <a href="/compagnie" class="font-display text-3xl text-white uppercase tracking-wider">Compagnie</a>
-    <a href="/contact" class="font-display text-3xl text-white uppercase tracking-wider">Contact</a>
+    <a
+      href="/"
+      class={`font-display--headings text-3xl uppercase tracking-wider ${currentPath === '/' ? 'text-white text-shine' : 'text-lightGrey/80'}`}
+    >Accueil</a>
+    <a
+      href="/spectacles"
+      class={`font-display--headings text-3xl uppercase tracking-wider ${currentPath.startsWith('/spectacles') ? 'text-white text-shine' : 'text-lightGrey/80'}`}
+    >Spectacles</a>
+    <a
+      href="/stages"
+      class={`font-display--headings text-3xl uppercase tracking-wider ${currentPath === '/stages' ? 'text-white text-shine' : 'text-lightGrey/80'}`}
+    >Stages</a>
+    <a
+      href="/calendrier"
+      class={`font-display--headings text-3xl uppercase tracking-wider ${currentPath === '/calendrier' ? 'text-white text-shine' : 'text-lightGrey/80'}`}
+    >Calendrier</a>
+    <a
+      href="/compagnie"
+      class={`font-display--headings text-3xl uppercase tracking-wider ${currentPath.startsWith('/compagnie') ? 'text-white text-shine' : 'text-lightGrey/80'}`}
+    >Compagnie</a>
+    <a
+      href="/contact"
+      class={`font-display--headings text-3xl uppercase tracking-wider ${currentPath === '/contact' ? 'text-white text-shine' : 'text-lightGrey/80'}`}
+    >Contact</a>
   </nav>
 </div>
 
 
 <script>
-  // Burger menu toggle
   const burger = document.getElementById('burger-button');
+  const closeBtn = document.getElementById('close-menu');
   const mobileMenu = document.getElementById('mobile-menu');
-  
+
   burger?.addEventListener('click', () => {
     mobileMenu?.classList.toggle('hidden');
   });
-  
-  // Close menu on link click
+
+  closeBtn?.addEventListener('click', () => {
+    mobileMenu?.classList.add('hidden');
+  });
+
   mobileMenu?.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
-      mobileMenu.classList.add('hidden');
+      mobileMenu?.classList.add('hidden');
     });
   });
 </script>

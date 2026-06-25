@@ -8,7 +8,7 @@ const stagesCollection = await getCollection("stages");
 const { anchorMode = false } = Astro.props;
 ---
 
-<section class="bg-dark p-10">
+<section class="bg-dark p-4 md:p-10">
   <div class="max-w-[1440px] mx-auto">
     <!-- <h2
     class="text-center text-h2 font-bold text-white text-shine p-10 font-display--headings"
@@ -21,7 +21,7 @@ const { anchorMode = false } = Astro.props;
 </h1> -->
 
     {!anchorMode && (
-      <h2 class="font-display--headings text-white text-shine text-h2 pb-12 pl-8">
+      <h2 class="font-display--headings text-white text-shine text-h2 pb-6 pl-2 md:pb-12 md:pl-8">
         Stages & Ateliers :
       </h2>
     )}

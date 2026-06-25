@@ -50,7 +50,7 @@ const { Content } = await spectacle.render();
   <main class="bg-dark pt-40 px-4 flex flex-col items-center">
     <div class="max-w-6xl w-full">
       <article
-        class="flex flex-col md:flex-row shadow-xl overflow-hidden min-h-[500px] mb-16 bg-gradient-to-br from-dark via-secondary/30 to-dark shadow-2xl shadow-primary/50 -rotate-1"
+        class="flex flex-col md:flex-row shadow-xl overflow-hidden min-h-[500px] mb-16 bg-gradient-to-br from-dark via-secondary/30 to-dark shadow-2xl shadow-primary/50 md:-rotate-1"
       >
         <div class="md:w-1/2 relative min-h-[350px] md:min-h-full bg-dark">
           <Image
@@ -68,7 +68,7 @@ const { Content } = await spectacle.render();
           <p class="text-primary font-bold text-bodyBig">
             {spectacle.data.creation}
           </p>
-          <h1 class="text-heading1 text-white font-display--headings pb-4">
+          <h1 class="text-h2 md:text-heading1 text-white font-display--headings pb-4 leading-tight">
             {spectacle.data.title}
           </h1>
 
