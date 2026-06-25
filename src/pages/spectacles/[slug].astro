@@ -31,6 +31,22 @@ const { Content } = await spectacle.render();
   ogImage={spectacle.data.visuel}
   ogType="article"
 >
+  <script is:inline type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": spectacle.data.title,
+    "description": spectacle.data.synopsis,
+    "dateCreated": spectacle.data.creation,
+    "genre": spectacle.data.genreEtRegistre ?? "Théâtre",
+    "inLanguage": "fr",
+    "author": {
+      "@type": "PerformingGroup",
+      "name": "La Boucle de la Boucle",
+      "url": "https://laboucledelaboucle.fr"
+    },
+    "image": `https://laboucledelaboucle.fr${spectacle.data.visuel}`,
+    "url": `https://laboucledelaboucle.fr/spectacles/${spectacle.slug}`
+  })} />
   <main class="bg-dark pt-40 px-4 flex flex-col items-center">
     <div class="max-w-6xl w-full">
       <article

@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin/
 Disallow: /keystatic/ 
 
-Sitemap: https://laboucledelaboucle.netlify.app/sitemap-index.xml
+Sitemap: https://laboucledelaboucle.fr/sitemap-index.xml

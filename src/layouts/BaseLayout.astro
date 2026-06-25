@@ -54,6 +54,36 @@ const ogImageURL = new URL(ogImage, Astro.site);
     <meta property="og:image" content={ogImageURL} />
     <meta property="og:locale" content="fr_FR" />
     <meta property="og:site_name" content="La Boucle de la boucle" />
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <!-- Données structurées — compagnie -->
+    <script is:inline type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": ["PerformingGroup", "Organization"],
+      "name": "La Boucle de la Boucle",
+      "url": "https://laboucledelaboucle.fr",
+      "email": "laboucledelaboucle@gmail.com",
+      "description": "Compagnie de clown et théâtre de rue créée en Creuse en 2021. Spectacles tout terrain, stages et ateliers, festival Les Désinvoltes.",
+      "foundingDate": "2021",
+      "areaServed": "France",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "Creuse",
+        "addressCountry": "FR"
+      },
+      "sameAs": ["https://www.instagram.com/laboucledelaboucle/"],
+      "member": [
+        { "@type": "Person", "name": "Leo Sciarrino", "jobTitle": "Co-directeur artistique" },
+        { "@type": "Person", "name": "Annabelle Vaillant", "jobTitle": "Co-directrice artistique" },
+        { "@type": "Person", "name": "Ziky Versari", "jobTitle": "Clown" },
+        { "@type": "Person", "name": "Charlotte Weidmann", "jobTitle": "Directrice de production" }
+      ]
+    })} />
   </head>
   <body>
     <slot />

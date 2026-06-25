@@ -11,7 +11,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site:'https://Laboucledelaboucle.netlify.app',
+  site:'https://laboucledelaboucle.fr',
   output: 'server',
   integrations: [react(), markdoc(), keystatic(), sitemap()],  // dans la doc de astro: https://docs.astro.build/fr/guides/cms/keystatic/
   //  integrations: [react(), markdoc()],

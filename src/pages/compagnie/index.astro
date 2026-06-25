@@ -29,7 +29,7 @@ const membres = [
     name: "Charlotte Weidmann",
     role: "Directrice de production",
     image: imageCharlotte,
-    bio: `Charlotte travaille en <strong class="text-white font-medium">production / administration / coordination</strong> dans le <strong class="text-white font-medium">spectacle vivant</strong> depuis 13 ans, après des études à Sciences Po Paris.<br>Elle a créé avec Leo Sciarrino le <strong class="text-white font-medium">festival Les Désinvoltes</strong>, évènement <strong class="text-white font-medium">queer et pluridisciplinaire</strong> dont elle assure la coordination.<br>Elle est aussi directrice de production pour 2 autres compagnies, le <strong class="text-white font-medium">Blast Collective</strong> à Limoges et la <strong class="text-white font-medium">cie Yvonne III</strong> à ***`,
+    bio: `Charlotte travaille en <strong class="text-white font-medium">production / administration / coordination</strong> dans le <strong class="text-white font-medium">spectacle vivant</strong> depuis 13 ans, après des études à Sciences Po Paris.<br>Elle a créé avec Leo Sciarrino le <strong class="text-white font-medium">festival Les Désinvoltes</strong>, évènement <strong class="text-white font-medium">queer et pluridisciplinaire</strong> dont elle assure la coordination.<br>Elle est aussi directrice de production pour 2 autres compagnies, le <strong class="text-white font-medium">Blast Collective</strong> à Limoges et la <strong class="text-white font-medium">cie Yvonne III</strong> à Joigny`,
   },
 ];
 
@@ -309,7 +309,7 @@ const membres = [
                 <div class="w-full sm:w-40 shrink-0 aspect-3/4 overflow-hidden ">
                   <Image
                     src={membre.image}
-                    alt={membre.name}
+                    alt={`${membre.name}, ${membre.role} — La Boucle de la Boucle`}
                     class={`h-full w-full object-cover object-top grayscale group-hover:grayscale-0 transition duration-500${idx === 0 ? " contrast-125" : ""}`}
                     loading="lazy"
                   />

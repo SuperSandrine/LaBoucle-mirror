@@ -80,7 +80,7 @@ const pastWithContent = await Promise.all(
   title="Calendrier – La Boucle de la Boucle"
   description="Tous les spectacles et stages de La Boucle de la Boucle : dates à venir et archives."
 >
-  <main class="bg-dark min-h-screen pt-[100px]">
+  <main class="bg-dark min-h-screen pt-25">
     <div class="max-w-5xl mx-auto px-6 py-16">
 
       <!-- En-tête -->
@@ -141,7 +141,7 @@ const pastWithContent = await Promise.all(
               >
                 <!-- Desktop -->
                 <div class="hidden md:flex items-start gap-6">
-                  <div class="w-52 shrink-0">
+                  <div class="w-32 ">
                     <p class="text-white/70" style="font-size: var(--text-body);">
                       {dateDisplay.dayOfWeek}
                     </p>
@@ -157,7 +157,7 @@ const pastWithContent = await Promise.all(
                       </p>
                     )}
                   </div>
-                  <div class="w-40 shrink-0">
+                  <div class="w-42">
                     <p class="text-lightGrey/60" style="font-size: var(--text-body);">
                       {event.data.lieu}
                     </p>
