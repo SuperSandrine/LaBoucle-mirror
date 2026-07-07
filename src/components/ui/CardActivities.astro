@@ -22,11 +22,12 @@ interface Props {
   };
   index: number;
   anchorMode?: boolean;
+  anchorLink?: boolean; // true = lien vers baseUrl#slug (ex: /stages#slug), false = lien vers baseUrl/slug
   baseUrl?: string; // "/spectacles" ou "/stages"
   ctaLabel?: string; // "Découvrir le spectacle" ou "En savoir plus"
 }
 
-const { item, index, anchorMode, baseUrl, ctaLabel } = Astro.props;
+const { item, index, anchorMode, anchorLink, baseUrl, ctaLabel } = Astro.props;
 
 const {
   title,
@@ -39,7 +40,11 @@ const {
 
 //console.log(item.data.typeActivite);
 
-const href = anchorMode ? `#${item.slug}` : `${baseUrl}/${item.slug}`;
+const href = anchorMode
+  ? `#${item.slug}`
+  : anchorLink
+    ? `${baseUrl}#${item.slug}`
+    : `${baseUrl}/${item.slug}`;
 
 // Alternance gauche/droite effet en "Z"
 const isEven = index % 2 === 0;

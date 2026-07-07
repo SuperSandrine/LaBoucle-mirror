@@ -32,6 +32,7 @@ const { anchorMode = false } = Astro.props;
             item={item}
             index={index}
             anchorMode={anchorMode}
+            anchorLink={!anchorMode}
             baseUrl="/stages"
             ctaLabel={`Découvrir ${item.data.typeActivite === "stage" ? "le stage" : "l'atelier"}`}
           />
