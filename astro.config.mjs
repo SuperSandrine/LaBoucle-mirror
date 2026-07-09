@@ -13,7 +13,15 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site:'https://laboucledelaboucle.fr',
   output: 'server',
-  integrations: [react(), markdoc(), keystatic(), sitemap()],  // dans la doc de astro: https://docs.astro.build/fr/guides/cms/keystatic/
+  integrations: [react(), markdoc(), keystatic(), sitemap({
+    filter: (page) => !page.includes('/admin') && !page.includes('/keystatic'),
+    customPages: [
+      'https://laboucledelaboucle.fr/spectacles/comment-devenir-riche',
+      'https://laboucledelaboucle.fr/spectacles/la-lutte-finale',
+      'https://laboucledelaboucle.fr/spectacles/prince-sse-pudeur',
+      'https://laboucledelaboucle.fr/spectacles/baignoire',
+    ],
+  })],  // dans la doc de astro: https://docs.astro.build/fr/guides/cms/keystatic/
   //  integrations: [react(), markdoc()],
   adapter: netlify(),
 

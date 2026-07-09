@@ -36,12 +36,14 @@ html{
 
 @font-face {
   font-family: 'Children of the revolution';
-  src: url("/fonts/Children-of-the-revolution.ttf");
+  src: url("/fonts/Children-of-the-revolution.woff2") format("woff2"),
+       url("/fonts/Children-of-the-revolution.ttf") format("truetype");
 }
 
 @font-face {
   font-family: 'TrashHand';
-  src: url("/fonts/TrashHand.TTF");
+  src: url("/fonts/TrashHand.woff2") format("woff2"),
+       url("/fonts/TrashHand.TTF") format("truetype");
 }
 
 @layer components {
