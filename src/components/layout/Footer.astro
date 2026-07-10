@@ -39,15 +39,15 @@ const socialLinks = [
     </div>
 
     <!-- Columns -->
-    <div class=" flex flex-col sm:flex-row sm:justify-between pb-10 md:pb-12">
+    <div class="grid grid-cols-2 gap-x-6 gap-y-8 pb-12 md:grid-cols-3 md:gap-8">
       <!-- Navigation -->
-      <div>
-        <h3 class="text-primary font-display--headings text-h4  text-sm pb-3">Navigation</h3>
+      <div class="min-w-0">
+        <h3 class="text-primary font-display--headings text-h4 text-sm pb-3">Navigation</h3>
         <nav class="flex flex-col gap-2">
           {navigationLinks.map((link) => (
             <a
               href={link.href}
-              class=" hover:text-primary transition-colors duration-300 "
+              class="hover:text-primary transition-colors duration-300"
             >
               {link.label}
             </a>
@@ -56,13 +56,13 @@ const socialLinks = [
       </div>
 
       <!-- Professionnels -->
-      <div>
-        <h3 class="text-primary font-display--headings text-h4  text-sm pb-3">Professionnels</h3>
+      <div class="min-w-0">
+        <h3 class="text-primary font-display--headings text-h4 text-sm pb-3">Professionnels</h3>
         <nav class="flex flex-col gap-3">
           {professionalLinks.map((link) => (
             <a
               href={link.href}
-              class=" hover:text-primary transition-colors duration-300 "
+              class="hover:text-primary transition-colors duration-300"
             >
               {link.label}
             </a>
@@ -71,15 +71,15 @@ const socialLinks = [
       </div>
 
       <!-- Social -->
-      <div>
-        <h3 class="text-primary font-display--headings text-h4  text-sm pb-3">Nous suivre</h3>
+      <div class="min-w-0 col-span-2 md:col-span-1">
+        <h3 class="text-primary font-display--headings text-h4 text-sm pb-3">Nous suivre</h3>
         <div class="flex gap-4">
           {socialLinks.map((link) => (
             <a
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              class="text-white hover:text-primary transition-colors duration-300 "
+              class="text-white hover:text-primary transition-colors duration-300"
               aria-label={link.label}
             >
               <!-- Icône SVG pour {link.icon} à remplacer -->

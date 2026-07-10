@@ -80,10 +80,10 @@ const isEven = index % 2 === 0;
   </div>
 </article> -->
 <article
-  class={`flex flex-col ${isEven ? "md:flex-row md:rotate-1" : "md:flex-row-reverse md:-rotate-1"} bg-secondary/10 border border-secondary/20 overflow-hidden shadow-card mb-8 w-full md:w-4/5 mx-auto md:min-h-100 transition `}
+  class={`flex flex-col ${isEven ? "rotate-1 md:flex-row " : "-rotate-1 md:flex-row-reverse"} bg-secondary/10 border border-secondary/20 overflow-hidden shadow-card mb-8 w-full max-w-full md:max-w-[1100px] mx-auto transition `}
 >
   <!-- Image -->
-  <div class="md:w-1/2 relative min-h-64 md:min-h-full">
+  <div class="md:w-1/2 relative overflow-hidden min-h-64 aspect-[4/3] md:aspect-[3/2]">
     <Image
       src={visuel}
       alt={title}

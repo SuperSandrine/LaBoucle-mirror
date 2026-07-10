@@ -59,9 +59,9 @@ const { Content } = await spectacle.render();
   <main class="bg-dark pt-40 px-4 flex flex-col items-center">
     <div class="max-w-6xl w-full">
       <article
-        class="flex flex-col md:flex-row shadow-xl overflow-hidden min-h-[500px] mb-16 bg-gradient-to-br from-dark via-secondary/30 to-dark shadow-2xl shadow-primary/50 md:-rotate-1"
+        class="flex flex-col md:flex-row shadow-xl overflow-hidden mb-16 bg-gradient-to-br from-dark via-secondary/30 to-dark shadow-2xl shadow-primary/50 -rotate-1 md:-rotate-1"
       >
-        <div class="md:w-1/2 relative min-h-[350px] md:min-h-full bg-dark">
+        <div class="md:w-1/2 relative overflow-hidden min-h-[40vh] md:min-h-[350px] bg-dark aspect-[4/3] md:aspect-[3/2]">
           <Image
             src={spectacle.data.visuel}
             alt={spectacle.data.title}
@@ -73,7 +73,7 @@ const { Content } = await spectacle.render();
           />
         </div>
 
-        <div class="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+        <div class="md:w-1/2 p-8 md:p-12 flex flex-col justify-center ">
           <p class="text-primary font-bold text-bodyBig">
             {spectacle.data.creation}
           </p>
@@ -82,7 +82,7 @@ const { Content } = await spectacle.render();
           </h1>
 
           <div class="flex flex-wrap gap-4 pb-4">
-            <div class="flex items-center gap-2 text-accentWarning">
+            <div class="flex items-center gap-2 text-primary">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-5 w-5"
@@ -100,7 +100,7 @@ const { Content } = await spectacle.render();
                 {spectacle.data.duree}
               </span>
             </div>
-            <div class="flex items-center gap-2 text-accentWarning">
+            <div class="flex items-center gap-2 text-primary">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-5 w-5"

@@ -40,7 +40,7 @@ const team: TeamMember[] = [
     <h2 class="font-display--headings text-white text-shine text-h2 pb-6 pl-2 md:pb-12 md:pl-8">
       Nous sommes :
     </h2>
-    <div class="flex flex-wrap justify-center">
+    <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
       {team.map((member, index) => <CardTeam {...member} index={index} />)}
     </div>
   </div>

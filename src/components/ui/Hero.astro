@@ -57,6 +57,13 @@ import heroImage from "../../images/hero-accueil.webp";
   /* Filtre noir & blanc + contraste sur image */
   .hero-image {
     filter: grayscale(100%) contrast(1.1) brightness(1.5) saturate(100%);
+    object-position: center center;
+  }
+
+  @media (max-width: 768px) {
+    .hero-image {
+      object-position: calc(50% + 290px) center;
+    }
   }
 
   .hero-overlay {
