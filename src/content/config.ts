@@ -51,6 +51,13 @@ const datesCollection = defineCollection({
     }),
 });
 
+const optionalStringArraySchema = z.preprocess((value) => {
+  if (value === undefined || value === null || value === '') return undefined;
+  if (Array.isArray(value)) return value;
+  if (typeof value === 'string') return [value];
+  return value;
+}, z.array(z.string()).optional());
+
 const stagesCollection = defineCollection({
   type: 'content',
   schema: z.object({
@@ -76,7 +83,7 @@ const stagesCollection = defineCollection({
     emailContact: z.string().email(),
 
     // --- Prochaines dates (tableau de strings lisibles) ---
-    prochainsDates: z.array(z.string()).optional(),
+    prochainsDates: optionalStringArraySchema,
 
     // --- Statut ---
     // "ouvert" | "complet" | "bientot"

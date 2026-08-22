@@ -177,10 +177,14 @@ export default config({
           defaultValue: 'ouvert',
         }),
 
-        prochainsDates: fields.text({
-          label:'Indication sur les prochaines inscriptions',
-          description: 'Exemple: "Prochaine inscription à partie juillet pour 2026/27."'
-        }),
+        prochainsDates: fields.array(
+          fields.text({ label: 'Date / information' }),
+          {
+            label: 'Indication sur les prochaines inscriptions',
+            description: 'Exemple: "Prochaine inscription à partir de juillet pour 2026/27."',
+            itemLabel: (props) => props.value || 'Nouvelle information',
+          }
+        ),
 
         contenu: fields.markdoc({ label: 'Contenu (texte de présentation)' }),
       },
